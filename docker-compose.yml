@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3060:80"
+    restart: always
+
+  # Cloudflare tunnel — connects to Cloudflare's edge and routes
+  # https://ado-code.ne1.dev to this stack. Token lives in .env
+  # (gitignored — never commit it).
+  # IMPORTANT: in the Cloudflare dashboard, the tunnel's public hostname
+  # must point at the compose network service URL: http://web:80
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    restart: always
+    depends_on:
+      - web

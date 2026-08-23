@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADO Code — AI coding assistant with Azure DevOps integration for VS Code</title>
+  <meta name="description" content="ADO Code brings your Azure DevOps backlog into VS Code. Fetch work items as a real hierarchy, chat with any OpenAI-compatible or Anthropic LLM, and delegate tasks to coding agents in isolated git worktrees.">
+  <meta name="theme-color" content="#0b0e14">
+  <link rel="canonical" href="https://ado-code.ne1.dev/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ado-code.ne1.dev/">
+  <meta property="og:title" content="ADO Code — AI coding assistant for Azure DevOps">
+  <meta property="og:description" content="Fetch work items, chat with any LLM, delegate to coding agents in isolated git worktrees — all inside VS Code.">
+  <meta property="og:image" content="https://ado-code.ne1.dev/assets/img/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ADO Code — AI coding assistant for Azure DevOps">
+  <meta name="twitter:description" content="Fetch work items, chat with any LLM, delegate to coding agents in isolated git worktrees — all inside VS Code.">
+  <meta name="twitter:image" content="https://ado-code.ne1.dev/assets/img/og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ADO Code",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "publisher": { "@type": "Person", "name": "Khairulnizam Hasan", "url": "https://github.com/steelburn" },
+    "description": "AI coding assistant with Azure DevOps work item integration for VS Code. Fetch work items, chat with LLMs, delegate tasks to coding agents.",
+    "url": "https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code",
+    "softwareVersion": "0.6.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "requirements": "VS Code 1.85.0+"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="ADO Code home">
+        <img src="/assets/img/logo.svg" alt="" width="28" height="28" class="brand-mark">
+        <span class="brand-name">ADO&nbsp;Code</span>
+        <span class="brand-ver">v0.6.0</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#modes">Modes</a>
+        <a href="#agents">Agents</a>
+        <a href="#commands">Commands</a>
+        <a href="#install">Install</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">
+          GitHub
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3h7v7M13 3 5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 13H3V6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Install</a>
+      </div>
+      <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="dot"></span>VS Code extension · steelburn.ado-code · v0.6.0</p>
+          <h1 class="hero-title">Turn Azure DevOps work items into <span class="accent">shipped code</span>.</h1>
+          <p class="hero-sub">
+            ADO Code brings your backlog into the editor. Fetch work items as a real
+            Epic&nbsp;→&nbsp;Feature&nbsp;→&nbsp;User&nbsp;Story&nbsp;→&nbsp;Task hierarchy, chat with any
+            OpenAI-compatible or Anthropic LLM, and delegate tasks to coding agents —
+            Claude Code, Codex, OpenCode, Hermes — each in its own isolated git worktree.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">
+              Install from Marketplace
+            </a>
+            <button class="btn btn-ghost btn-lg" id="copy-install" data-copy="code --install-extension steelburn.ado-code">
+              <code>code --install-extension steelburn.ado-code</code>
+              <span class="copy-feedback" aria-live="polite"></span>
+            </button>
+          </div>
+          <ul class="hero-meta">
+            <li>VS Code 1.85+</li>
+            <li>OpenAI-compatible &amp; Anthropic</li>
+            <li>Git worktrees</li>
+            <li>MCP support</li>
+            <li>Open source</li>
+          </ul>
+        </div>
+
+        <!-- VS Code window mockup -->
+        <div class="hero-visual reveal" aria-label="Screenshot-style mockup of ADO Code inside VS Code">
+          <div class="window">
+            <div class="win-titlebar">
+              <div class="win-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="win-title">Visual Studio Code — ado-demo (Workspace)</div>
+              <div class="win-spacer"></div>
+            </div>
+            <div class="win-body">
+              <div class="activity-bar" aria-hidden="true">
+                <div class="act-icon">▤</div>
+                <div class="act-icon">⌕</div>
+                <div class="act-icon">⑂</div>
+                <div class="act-icon">⬡</div>
+                <div class="act-icon act-active" title="ADO Code">☰</div>
+                <div class="act-spacer"></div>
+                <div class="act-icon">⚙</div>
+              </div>
+              <div class="sidebar">
+                <div class="side-section">
+                  <div class="side-header">
+                    <span>WORK ITEMS</span>
+                    <span class="side-action">⋯</span>
+                  </div>
+                  <div class="tree-toolbar">
+                    <span class="tree-view-label" id="tree-view-label">View: My Work Items ▾</span>
+                  </div>
+                  <div class="tree" id="tree">
+                    <div class="tree-row tree-parent" data-collapsed="false">
+                      <span class="tree-caret">▾</span>
+                      <span class="tree-type" style="--tc:#569cd6">▮</span>
+                      <span class="tree-text">Epic: Payment Platform Overhaul</span>
+                      <span class="tree-id">ADO-120</span>
+                    </div>
+                    <div class="tree-children">
+                      <div class="tree-row tree-parent" data-collapsed="false">
+                        <span class="tree-caret">▾</span>
+                        <span class="tree-type" style="--tc:#c586c0">▮</span>
+                        <span class="tree-text">Feature: Checkout v2</span>
+                        <span class="tree-id">ADO-121</span>
+                      </div>
+                      <div class="tree-children">
+                        <div class="tree-row tree-parent" data-collapsed="true">
+                          <span class="tree-caret">▸</span>
+                          <span class="tree-type" style="--tc:#4ec9b0">▮</span>
+                          <span class="tree-text">User Story: Card payments</span>
+                          <span class="tree-id">ADO-122</span>
+                        </div>
+                        <div class="tree-children tree-hidden">
+                          <div class="tree-row tree-row-selected">
+                            <span class="tree-caret tree-caret-empty"></span>
+                            <span class="tree-type" style="--tc:#ce9178">▮</span>
+                            <span class="tree-text">Task: Integrate Stripe API</span>
+                            <span class="tree-id tree-selected">ADO-123</span>
+                            <span class="tree-tag tree-tag-you">you</span>
+                          </div>
+                          <div class="tree-row">
+                            <span class="tree-caret tree-caret-empty"></span>
+                            <span class="tree-type" style="--tc:#ce9178">▮</span>
+                            <span class="tree-text">Task: 3DS validation</span>
+                            <span class="tree-id">ADO-124</span>
+                          </div>
+                          <div class="tree-row">
+                            <span class="tree-caret tree-caret-empty"></span>
+                            <span class="tree-type" style="--tc:#ce9178">▮</span>
+                            <span class="tree-text">Task: Refund flow</span>
+                            <span class="tree-id">ADO-125</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tree-row tree-parent" data-collapsed="false">
+                      <span class="tree-caret">▾</span>
+                      <span class="tree-type" style="--tc:#569cd6">▮</span>
+                      <span class="tree-text">Epic: Audit &amp; Compliance</span>
+                      <span class="tree-id">ADO-210</span>
+                    </div>
+                    <div class="tree-children">
+                      <div class="tree-row">
+                        <span class="tree-caret tree-caret-empty"></span>
+                        <span class="tree-type" style="--tc:#4ec9b0">▮</span>
+                        <span class="tree-text">User Story: SOC2 evidence trail</span>
+                        <span class="tree-id">ADO-211</span>
+                        <span class="tree-tag">context</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="editor">
+                <div class="mode-pills" role="tablist" aria-label="Tool mode">
+                  <button class="pill pill-active" data-mode="inline" role="tab" aria-selected="true">Chat</button>
+                  <button class="pill" data-mode="plan" role="tab" aria-selected="false">Plan</button>
+                  <button class="pill" data-mode="act" role="tab" aria-selected="false">Act</button>
+                  <button class="pill" data-mode="yolo" role="tab" aria-selected="false">YOLO</button>
+                </div>
+                <div class="chat" id="hero-chat">
+                  <div class="msg msg-user">
+                    <div class="msg-label">You</div>
+                    <div class="msg-body">Pick up ADO-123 and implement the Stripe integration.</div>
+                  </div>
+                  <div class="msg msg-ai">
+                    <div class="msg-label">ADO Code</div>
+                    <div class="thinking">
+                      <span class="thinking-dot"></span>
+                      <span>Planning: read the checkout module, find the payment stub, wire the Stripe API…</span>
+                    </div>
+                    <div class="msg-body">On it. I'll work through ADO-123, then hand the branch back for review.</div>
+                    <div class="toolcard toolcard-done">
+                      <div class="toolcard-head"><span class="toolcard-icon">⇄</span> read_file <span class="toolcard-status">completed</span></div>
+                      <div class="toolcard-args">src/payments/checkout.ts · 214 lines</div>
+                    </div>
+                    <div class="toolcard toolcard-done">
+                      <div class="toolcard-head"><span class="toolcard-icon">✎</span> edit_file <span class="toolcard-status">completed</span></div>
+                      <div class="toolcard-args">src/payments/stripe.ts · 2 edits applied</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="inputbar">
+                  <span class="inputbar-slash">/</span>
+                  <span class="inputbar-ph">Ask ADO Code to work your items… (try /pick, /delegate, /generate-tasks)</span>
+                  <span class="inputbar-send" aria-hidden="true">➤</span>
+                </div>
+              </div>
+            </div>
+            <div class="win-statusbar">
+              <span>☰ ADO Code</span>
+              <span class="status-working"><i></i> working…</span>
+              <span class="status-right">Chat · tokens 2,431 · feature/ADO-123-stripe-integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FEATURES ═══════════════ -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Features</p>
+          <h2>Your backlog, in your editor.</h2>
+          <p class="section-sub">Every feature is built around one loop: pick an item, let AI work it, review the branch, merge the PR.</p>
+        </div>
+
+        <div class="bento">
+          <article class="bento-card bento-wide reveal">
+            <div class="bento-txt">
+              <h3>One tree view for the whole backlog</h3>
+              <p>
+                Work items render as the real ADO hierarchy — Epic → Feature → User Story → Task — with a visible
+                header toggle between <strong>My Work Items</strong>, <strong>All Work Items</strong> and
+                <strong>Unassigned</strong>. Hierarchy-context rows are tagged, state/type/text filtering is built in,
+                and a green badge marks the item you're working.
+              </p>
+              <ul class="checklist">
+                <li>Parent-chain walk for true nesting, even when parents belong to someone else</li>
+                <li>Take Ownership / Reassign right from the tree</li>
+                <li>Open items spawn <code>feature/ADO-&lt;id&gt;-&lt;slug&gt;</code> branches automatically</li>
+              </ul>
+            </div>
+            <div class="mini-tree" aria-hidden="true">
+              <div class="mini-row"><span>▾</span><b style="color:#569cd6">Epic</b> Payment Platform Overhaul</div>
+              <div class="mini-row mini-indent1"><span>▾</span><b style="color:#c586c0">Feature</b> Checkout v2</div>
+              <div class="mini-row mini-indent2"><span>▾</span><b style="color:#4ec9b0">Story</b> Card payments</div>
+              <div class="mini-row mini-indent3 mini-selected"><span>&nbsp;</span><b style="color:#ce9178">Task</b> Integrate Stripe API <em>ADO-123</em></div>
+              <div class="mini-row mini-indent3"><span>&nbsp;</span><b style="color:#ce9178">Task</b> 3DS validation <em>ADO-124</em></div>
+            </div>
+          </article>
+
+          <article class="bento-card reveal">
+            <h3>Agent worktrees</h3>
+            <p>Every delegated run gets its own git worktree under <code>.ado-code/worktrees/</code> — parallel agents can never collide.</p>
+            <ul class="checklist">
+              <li>Run status, dirty files, ahead/behind at a glance</li>
+              <li>Open in Terminal / Explorer, diff, remove</li>
+              <li>Concurrency guard: no overlapping runs on the same item</li>
+            </ul>
+          </article>
+
+          <article class="bento-card reveal">
+            <h3>Memory that persists</h3>
+            <p>User memory remembers you across sessions; workspace memory keeps project conventions in <code>.ado-code/memory/</code> — auto-ignored by git &amp; Docker.</p>
+            <ul class="checklist">
+              <li><code>agent.before</code> / <code>agent.after</code> shell hooks</li>
+              <li>Fuzzy search, import/export</li>
+            </ul>
+          </article>
+
+          <article class="bento-card reveal">
+            <h3>MCP &amp; skills</h3>
+            <p>Plug in external MCP tool servers, or load from a built-in catalog of 10+ skills — Code Review, Security Audit, Testing, Refactoring and more.</p>
+            <ul class="checklist">
+              <li>Skill import from JSON, SKILL.md or archives</li>
+              <li>Community skill registries via TSV</li>
+            </ul>
+          </article>
+
+          <article class="bento-card reveal">
+            <h3>Model-aware by design</h3>
+            <p>Capabilities are detected per model — vision, tool calling, context window — so the UI never offers what your model can't do.</p>
+            <ul class="checklist">
+              <li>Live /models data from OpenRouter or Ollama</li>
+              <li>Per-model overrides when auto-detection is wrong</li>
+              <li>Real token counting in the status bar</li>
+            </ul>
+          </article>
+
+          <article class="bento-card bento-wide reveal">
+            <div class="bento-txt">
+              <h3>An AI that finishes the job</h3>
+              <p>
+                For delegated runs, ADO Code closes the loop itself: commit → push → open the pull request — never
+                force-pushing, never touching protected branches. Finished runs get an LLM auto-review with a merge
+                recommendation, and after the PR merges, <em>Clean Up After Merge</em> removes the worktree and the branch.
+              </p>
+              <ul class="checklist">
+                <li><code>commit_worktree</code> → <code>push_worktree</code> → <code>create_pull_request</code></li>
+                <li><code>resolve_pr_conflicts</code> lets the AI fix merge conflicts, then re-push</li>
+                <li>Parent delegation covers the whole subtree with a numbered delivery checklist</li>
+              </ul>
+            </div>
+            <div class="flow" aria-hidden="true">
+              <div class="flow-step"><span class="flow-n">1</span>Pick item</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step"><span class="flow-n">2</span>Worktree</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step"><span class="flow-n">3</span>Commit</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step"><span class="flow-n">4</span>Push</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step"><span class="flow-n">5</span>PR</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step flow-step-done"><span class="flow-n">6</span>Merge</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MODES ═══════════════ -->
+    <section class="section section-alt" id="modes">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Modes</p>
+          <h2>One toggle from ask to autonomy.</h2>
+          <p class="section-sub">Click a mode to see what it allows. Every mode shares the same chat, memory and work-item context.</p>
+        </div>
+
+        <div class="modes reveal">
+          <div class="modes-pills" role="tablist" aria-label="Mode details">
+            <button class="mode-pill mode-active" data-mode="inline" role="tab" aria-selected="true">Chat</button>
+            <button class="mode-pill" data-mode="plan" role="tab" aria-selected="false">Plan</button>
+            <button class="mode-pill" data-mode="act" role="tab" aria-selected="false">Act</button>
+            <button class="mode-pill" data-mode="yolo" role="tab" aria-selected="false">YOLO</button>
+          </div>
+
+          <div class="mode-panels">
+            <div class="mode-panel mode-panel-active" data-mode="inline">
+              <div class="mode-panel-txt">
+                <h3>Chat — ask, then approve</h3>
+                <p>The safe default. The assistant can use tools, but every action is presented as an in-chat consent card before it runs. Read-only commands can auto-approve after a configurable timer.</p>
+                <div class="mode-tags"><span>consent cards</span><span>harmless-command timer</span><span>tool auto-approve patterns</span></div>
+              </div>
+            </div>
+            <div class="mode-panel" data-mode="plan">
+              <div class="mode-panel-txt">
+                <h3>Plan — look before you leap</h3>
+                <p>Read-only mode. The model inspects the repo, the work item and its acceptance criteria, then proposes a plan. Nothing is edited, no commands run — the plan comes back as a summary you can approve or refine.</p>
+                <div class="mode-tags"><span>read-only schemas</span><span>repo inspection</span><span>proposal output</span></div>
+              </div>
+            </div>
+            <div class="mode-panel" data-mode="act">
+              <div class="mode-panel-txt">
+                <h3>Act — the agentic workhorse</h3>
+                <p>Edits are applied directly, terminal commands run against a wildcard allowlist (<code>git *</code>, <code>npm run *</code>…). Independent tool calls execute in parallel, and batched <code>edit_file</code> edits are serialized per file.</p>
+                <div class="mode-tags"><span>terminal allowlist</span><span>parallel tool calls</span><span>batched edits</span></div>
+              </div>
+            </div>
+            <div class="mode-panel" data-mode="yolo">
+              <div class="mode-panel-txt">
+                <h3>YOLO — full autonomy</h3>
+                <p>Every tool, every command, no prompts. Intended for trusted tasks on isolated worktrees where a mistake costs a reset, not a production incident. Checkpoints keep restores one click away.</p>
+                <div class="mode-tags"><span>no consent prompts</span><span>full tool access</span><span>checkpoints on</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ AGENTS ═══════════════ -->
+    <section class="section" id="agents">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">External agents</p>
+          <h2>Delegate to the agent you trust.</h2>
+          <p class="section-sub">ADO Code orchestrates external coding agents instead of competing with them — pick the right tool for the task, straight from the chat.</p>
+        </div>
+
+        <div class="agents-grid reveal">
+          <div class="agent-card">
+            <div class="agent-logo" style="background:#e8e8e8;color:#333">⌘</div>
+            <div class="agent-name">Claude Code</div>
+            <p>Full agentic coding with Anthropic models, driven by natural-language prompts.</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-logo" style="background:#1c1c1c;color:#fff">⌬</div>
+            <div class="agent-name">Codex</div>
+            <p>OpenAI's CLI agent for focused, file-level implementation work.</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-logo" style="background:#d7f0ff;color:#0a2540">❯</div>
+            <div class="agent-name">OpenCode</div>
+            <p>Open-source terminal agent — bring your own model and workflow.</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-logo" style="background:#2b8fe0;color:#fff">✧</div>
+            <div class="agent-name">Hermes</div>
+            <p>Nous Research's agent platform, orchestrated right from the chat.</p>
+          </div>
+        </div>
+
+        <div class="agents-note reveal">
+          <p>
+            Add your own via <code>adoCode.agents.enabled</code> — each agent is declared by binary, supported modes and CLI
+            arguments, and shows up in a details panel. Delegating a <em>parent</em> item runs its whole subtree in one
+            worktree, with a numbered delivery checklist the agent must sign off in a <code>## Delivery Report</code> —
+            and with <code>adoCode.agents.autoCompleteChildren</code> on, done children transition to their terminal state
+            automatically.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ COMMANDS ═══════════════ -->
+    <section class="section section-alt" id="commands">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Slash commands</p>
+          <h2>The backlog, by keyboard.</h2>
+          <p class="section-sub">Type <code>/</code> in the chat input — autocomplete included.</p>
+        </div>
+
+        <div class="cmd-table reveal">
+          <div class="cmd-row cmd-row-head"><span>Command</span><span>What it does</span></div>
+          <div class="cmd-row"><code>/pick</code><span>Browse the work-item tree and set your active context</span></div>
+          <div class="cmd-row"><code>/status &lt;state&gt;</code><span>Move the active item — Active, Done, Closed, Removed…</span></div>
+          <div class="cmd-row"><code>/comment &lt;text&gt;</code><span>Post to the item's discussion thread</span></div>
+          <div class="cmd-row"><code>/assign &lt;who&gt;</code><span>Reassign the active item to a teammate</span></div>
+          <div class="cmd-row"><code>/delegate [agent] &lt;prompt&gt;</code><span>Hand the task to claude, codex, opencode, hermes, pi…</span></div>
+          <div class="cmd-row"><code>/generate-tasks</code><span>AI analyzes a user story and drafts child tasks (dedup-aware)</span></div>
+          <div class="cmd-row"><code>/new-project</code><span>Scaffold a project — Node, Python, React, Next.js, Laravel, .NET</span></div>
+          <div class="cmd-row"><code>/skills</code><span>Browse, install and manage reusable AI skills</span></div>
+          <div class="cmd-row"><code>/remember · /forget</code><span>Store or wipe AI memory</span></div>
+          <div class="cmd-row"><code>/mode [mode]</code><span>Switch Chat / Plan / Act / YOLO on the fly</span></div>
+          <div class="cmd-row"><code>/undo · /clear · /resume · /help</code><span>Revert, reset, continue a session, or get categorized help</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ INSTALL ═══════════════ -->
+    <section class="section" id="install">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Install</p>
+          <h2>Up and running in a minute.</h2>
+        </div>
+
+        <div class="install-grid reveal">
+          <div class="install-card">
+            <h3>1 · Install the extension</h3>
+            <p>From the Marketplace, or right from the terminal:</p>
+            <div class="codeblock">
+              <code>code --install-extension steelburn.ado-code</code>
+              <button class="copy-btn" data-copy="code --install-extension steelburn.ado-code" aria-label="Copy command">⧉</button>
+            </div>
+            <a class="btn btn-primary" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Open in Marketplace →</a>
+          </div>
+
+          <div class="install-card">
+            <h3>2 · Connect Azure DevOps</h3>
+            <p>The extension walks you through it — you'll need:</p>
+            <ul class="checklist">
+              <li>An ADO organization, project, and a PAT with <code>vso.work_write</code> scope</li>
+              <li>Optional: on-prem ADO Server (TFS) base URL</li>
+            </ul>
+          </div>
+
+          <div class="install-card">
+            <h3>3 · Add an LLM</h3>
+            <p>Bring your own key — any provider speaking the protocols:</p>
+            <ul class="checklist">
+              <li>OpenAI-compatible APIs — including OpenRouter, Ollama, LM Studio</li>
+              <li>Anthropic API</li>
+              <li>Per-mode models and reasoning effort in Advanced mode</li>
+            </ul>
+          </div>
+
+          <div class="install-card">
+            <h3>Requirements</h3>
+            <ul class="checklist">
+              <li>VS Code 1.85.0+</li>
+              <li>Node.js 18+</li>
+              <li>A git-enabled workspace folder</li>
+            </ul>
+            <p class="install-note">No telemetry. No account required beyond your own ADO + LLM providers. Open source on <a href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">GitHub</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="/assets/img/logo.svg" alt="" width="32" height="32">
+        <div>
+          <div class="footer-name">ADO Code</div>
+          <div class="footer-tag">AI coding assistant with Azure DevOps integration</div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Visual Studio Marketplace</a>
+        <a href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">GitHub</a>
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+      </div>
+      <div class="footer-meta">
+        <span>v0.6.0</span>
+        <span>·</span>
+        <span>© 2026 steelburn (Khairulnizam Hasan)</span>
+        <span>·</span>
+        <span>Made for VS Code &amp; Azure DevOps</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
