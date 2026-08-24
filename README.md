@@ -9,7 +9,7 @@ Marketing / landing site for the **ADO Code** VS Code extension
 Static HTML + CSS + vanilla JS. No build step, no framework, no dependencies.
 Deploys anywhere: nginx container, Netlify, Cloudflare Pages, or any static host.
 
-- `index.html` — single landing page (hero + features + modes + agents + commands + install)
+- `index.html` — single landing page (hero + VS Code mockup, feature highlights, comprehensive feature reference table, modes, agents, commands, install)
 - `assets/css/style.css` — design tokens + components (dark developer-tool theme, Azure accent, IBM Plex)
 - `assets/js/main.js` — mode demo, tree mockup, copy-to-clipboard, mobile nav, scroll reveal
 - `assets/img/` — logo, favicon, OG image

@@ -721,6 +721,60 @@ img { max-width: 100%; display: block; }
 .cmd-row-head { background: var(--bg-2); font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-4); padding: 10px 24px; }
 .cmd-row code { white-space: nowrap; font-size: 0.85rem; color: var(--blue-code); background: none; border: none; padding: 0; }
 
+/* ── All-features table ───────────────────────────────── */
+.feat-table {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-1);
+}
+.feat-cat {
+  padding: 12px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-hi);
+  background: var(--bg-2);
+  border-top: 1px solid var(--border-soft);
+  border-left: 3px solid var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.feat-cat:first-child { border-top: none; }
+.feat-cat::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-soft);
+}
+.feat-row {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 22px;
+  padding: 13px 24px 13px 27px;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.feat-row:first-of-type { border-top: none; }
+.feat-row code:first-child {
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 0.85rem;
+  background: none;
+  border: none;
+  padding: 0;
+  white-space: normal;
+  align-self: start;
+}
+.feat-row code code { background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; color: var(--ink-2); }
+.feat-row strong { color: var(--ink); font-weight: 600; }
+.feat-row:hover { background: rgba(255, 255, 255, 0.015); }
+
 /* ── Install ───────────────────────────────────────────── */
 .install-grid {
   display: grid;
@@ -824,6 +878,7 @@ img { max-width: 100%; display: block; }
   .bento { grid-template-columns: 1fr; }
   .bento-wide { grid-column: span 1; }
   .cmd-row { grid-template-columns: 1fr; gap: 4px; }
+  .feat-row { grid-template-columns: 1fr; gap: 4px; padding-left: 24px; }
   .win-body { height: auto; }
   .sidebar { width: 210px; }
 }

@@ -17,6 +17,13 @@ All notable changes to the ADO Code website.
 - Docker deployment (nginx) + static hosting instructions
 - SEO: meta tags, Open Graph, JSON-LD SoftwareApplication, sitemap, robots.txt
 
+## [0.2.0] — 2026-08-24
+
+### Added
+
+- Comprehensive feature reference table ("Everything ADO Code does") — 66 features across 8 categories (Work Items, AI Chat & Modes, Agents & Worktrees, Git Workflow, Memory, MCP & Skills, Model Intelligence & Context, Configuration & UX), covering the full v0.6.0 feature set from the release notes
+- "All features" nav link
+
 ## [0.1.1] — 2026-08-24
 
 ### Added
