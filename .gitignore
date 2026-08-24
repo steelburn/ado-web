@@ -1,6 +1,9 @@
 # Secrets — never commit
 .env
 
+# ADO Code extension workspace state (machine-local)
+.ado-code/
+
 # Editor / OS
 .vscode/
 .idea/
