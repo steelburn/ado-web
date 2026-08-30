@@ -35,7 +35,7 @@
     "publisher": { "@type": "Person", "name": "Khairulnizam Hasan", "url": "https://github.com/steelburn" },
     "description": "AI coding assistant with Azure DevOps work item integration for VS Code. Fetch work items, chat with LLMs, delegate tasks to coding agents.",
     "url": "https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code",
-    "softwareVersion": "0.6.0",
+    "softwareVersion": "0.6.2",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "requirements": "VS Code 1.85.0+"
   }
@@ -49,7 +49,7 @@
       <a class="brand" href="#top" aria-label="ADO Code home">
         <img src="/assets/img/logo.svg" alt="" width="28" height="28" class="brand-mark">
         <span class="brand-name">ADO&nbsp;Code</span>
-        <span class="brand-ver">v0.6.0</span>
+        <span class="brand-ver">v0.6.2</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#features">Features</a>
@@ -80,13 +80,13 @@
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-copy reveal">
-          <p class="eyebrow"><span class="dot"></span>VS Code extension · steelburn.ado-code · v0.6.0</p>
+          <p class="eyebrow"><span class="dot"></span>VS Code extension · steelburn.ado-code · v0.6.2</p>
           <h1 class="hero-title">Turn Azure DevOps work items into <span class="accent">shipped code</span>.</h1>
           <p class="hero-sub">
             ADO Code brings your backlog into the editor. Fetch work items as a real
             Epic&nbsp;→&nbsp;Feature&nbsp;→&nbsp;User&nbsp;Story&nbsp;→&nbsp;Task hierarchy, chat with any
             OpenAI-compatible or Anthropic LLM, and delegate tasks to coding agents —
-            Claude Code, Codex, OpenCode, Hermes — each in its own isolated git worktree.
+            Claude Code, Codex, OpenCode, Hermes, DeepSeek Harness — each in its own isolated git worktree.
           </p>
           <div class="hero-cta">
             <a class="btn btn-primary btn-lg" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">
@@ -263,6 +263,7 @@
               </p>
               <ul class="checklist">
                 <li>Parent-chain walk for true nesting, even when parents belong to someone else</li>
+                <li>Assignment cues — blue = you, orange = someone else, grey = unassigned</li>
                 <li>Take Ownership / Reassign right from the tree</li>
                 <li>Open items spawn <code>feature/ADO-&lt;id&gt;-&lt;slug&gt;</code> branches automatically</li>
               </ul>
@@ -352,12 +353,12 @@
         <div class="section-head reveal">
           <p class="eyebrow">Feature reference</p>
           <h2>Everything ADO Code does.</h2>
-          <p class="section-sub">The complete feature set of v0.6.0, straight from the release notes — grouped by area.</p>
+          <p class="section-sub">The complete feature set of v0.6.2, straight from the release notes — grouped by area. Rows marked <em class="sub-em">new · 0.6.1</em> / <em class="sub-em sub-em-green">new · 0.6.2</em> landed in the latest releases.</p>
         </div>
 
         <div class="feat-table reveal">
 
-          <div class="feat-cat" id="feat-work-items">Work Items</div>
+          <div class="feat-cat" id="feat-work-items" style="--cat:#4ec9b0"><span class="feat-cat-ico">▤</span>Work Items<span class="feat-cat-count">10</span></div>
           <div class="feat-row"><code>Hierarchical tree</code><span>Work items render as the real ADO hierarchy — Epic → Feature → User Story → Task — with a parent-chain walk, so nesting survives even when parents belong to someone else (hierarchy-context rows tagged “· context”).</span></div>
           <div class="feat-row"><code>View mode toggle</code><span>One tree with a visible header: <strong>My Work Items</strong> / <strong>All Work Items</strong> / <strong>Unassigned</strong> — click to switch, remembered per workspace.</span></div>
           <div class="feat-row"><code>Filtering &amp; search</code><span>Filter the tree by state, type, or text search with smart parent visibility — collapsed parents stay visible when a child matches.</span></div>
@@ -366,8 +367,10 @@
           <div class="feat-row"><code>Task draft editor</code><span>When the AI calls <code>create_work_item</code>, an editable markdown tab opens for review before anything is created — markdown is converted to HTML for proper ADO rendering.</span></div>
           <div class="feat-row"><code>Generate tasks from stories</code><span><code>/generate-tasks</code> has the AI analyze a user story and draft child tasks — with duplicate prevention against existing children.</span></div>
           <div class="feat-row"><code>Project binding &amp; state</code><span>Workspace-to-ADO project binding prevents working items from the wrong project; <code>/status</code>, <code>/comment</code>, <code>/assign</code> and <code>/undo</code> drive the active item.</span></div>
+          <div class="feat-row feat-new-2"><code>Rich-text images</code><span>Screenshots inside Description, Acceptance Criteria, Repro Steps and comments are fetched with your PAT and inlined as <code>data:</code> URLs — no more broken images in the detail panel (capped at 10 images / 2 MB each / 8 MB total per field).</span></div>
+          <div class="feat-row feat-new-2"><code>Assignment cues</code><span>Every item shows who owns it — <strong>blue person = assigned to you</strong>, <strong>orange = someone else</strong>, <strong>grey = unassigned</strong> — with the type in the row description and the assignee on hover.</span></div>
 
-          <div class="feat-cat" id="feat-chat">AI Chat &amp; Modes</div>
+          <div class="feat-cat" id="feat-chat" style="--cat:#569cd6"><span class="feat-cat-ico">💬</span>AI Chat &amp; Modes<span class="feat-cat-count">16</span></div>
           <div class="feat-row"><code>Any LLM, one chat</code><span>OpenAI-compatible APIs (OpenRouter, Ollama, LM Studio…) and Anthropic — bring your own key and model.</span></div>
           <div class="feat-row"><code>Chat / Plan / Act / YOLO</code><span>Click-to-switch tool modes: Chat (ask + approve), Plan (read-only), Act (auto-approve with allowlist), YOLO (full autonomy) — also cycled from the Status Panel.</span></div>
           <div class="feat-row"><code>Agentic tool loop</code><span>Tool calling with an agentic loop, mode-aware system prompts (role, tools, guidelines, environment) and a configurable tool budget per turn.</span></div>
@@ -382,9 +385,12 @@
           <div class="feat-row"><code>Slash commands</code><span><code>/pick</code>, <code>/delegate</code>, <code>/generate-tasks</code>, <code>/new-project</code>, <code>/skills</code>, <code>/remember</code>, <code>/clear-sessions</code>… with autocomplete and categorized <code>/help</code>.</span></div>
           <div class="feat-row"><code>Working indicator</code><span>Status-bar spinner with live detail (“thinking…”, “tool: edit_file”) — visible even when the chat view is hidden.</span></div>
           <div class="feat-row"><code>Truncated-response guard</code><span>If a reply hits the output token limit, tool calls fail with “re-issue” instead of executing possibly-truncated arguments.</span></div>
+          <div class="feat-row feat-new-1"><code>Active editor context</code><span>The file you're editing is auto-injected into every chat turn — deduplicated by file/version, oversized selections capped, no copy-paste required.</span></div>
+          <div class="feat-row feat-new-1"><code>AGENTS.md in chat</code><span>The chat model reads and honors an <code>AGENTS.md</code> at the workspace root on demand — parity with agent handoffs, zero cost when absent.</span></div>
 
-          <div class="feat-cat" id="feat-agents">Agents &amp; Worktrees</div>
-          <div class="feat-row"><code>External agent orchestration</code><span>Delegate to Claude Code, Codex, OpenCode, Hermes, Pi and more — each declared by binary, supported modes and CLI arguments, with a details panel.</span></div>
+          <div class="feat-cat" id="feat-agents" style="--cat:#c586c0"><span class="feat-cat-ico">🤖</span>Agents &amp; Worktrees<span class="feat-cat-count">13</span></div>
+          <div class="feat-row"><code>External agent orchestration</code><span>Delegate to Claude Code, Codex, OpenCode, Hermes, Pi, DeepSeek Harness (dsh) and more — each declared by binary, supported modes and CLI arguments, with a details panel.</span></div>
+          <div class="feat-row feat-new-1"><code>DeepSeek Harness (dsh)</code><span>First-class agent support — auto-detected via <code>dsh --version</code> and delegated through the headless profile (prints the final answer, exits 0 on success). Available from chat, <code>/delegate</code>, the work-item context menu and the <code>delegate_to_agent</code> tool.</span></div>
           <div class="feat-row"><code>Worktree isolation</code><span>Every delegated run gets its own git worktree under <code>.ado-code/worktrees/</code> — concurrent agents can never collide on branches.</span></div>
           <div class="feat-row"><code>Worktrees view</code><span>Dedicated sidebar tree with per-worktree details: run status, agent, dirty/clean files, last commit, ahead/behind — plus Open in Terminal/Explorer, Remove, Show Changes and Show Agent Output.</span></div>
           <div class="feat-row"><code>Reopen agent output</code><span>Finished runs keep a ↗ Reopen button and right-click → Show Agent Output — the summary panel is never permanently lost.</span></div>
@@ -397,14 +403,14 @@
           <div class="feat-row"><code>Clean Up After Merge</code><span>Removes a merged run's worktree and deletes its branch — only when the PR is actually merged — from the view or as an auto-offer.</span></div>
           <div class="feat-row"><code>Summary panel</code><span>Completion summaries open in a styled HTML panel with metadata and duration; batch cleanup removes all completed worktrees at once.</span></div>
 
-          <div class="feat-cat" id="feat-git">Git Workflow</div>
+          <div class="feat-cat" id="feat-git" style="--cat:#ce9178"><span class="feat-cat-ico">⑂</span>Git Workflow<span class="feat-cat-count">5</span></div>
           <div class="feat-row"><code>Branch on pickup</code><span>Auto-creates <code>feature/ADO-&lt;id&gt;-&lt;slug&gt;</code> branches when a task starts (slugged from the work item title).</span></div>
           <div class="feat-row"><code>Changelog on completion</code><span>Updates CHANGELOG.md when a task finishes, with optional auto-commit and posting the entry back to ADO as a comment.</span></div>
           <div class="feat-row"><code>PR on done</code><span>Offers to push and open a PR via <code>gh</code> when a task completes; protected-branch checks keep the AI honest.</span></div>
           <div class="feat-row"><code>Worktree diff viewer</code><span>Show Changes opens the VS Code diff editor for worktree files before you commit.</span></div>
           <div class="feat-row"><code>Safety checks</code><span>Warns on branch switches with uncommitted changes; refuses to silently discard dirty worktree state (offers Commit &amp; Push, then Remove).</span></div>
 
-          <div class="feat-cat" id="feat-memory">Memory</div>
+          <div class="feat-cat" id="feat-memory" style="--cat:#dcdcaa"><span class="feat-cat-ico">🧠</span>Memory<span class="feat-cat-count">6</span></div>
           <div class="feat-row"><code>User memory</code><span>AI remembers your preferences across all sessions via <code>/remember</code> and <code>/forget</code>.</span></div>
           <div class="feat-row"><code>Workspace memory</code><span>Project conventions in <code>.ado-code/memory/</code> — conventions, architecture, gotchas, custom — kept out of git/Docker via auto-ignore.</span></div>
           <div class="feat-row"><code>Agent hooks</code><span><code>agent.before</code> / <code>agent.after</code> keys run shell commands around every agent invocation (e.g. lint before, tests after), streaming output to the run panel.</span></div>
@@ -412,7 +418,7 @@
           <div class="feat-row"><code>Search &amp; transfer</code><span>Fuzzy QuickPick search across all memory entries; move entries between user and workspace scope.</span></div>
           <div class="feat-row"><code>Import / export</code><span>Export memories to JSON; import with merge or replace — memory survives reinstallations.</span></div>
 
-          <div class="feat-cat" id="feat-mcp">MCP &amp; Skills</div>
+          <div class="feat-cat" id="feat-mcp" style="--cat:#9cdcfe"><span class="feat-cat-ico">🧩</span>MCP &amp; Skills<span class="feat-cat-count">7</span></div>
           <div class="feat-row"><code>MCP servers</code><span>Model Context Protocol support for external tool servers — configure in the UI, right-click to disconnect/reconnect/view details.</span></div>
           <div class="feat-row"><code>Skill catalog</code><span>Browse, install and manage reusable AI skills — 10+ built-in (Code Review, Documentation, Testing, Refactoring, Security Audit, Performance Profiler, Deployment Checklist, Database Schema Review, Accessibility Audit) with search and enable/disable.</span></div>
           <div class="feat-row"><code>AI skill execution</code><span>The AI can discover and run enabled skills mid-conversation via <code>execute_skill</code>; “Execute in Chat” injects the skill prompt and triggers the LLM.</span></div>
@@ -421,19 +427,20 @@
           <div class="feat-row"><code>Project creation wizard</code><span>Multi-step UI for 9 templates — Node.js (TS/JS), Python, React, Next.js, Laravel, .NET Web API/Console, Empty — with per-template options, ADO integration and git setup (<code>/new-project</code>).</span></div>
           <div class="feat-row"><code>File checkpoints</code><span>Auto-save before AI edits, restore on demand — a safety net for autonomous runs.</span></div>
 
-          <div class="feat-cat" id="feat-model">Model Intelligence &amp; Context</div>
+          <div class="feat-cat" id="feat-model" style="--cat:#d7ba7d"><span class="feat-cat-ico">✦</span>Model Intelligence &amp; Context<span class="feat-cat-count">8</span></div>
           <div class="feat-row"><code>Capability detection</code><span>Vision and tool-calling support inferred per model — image attach is disabled for non-vision models, and models without tools get a persistent warning. Three layers: per-model overrides &gt; live gateway data &gt; name heuristic.</span></div>
           <div class="feat-row"><code>Capability overrides</code><span><code>adoCode.llm.capabilityOverrides</code> declares vision/tool support per model id when auto-detection is wrong — edited as structured rows in the Configuration page.</span></div>
           <div class="feat-row"><code>Dynamic context window</code><span>Context size auto-detected from <code>/models</code> (Ollama <code>n_ctx</code>, OpenRouter <code>context_length</code>…) — live data overrides the built-in table (27 models, 128k default).</span></div>
           <div class="feat-row"><code>Context management</code><span>Priority-based truncation replaces a naive turn cutoff; content-aware token counting (code ~3.5, prose ~4.5 chars/token); conversation auto-condenses at 75% via LLM summarization.</span></div>
-          <div class="feat-row"><code>Native token counting</code><span>Status bar uses the provider's own tokenizer (Anthropic count_tokens; OpenAI-compatible usage.prompt_tokens) with local estimates as fallback.</span></div>
+          <div class="feat-row"><code>Native token counting</code><span>Status bar uses the provider's own tokenizer (Anthropic count_tokens; OpenAI-compatible usage.prompt_tokens) with local estimates as fallback — forced on for Anthropic, and the count includes the current system prompt.</span></div>
           <div class="feat-row"><code>Per-mode models</code><span>Advanced mode assigns different models and reasoning effort (low/medium/high) per mode — <code>{ "inline": "gpt-4o", "act": "o3" }</code>.</span></div>
           <div class="feat-row"><code>Token optimization</code><span>Tool results are capped to a token budget and compacted after the model has seen them; plan mode sends only read-only tool schemas.</span></div>
+          <div class="feat-row feat-new-1"><code>Understanding cache</code><span>A durable, fingerprinted cache in <code>.ado-code/understanding/</code> holds repo facts, the selected work item and prior-session knowledge — injected into every chat session and every delegated-agent prompt. Invalidates on git HEAD/branch or config change; the LLM repo summary regenerates async (<code>adoCode.understanding.autoSummarize</code>).</span></div>
 
-          <div class="feat-cat" id="feat-ux">Configuration &amp; UX</div>
+          <div class="feat-cat" id="feat-ux" style="--cat:#6a9955"><span class="feat-cat-ico">⚙</span>Configuration &amp; UX<span class="feat-cat-count">7</span></div>
           <div class="feat-row"><code>Configuration page</code><span>Settings grouped into sidebar categories — Connection, AI &amp; Modes, Permissions, Workflow, Integrations — each with a setting-count badge; Advanced toggle gates per-mode models, capability overrides, choice detection and native token counting.</span></div>
           <div class="feat-row"><code>Consent system</code><span>Read-only commands can auto-approve after a configurable timer (default 20s); tool auto-approve accepts wildcard patterns (<code>read_*</code>, <code>get_*</code>, <code>edit_file</code>); Act-mode terminal allowlist supports <code>git *</code>, <code>npm run *</code>.</span></div>
-          <div class="feat-row"><code>Sessions</code><span>Auto-create on first message, <code>/resume</code> to continue, per-project retention caps, and <code>/clear-sessions</code> / “Delete All Sessions” to start completely fresh.</span></div>
+          <div class="feat-row"><code>Sessions</code><span>Auto-create on first message, <code>/resume</code> to continue, per-project retention caps, and <code>/clear-sessions</code> / “Delete All Sessions” to start completely fresh — persistence keeps only the last 25 message pairs so restores stay slim.</span></div>
           <div class="feat-row"><code>Keyboard shortcuts</code><span>Ctrl+Shift+M (cycle mode), Ctrl+Shift+/ (search memories), Ctrl+Alt+R (refresh status).</span></div>
           <div class="feat-row"><code>Update changelog</code><span>After a version change, a one-time notification offers the new version's changelog in a styled webview panel.</span></div>
           <div class="feat-row"><code>Workspace scaffolding</code><span>New-project wizard generates code, AGENTS.md and git init prompts; workspace-to-ADO binding keeps you in the right project.</span></div>
@@ -527,8 +534,9 @@
 
         <div class="agents-note reveal">
           <p>
-            Add your own via <code>adoCode.agents.enabled</code> — each agent is declared by binary, supported modes and CLI
-            arguments, and shows up in a details panel. Delegating a <em>parent</em> item runs its whole subtree in one
+            Claude Code, Codex, OpenCode, Hermes, Pi and DeepSeek Harness (dsh) are detected out of the box — add your
+            own via <code>adoCode.agents.enabled</code>, each declared by binary, supported modes and CLI arguments, with
+            a details panel. Delegating a <em>parent</em> item runs its whole subtree in one
             worktree, with a numbered delivery checklist the agent must sign off in a <code>## Delivery Report</code> —
             and with <code>adoCode.agents.autoCompleteChildren</code> on, done children transition to their terminal state
             automatically.
@@ -552,7 +560,7 @@
           <div class="cmd-row"><code>/status &lt;state&gt;</code><span>Move the active item — Active, Done, Closed, Removed…</span></div>
           <div class="cmd-row"><code>/comment &lt;text&gt;</code><span>Post to the item's discussion thread</span></div>
           <div class="cmd-row"><code>/assign &lt;who&gt;</code><span>Reassign the active item to a teammate</span></div>
-          <div class="cmd-row"><code>/delegate [agent] &lt;prompt&gt;</code><span>Hand the task to claude, codex, opencode, hermes, pi…</span></div>
+          <div class="cmd-row"><code>/delegate [agent] &lt;prompt&gt;</code><span>Hand the task to claude, codex, opencode, hermes, pi, dsh…</span></div>
           <div class="cmd-row"><code>/generate-tasks</code><span>AI analyzes a user story and drafts child tasks (dedup-aware)</span></div>
           <div class="cmd-row"><code>/new-project</code><span>Scaffold a project — Node, Python, React, Next.js, Laravel, .NET</span></div>
           <div class="cmd-row"><code>/skills</code><span>Browse, install and manage reusable AI skills</span></div>
@@ -632,7 +640,7 @@
         <a href="#install">Install</a>
       </div>
       <div class="footer-meta">
-        <span>v0.6.0</span>
+        <span>v0.6.2</span>
         <span>·</span>
         <span>© 2026 steelburn (Khairulnizam Hasan)</span>
         <span>·</span>

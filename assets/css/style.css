@@ -727,23 +727,35 @@ img { max-width: 100%; display: block; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--bg-1);
+  box-shadow: var(--shadow-2);
 }
 .feat-cat {
-  padding: 12px 24px;
+  padding: 14px 24px;
   font-family: var(--font-mono);
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-hi);
-  background: var(--bg-2);
+  color: var(--cat, var(--accent-hi));
+  background: linear-gradient(90deg, var(--bg-3), var(--bg-2));
   border-top: 1px solid var(--border-soft);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--cat, var(--accent));
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 .feat-cat:first-child { border-top: none; }
+.feat-cat-ico { font-size: 1rem; line-height: 1; opacity: 0.95; }
+.feat-cat-count {
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--cat);
+  border: 1px solid color-mix(in srgb, var(--cat) 42%, transparent);
+  background: color-mix(in srgb, var(--cat) 12%, transparent);
+  border-radius: 99px;
+  padding: 2px 9px;
+}
 .feat-cat::after {
   content: "";
   flex: 1;
@@ -754,14 +766,14 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
   gap: 22px;
-  padding: 13px 24px 13px 27px;
+  padding: 15px 24px 15px 27px;
   border-top: 1px solid var(--border-soft);
   font-size: 0.92rem;
   color: var(--ink-2);
   line-height: 1.55;
+  transition: background var(--fast) var(--ease);
 }
-.feat-row:first-of-type { border-top: none; }
-.feat-row code:first-child {
+.feat-row > code:first-child {
   color: var(--ink);
   font-weight: 500;
   font-size: 0.85rem;
@@ -770,10 +782,52 @@ img { max-width: 100%; display: block; }
   padding: 0;
   white-space: normal;
   align-self: start;
+  transition: color var(--fast) var(--ease);
 }
 .feat-row code code { background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; color: var(--ink-2); }
 .feat-row strong { color: var(--ink); font-weight: 600; }
-.feat-row:hover { background: rgba(255, 255, 255, 0.015); }
+.feat-row:hover { background: rgba(255, 255, 255, 0.03); }
+.feat-row:hover > code:first-child { color: var(--link); }
+
+/* NEW badges — rows that landed in 0.6.1 / 0.6.2 */
+.feat-row > code:first-child::after {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 9px;
+  border-radius: 99px;
+  border: 1px solid;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  vertical-align: 2px;
+  white-space: nowrap;
+}
+.feat-new-1 { box-shadow: inset 3px 0 0 rgba(43, 143, 224, 0.45); }
+.feat-new-1 > code:first-child::after { content: "new · 0.6.1"; color: var(--accent-hi); background: rgba(0, 120, 212, 0.1); border-color: rgba(43, 143, 224, 0.4); }
+.feat-new-2 { box-shadow: inset 3px 0 0 rgba(78, 201, 176, 0.5); }
+.feat-new-2 > code:first-child::after { content: "new · 0.6.2"; color: var(--green); background: rgba(78, 201, 176, 0.08); border-color: rgba(78, 201, 176, 0.4); }
+
+/* Section-sub legend pills (feature reference) */
+.sub-em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.04em;
+  color: var(--accent-hi);
+  background: rgba(0, 120, 212, 0.08);
+  border: 1px solid rgba(43, 143, 224, 0.35);
+  border-radius: 99px;
+  padding: 1px 8px;
+  white-space: nowrap;
+}
+.sub-em-green {
+  color: var(--green);
+  background: rgba(78, 201, 176, 0.08);
+  border-color: rgba(78, 201, 176, 0.4);
+}
 
 /* ── Install ───────────────────────────────────────────── */
 .install-grid {
