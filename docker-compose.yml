@@ -1,6 +1,9 @@
 services:
   web:
     build: .
+    # The Cloudflare tunnel's public hostname points at http://ado-web:80 —
+    # keep this name in sync with the dashboard config.
+    container_name: ado-web
     ports:
       - "3060:80"
     restart: always
@@ -9,7 +12,7 @@ services:
   # https://ado-code.ne1.dev to this stack. Token lives in .env
   # (gitignored — never commit it).
   # IMPORTANT: in the Cloudflare dashboard, the tunnel's public hostname
-  # must point at the compose network service URL: http://web:80
+  # must point at the compose network service URL: http://ado-web:80
   tunnel:
     image: cloudflare/cloudflared:latest
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}

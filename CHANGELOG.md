@@ -10,6 +10,7 @@ All notable changes to the ADO Code website.
 - "new · 0.6.3" badges added for freshly-landed rows
 - Version references bumped 0.6.2 → 0.6.3 (nav badge, hero eyebrow, footer, JSON-LD, section sub)
 - Fixed mobile horizontal overflow in the install grid (nowrap install command inflated the column past the viewport at ≤560px — `min-width: 0` on the grid children)
+- Deployment: web service now runs as `container_name: ado-web` to match the Cloudflare tunnel's configured origin (`http://ado-web:80`) — without it the tunnel 502s; compose comment updated to reflect the real origin
 
 ## [0.3.0] — 2026-08-30
 
