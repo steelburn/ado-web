@@ -789,7 +789,7 @@ img { max-width: 100%; display: block; }
 .feat-row:hover { background: rgba(255, 255, 255, 0.03); }
 .feat-row:hover > code:first-child { color: var(--link); }
 
-/* NEW badges — rows that landed in 0.6.1 / 0.6.2 */
+/* NEW badges — rows that landed in 0.6.1 / 0.6.2 / 0.6.3 */
 .feat-row > code:first-child::after {
   display: inline-block;
   margin-left: 8px;
@@ -809,6 +809,8 @@ img { max-width: 100%; display: block; }
 .feat-new-1 > code:first-child::after { content: "new · 0.6.1"; color: var(--accent-hi); background: rgba(0, 120, 212, 0.1); border-color: rgba(43, 143, 224, 0.4); }
 .feat-new-2 { box-shadow: inset 3px 0 0 rgba(78, 201, 176, 0.5); }
 .feat-new-2 > code:first-child::after { content: "new · 0.6.2"; color: var(--green); background: rgba(78, 201, 176, 0.08); border-color: rgba(78, 201, 176, 0.4); }
+.feat-new-3 { box-shadow: inset 3px 0 0 rgba(215, 186, 125, 0.5); }
+.feat-new-3 > code:first-child::after { content: "new · 0.6.3"; color: #d7ba7d; background: rgba(215, 186, 125, 0.08); border-color: rgba(215, 186, 125, 0.4); }
 
 /* Section-sub legend pills (feature reference) */
 .sub-em {
@@ -827,6 +829,11 @@ img { max-width: 100%; display: block; }
   color: var(--green);
   background: rgba(78, 201, 176, 0.08);
   border-color: rgba(78, 201, 176, 0.4);
+}
+.sub-em-gold {
+  color: #d7ba7d;
+  background: rgba(215, 186, 125, 0.08);
+  border-color: rgba(215, 186, 125, 0.4);
 }
 
 /* ── Install ───────────────────────────────────────────── */
@@ -940,6 +947,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 560px) {
   .agents-grid { grid-template-columns: 1fr; }
   .install-grid { grid-template-columns: 1fr; }
+  .install-card { min-width: 0; } /* keep nowrap code from inflating the column */
   .win-body { flex-direction: column; }
   .activity-bar { flex-direction: row; width: 100%; height: 40px; padding: 0 8px; }
   .act-spacer { display: none; }

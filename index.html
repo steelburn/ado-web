@@ -35,7 +35,7 @@
     "publisher": { "@type": "Person", "name": "Khairulnizam Hasan", "url": "https://github.com/steelburn" },
     "description": "AI coding assistant with Azure DevOps work item integration for VS Code. Fetch work items, chat with LLMs, delegate tasks to coding agents.",
     "url": "https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code",
-    "softwareVersion": "0.6.2",
+    "softwareVersion": "0.6.3",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "requirements": "VS Code 1.85.0+"
   }
@@ -49,7 +49,7 @@
       <a class="brand" href="#top" aria-label="ADO Code home">
         <img src="/assets/img/logo.svg" alt="" width="28" height="28" class="brand-mark">
         <span class="brand-name">ADO&nbsp;Code</span>
-        <span class="brand-ver">v0.6.2</span>
+        <span class="brand-ver">v0.6.3</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#features">Features</a>
@@ -80,7 +80,7 @@
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-copy reveal">
-          <p class="eyebrow"><span class="dot"></span>VS Code extension · steelburn.ado-code · v0.6.2</p>
+          <p class="eyebrow"><span class="dot"></span>VS Code extension · steelburn.ado-code · v0.6.3</p>
           <h1 class="hero-title">Turn Azure DevOps work items into <span class="accent">shipped code</span>.</h1>
           <p class="hero-sub">
             ADO Code brings your backlog into the editor. Fetch work items as a real
@@ -353,12 +353,12 @@
         <div class="section-head reveal">
           <p class="eyebrow">Feature reference</p>
           <h2>Everything ADO Code does.</h2>
-          <p class="section-sub">The complete feature set of v0.6.2, straight from the release notes — grouped by area. Rows marked <em class="sub-em">new · 0.6.1</em> / <em class="sub-em sub-em-green">new · 0.6.2</em> landed in the latest releases.</p>
+          <p class="section-sub">The complete feature set of v0.6.3, straight from the release notes — grouped by area. Rows marked <em class="sub-em">new · 0.6.1</em> / <em class="sub-em sub-em-green">new · 0.6.2</em> / <em class="sub-em sub-em-gold">new · 0.6.3</em> landed in the latest releases.</p>
         </div>
 
         <div class="feat-table reveal">
 
-          <div class="feat-cat" id="feat-work-items" style="--cat:#4ec9b0"><span class="feat-cat-ico">▤</span>Work Items<span class="feat-cat-count">10</span></div>
+          <div class="feat-cat" id="feat-work-items" style="--cat:#4ec9b0"><span class="feat-cat-ico">▤</span>Work Items<span class="feat-cat-count">11</span></div>
           <div class="feat-row"><code>Hierarchical tree</code><span>Work items render as the real ADO hierarchy — Epic → Feature → User Story → Task — with a parent-chain walk, so nesting survives even when parents belong to someone else (hierarchy-context rows tagged “· context”).</span></div>
           <div class="feat-row"><code>View mode toggle</code><span>One tree with a visible header: <strong>My Work Items</strong> / <strong>All Work Items</strong> / <strong>Unassigned</strong> — click to switch, remembered per workspace.</span></div>
           <div class="feat-row"><code>Filtering &amp; search</code><span>Filter the tree by state, type, or text search with smart parent visibility — collapsed parents stay visible when a child matches.</span></div>
@@ -369,13 +369,15 @@
           <div class="feat-row"><code>Project binding &amp; state</code><span>Workspace-to-ADO project binding prevents working items from the wrong project; <code>/status</code>, <code>/comment</code>, <code>/assign</code> and <code>/undo</code> drive the active item.</span></div>
           <div class="feat-row feat-new-2"><code>Rich-text images</code><span>Screenshots inside Description, Acceptance Criteria, Repro Steps and comments are fetched with your PAT and inlined as <code>data:</code> URLs — no more broken images in the detail panel (capped at 10 images / 2 MB each / 8 MB total per field).</span></div>
           <div class="feat-row feat-new-2"><code>Assignment cues</code><span>Every item shows who owns it — <strong>blue person = assigned to you</strong>, <strong>orange = someone else</strong>, <strong>grey = unassigned</strong> — with the type in the row description and the assignee on hover.</span></div>
+          <div class="feat-row feat-new-3"><code>Batch work-item reads</code><span><code>get_work_item</code> accepts an <code>ids</code> array — fetch up to 20 work items in ONE call (details batch-fetched, discussion threads loaded in parallel) instead of N round-trips.</span></div>
 
-          <div class="feat-cat" id="feat-chat" style="--cat:#569cd6"><span class="feat-cat-ico">💬</span>AI Chat &amp; Modes<span class="feat-cat-count">16</span></div>
+          <div class="feat-cat" id="feat-chat" style="--cat:#569cd6"><span class="feat-cat-ico">💬</span>AI Chat &amp; Modes<span class="feat-cat-count">17</span></div>
           <div class="feat-row"><code>Any LLM, one chat</code><span>OpenAI-compatible APIs (OpenRouter, Ollama, LM Studio…) and Anthropic — bring your own key and model.</span></div>
           <div class="feat-row"><code>Chat / Plan / Act / YOLO</code><span>Click-to-switch tool modes: Chat (ask + approve), Plan (read-only), Act (auto-approve with allowlist), YOLO (full autonomy) — also cycled from the Status Panel.</span></div>
           <div class="feat-row"><code>Agentic tool loop</code><span>Tool calling with an agentic loop, mode-aware system prompts (role, tools, guidelines, environment) and a configurable tool budget per turn.</span></div>
-          <div class="feat-row"><code>Parallel tool calls</code><span>Independent tool calls run concurrently and re-order back to call order; same-file edits serialize through a per-file mutation queue.</span></div>
+          <div class="feat-row"><code>Parallel tool calls</code><span>Independent tool calls run concurrently and re-order back to call order; same-file edits serialize through a per-file mutation queue. Mixed batches stay fast too — consent-free calls execute in parallel while approval-gated ones run sequentially, so read-only work never waits on your click.</span></div>
           <div class="feat-row"><code>Batched edits</code><span><code>edit_file</code> accepts an <code>edits[]</code> array — several disjoint changes in one call, each verified and applied in order.</span></div>
+          <div class="feat-row feat-new-3"><code>Batched terminal commands</code><span><code>run_terminal_command</code> accepts a <code>commands</code> array — several commands in ONE call, each still checked for shell operators and the Act-mode allowlist, outputs concatenated under <code>$ command</code> headers with a single consent card.</span></div>
           <div class="feat-row"><code>search_files grep tool</code><span>Regex search across the workspace with <code>path:line</code> hits, per-line truncation, workspace confinement and result caps.</span></div>
           <div class="feat-row"><code>Live thinking &amp; tool cards</code><span>The AI's reasoning streams into a 💭 block; each tool call appears as a live card — running… → completed/error — and persists as a collapsible record in the final message.</span></div>
           <div class="feat-row"><code>Privacy toggles</code><span>Hide tool calls entirely (subtle “…” only) and toggle AI thinking on/off — enforced across every streaming path.</span></div>
@@ -424,7 +426,7 @@
           <div class="feat-row"><code>AI skill execution</code><span>The AI can discover and run enabled skills mid-conversation via <code>execute_skill</code>; “Execute in Chat” injects the skill prompt and triggers the LLM.</span></div>
           <div class="feat-row"><code>Skill import</code><span>Bring your own skills from JSON, SKILL.md (YAML frontmatter + markdown) or .tar.gz/.zip archives — they persist across restarts.</span></div>
           <div class="feat-row"><code>Skill registries</code><span>Browse community skills from remote TSV registries (<code>slug&lt;TAB&gt;url&lt;TAB&gt;description</code>) — registry skills are badge-marked and imported on install.</span></div>
-          <div class="feat-row"><code>Project creation wizard</code><span>Multi-step UI for 9 templates — Node.js (TS/JS), Python, React, Next.js, Laravel, .NET Web API/Console, Empty — with per-template options, ADO integration and git setup (<code>/new-project</code>).</span></div>
+          <div class="feat-row"><code>Project creation wizard</code><span>Multi-step wizard for 9 templates — Node.js (TS/JS), Python, React, Next.js, Laravel, .NET Web API/Console, Empty. Creates projects anywhere: the open workspace folder (blank directories included) is used automatically or you pick one; ADO integration creates the work item in your active project, template option defaults pre-fill, the chosen initial branch is honored and invalid project names are rejected up front (<code>/new-project</code>).</span></div>
           <div class="feat-row"><code>File checkpoints</code><span>Auto-save before AI edits, restore on demand — a safety net for autonomous runs.</span></div>
 
           <div class="feat-cat" id="feat-model" style="--cat:#d7ba7d"><span class="feat-cat-ico">✦</span>Model Intelligence &amp; Context<span class="feat-cat-count">8</span></div>
@@ -437,8 +439,9 @@
           <div class="feat-row"><code>Token optimization</code><span>Tool results are capped to a token budget and compacted after the model has seen them; plan mode sends only read-only tool schemas.</span></div>
           <div class="feat-row feat-new-1"><code>Understanding cache</code><span>A durable, fingerprinted cache in <code>.ado-code/understanding/</code> holds repo facts, the selected work item and prior-session knowledge — injected into every chat session and every delegated-agent prompt. Invalidates on git HEAD/branch or config change; the LLM repo summary regenerates async (<code>adoCode.understanding.autoSummarize</code>).</span></div>
 
-          <div class="feat-cat" id="feat-ux" style="--cat:#6a9955"><span class="feat-cat-ico">⚙</span>Configuration &amp; UX<span class="feat-cat-count">7</span></div>
+          <div class="feat-cat" id="feat-ux" style="--cat:#6a9955"><span class="feat-cat-ico">⚙</span>Configuration &amp; UX<span class="feat-cat-count">8</span></div>
           <div class="feat-row"><code>Configuration page</code><span>Settings grouped into sidebar categories — Connection, AI &amp; Modes, Permissions, Workflow, Integrations — each with a setting-count badge; Advanced toggle gates per-mode models, capability overrides, choice detection and native token counting.</span></div>
+          <div class="feat-row feat-new-3"><code>Focused wizard views</code><span>Opening the Configuration page, the project wizard or first-run setup collapses the sibling sidebar views so the wizard gets the full view container — they are restored when it closes, and views you had hidden yourself stay hidden. The chat kebab’s “Configuration…” now opens the in-app Configuration page instead of VS Code’s native settings.</span></div>
           <div class="feat-row"><code>Consent system</code><span>Read-only commands can auto-approve after a configurable timer (default 20s); tool auto-approve accepts wildcard patterns (<code>read_*</code>, <code>get_*</code>, <code>edit_file</code>); Act-mode terminal allowlist supports <code>git *</code>, <code>npm run *</code>.</span></div>
           <div class="feat-row"><code>Sessions</code><span>Auto-create on first message, <code>/resume</code> to continue, per-project retention caps, and <code>/clear-sessions</code> / “Delete All Sessions” to start completely fresh — persistence keeps only the last 25 message pairs so restores stay slim.</span></div>
           <div class="feat-row"><code>Keyboard shortcuts</code><span>Ctrl+Shift+M (cycle mode), Ctrl+Shift+/ (search memories), Ctrl+Alt+R (refresh status).</span></div>
@@ -640,7 +643,7 @@
         <a href="#install">Install</a>
       </div>
       <div class="footer-meta">
-        <span>v0.6.2</span>
+        <span>v0.6.3</span>
         <span>·</span>
         <span>© 2026 steelburn (Khairulnizam Hasan)</span>
         <span>·</span>

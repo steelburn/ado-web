@@ -2,6 +2,15 @@
 
 All notable changes to the ADO Code website.
 
+## [0.4.0] — 2026-08-30
+
+### Changed
+
+- Feature reference table updated to the **v0.6.3** feature set (75 features across 8 categories) — new rows for batch work-item reads (`get_work_item` `ids` array, up to 20), batched terminal commands (`run_terminal_command` `commands` array, single consent card) and focused wizard views (sidebar collapse/restore, kebab "Configuration…" opens the in-app page); the project creation wizard row refreshed for the v0.6.3 wizard overhaul (creates projects anywhere, ADO integration creates the work item, branch name honored, template defaults pre-filled, project-name validation); the parallel tool calls row now documents mixed-batch parallelism
+- "new · 0.6.3" badges added for freshly-landed rows
+- Version references bumped 0.6.2 → 0.6.3 (nav badge, hero eyebrow, footer, JSON-LD, section sub)
+- Fixed mobile horizontal overflow in the install grid (nowrap install command inflated the column past the viewport at ≤560px — `min-width: 0` on the grid children)
+
 ## [0.3.0] — 2026-08-30
 
 ### Changed
