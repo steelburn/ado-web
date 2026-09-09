@@ -844,6 +844,79 @@ img { max-width: 100%; display: block; }
   border-color: rgba(215, 186, 125, 0.4);
 }
 
+/* ── Collapsible feature reference (default-collapsed toggle) ── */
+/* Explicit hide — do not rely on the UA <details> suppression here. */
+.feat-details:not([open]) > .feat-details-body { display: none; }
+.feat-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  color: var(--ink);
+  list-style: none;
+  user-select: none;
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.feat-toggle::-webkit-details-marker { display: none; }
+.feat-toggle:hover { background: var(--bg-3); }
+.feat-toggle:active { background: var(--bg-3); border-color: var(--accent-deep); }
+.feat-toggle:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 2px; }
+.feat-details[open] .feat-toggle {
+  border-bottom: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.feat-toggle-ico { color: var(--accent-hi); font-size: 1.05rem; line-height: 1; }
+.feat-toggle-label { font-weight: 600; font-size: 1rem; }
+.feat-toggle-count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+.feat-chevron {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--ink-3);
+  border-bottom: 2px solid var(--ink-3);
+  transform: rotate(45deg);
+  margin: 0 6px 0 2px;
+  transition: transform var(--fast) var(--ease);
+}
+.feat-details[open] .feat-chevron { transform: rotate(-135deg); }
+.feat-details-body {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+}
+.feat-details-body .feat-table { border: 0; border-radius: 0; box-shadow: none; }
+.feat-legend {
+  margin: 0;
+  padding: 14px 24px;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--border-soft);
+}
+.feat-legend .sub-em { margin: 0 2px; }
+
+@media (max-width: 560px) {
+  .feat-toggle { padding: 14px 16px; gap: 10px; }
+  .feat-toggle-count { display: none; }
+  .feat-toggle-label { flex: 1 1 auto; }
+  .feat-legend { padding: 12px 16px; }
+}
+
 /* ── Install ───────────────────────────────────────────── */
 .install-grid {
   display: grid;

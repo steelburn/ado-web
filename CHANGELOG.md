@@ -2,6 +2,16 @@
 
 All notable changes to the ADO Code website.
 
+## [0.5.1] — 2026-09-09
+
+### Changed
+
+- **Feature reference is default-collapsed**: the full table now sits behind a native `<details>` toggle — "Show the full feature list · 83 features · 8 categories" — so the section is lean until you ask for it. This also fixes a real bug: the table could render permanently invisible because the scroll-reveal only fired once **12% of the target** was visible, and an ~16,000&nbsp;px table can never satisfy that in a normal viewport (the previous 75-row version was borderline; the v0.6.5 rows pushed it past the point of revealing for everyone). The table is no longer opacity-gated at all, and any reveal target taller than the viewport now appears on first intersection
+- Section copy trimmed; the release-badge legend (new · 0.6.1 … new · 0.6.5) moved inside the expander where the rows are visible
+- Install CTA renamed "Open in Marketplace →" → "Open in Marketplace" (trailing arrow removed)
+- Mobile polish: the toggle drops its count pill at ≤560&nbsp;px so the label stays on one line — this also removed a 7&nbsp;px horizontal page overflow the pill caused on narrow screens
+- Asset cache-bust bumped to `?v=0.5.1`
+
 ## [0.5.0] — 2026-09-09
 
 ### Changed
