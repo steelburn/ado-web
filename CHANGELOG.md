@@ -2,6 +2,17 @@
 
 All notable changes to the ADO Code website.
 
+## [0.5.0] — 2026-09-09
+
+### Changed
+
+- Feature reference table updated to the **v0.6.5** feature set (83 features across 8 categories): new rows for the v0.6.4 chat overhaul (two-sided chat layout without the (AI)/(You) avatar circles, session isolation — a turn is bound to the session that started it and can never bleed into another session, turns always conclude — iteration-budget exhaustion now ends in a chat summary instead of a bare error, round-trip iteration counting), the v0.6.4 understanding suite (self-updating AGENTS.md with `<!-- ado-code:managed -->` markers, drift reasons, diff Preview and decline memory; structure-first read-lazy project study), Windows-safe agent detection (.cmd → .exe fallback chain, spawn-the-detected-binary, 15s re-probe) and the v0.6.5 work-item safety rows (AI task review via Review Task Detail, one work item per session with Start-a-New-Session/Stay/Cancel guard)
+- Existing rows refreshed for the latest release notes: agentic tool loop (iteration budget 100 default / round-trip semantics), live thinking & tool cards (in-flow per-iteration Thinking blocks + persistent ordered record), run history & progress (delegated runs stream as one evolving run card that concludes in place), git safety checks (YOLO still asks before pushing — `adoCode.yolo.pushApproval`), consent system (instant harmless-command approval, countdowns with named post-timeout actions that pause while you're away), native token counting (heuristic charges tool args/results/images; overhead sized from the real system prompt), Configuration page (model pickers are auto-fetched dropdowns)
+- Batch work-item reads, batched terminal commands and focused wizard views re-badged **0.6.3 → 0.6.4** — they shipped in the marketplace 0.6.4 release (the previous site update tracked main ahead of the release); the gold "new" badge now marks **0.6.5** and 0.6.4 gets a new purple badge (legend + CSS updated; `feat-new-3` retired)
+- Version references bumped 0.6.3 → 0.6.5 (nav badge, hero eyebrow, footer, JSON-LD, feature-reference sub)
+- Chat / YOLO mode panel copy updated for v0.6.5 (instant harmless approval + live countdowns in Chat; push still asks even in YOLO); hero YOLO demo message updated to match
+- Cache-busting: stylesheet and script now load with a `?v=0.6.5` query so the 7-day `immutable` asset cache can't serve stale CSS/JS against a fresh `index.html` after a deploy
+
 ## [0.4.0] — 2026-08-30
 
 ### Changed
