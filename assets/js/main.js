@@ -146,7 +146,10 @@
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          // Very tall targets (e.g. the feature reference) can never satisfy a
+          // 12% visibility threshold — reveal them as soon as any part enters.
+          const tallTarget = entry.boundingClientRect.height > window.innerHeight;
+          if (entry.isIntersecting && (entry.intersectionRatio >= 0.12 || tallTarget)) {
             entry.target.classList.add('in');
             io.unobserve(entry.target);
           }
