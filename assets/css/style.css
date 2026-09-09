@@ -33,6 +33,7 @@
   --yellow: #cca700;
   --red: #f14c4c;
   --purple: #c586c0;
+  --gold: #d7ba7d;
   --orange: #ce9178;
   --blue-code: #569cd6;
 
@@ -789,7 +790,7 @@ img { max-width: 100%; display: block; }
 .feat-row:hover { background: rgba(255, 255, 255, 0.03); }
 .feat-row:hover > code:first-child { color: var(--link); }
 
-/* NEW badges — rows that landed in 0.6.1 / 0.6.2 / 0.6.3 */
+/* NEW badges — rows that landed in 0.6.1 / 0.6.2 / 0.6.4 / 0.6.5 */
 .feat-row > code:first-child::after {
   display: inline-block;
   margin-left: 8px;
@@ -809,8 +810,10 @@ img { max-width: 100%; display: block; }
 .feat-new-1 > code:first-child::after { content: "new · 0.6.1"; color: var(--accent-hi); background: rgba(0, 120, 212, 0.1); border-color: rgba(43, 143, 224, 0.4); }
 .feat-new-2 { box-shadow: inset 3px 0 0 rgba(78, 201, 176, 0.5); }
 .feat-new-2 > code:first-child::after { content: "new · 0.6.2"; color: var(--green); background: rgba(78, 201, 176, 0.08); border-color: rgba(78, 201, 176, 0.4); }
-.feat-new-3 { box-shadow: inset 3px 0 0 rgba(215, 186, 125, 0.5); }
-.feat-new-3 > code:first-child::after { content: "new · 0.6.3"; color: #d7ba7d; background: rgba(215, 186, 125, 0.08); border-color: rgba(215, 186, 125, 0.4); }
+.feat-new-4 { box-shadow: inset 3px 0 0 rgba(197, 134, 192, 0.5); }
+.feat-new-4 > code:first-child::after { content: "new · 0.6.4"; color: var(--purple); background: rgba(197, 134, 192, 0.08); border-color: rgba(197, 134, 192, 0.4); }
+.feat-new-5 { box-shadow: inset 3px 0 0 rgba(215, 186, 125, 0.5); }
+.feat-new-5 > code:first-child::after { content: "new · 0.6.5"; color: var(--gold); background: rgba(215, 186, 125, 0.08); border-color: rgba(215, 186, 125, 0.4); }
 
 /* Section-sub legend pills (feature reference) */
 .sub-em {
@@ -830,8 +833,13 @@ img { max-width: 100%; display: block; }
   background: rgba(78, 201, 176, 0.08);
   border-color: rgba(78, 201, 176, 0.4);
 }
+.sub-em-purple {
+  color: var(--purple);
+  background: rgba(197, 134, 192, 0.08);
+  border-color: rgba(197, 134, 192, 0.4);
+}
 .sub-em-gold {
-  color: #d7ba7d;
+  color: var(--gold);
   background: rgba(215, 186, 125, 0.08);
   border-color: rgba(215, 186, 125, 0.4);
 }

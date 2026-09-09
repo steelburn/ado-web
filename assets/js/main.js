@@ -122,7 +122,7 @@
             if (firstAi) firstAi.textContent = 'On it. Applying edits directly — I\u2019ll show the diff when I\u2019m done.';
           } else if (mode === 'yolo') {
             if (thinking) thinking.textContent = 'Autonomous run: full tool access, no consent prompts…';
-            if (firstAi) firstAi.textContent = 'Running fully autonomous — every tool, every command. Checkpoints saved.';
+            if (firstAi) firstAi.textContent = 'Running fully autonomous — every tool, every command. A remote push still asks first.';
           } else {
             if (thinking) thinking.textContent = 'Planning: read the checkout module, find the payment stub, wire the Stripe API…';
             if (firstAi) firstAi.textContent = 'On it. I\u2019ll work through ADO-123, then hand the branch back for review.';
