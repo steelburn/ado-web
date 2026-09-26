@@ -34,6 +34,7 @@
   --red: #f14c4c;
   --purple: #c586c0;
   --gold: #d7ba7d;
+  --aqua: #22d3ee;
   --orange: #ce9178;
   --blue-code: #569cd6;
 
@@ -814,6 +815,8 @@ img { max-width: 100%; display: block; }
 .feat-new-4 > code:first-child::after { content: "new · 0.6.4"; color: var(--purple); background: rgba(197, 134, 192, 0.08); border-color: rgba(197, 134, 192, 0.4); }
 .feat-new-5 { box-shadow: inset 3px 0 0 rgba(215, 186, 125, 0.5); }
 .feat-new-5 > code:first-child::after { content: "new · 0.6.5"; color: var(--gold); background: rgba(215, 186, 125, 0.08); border-color: rgba(215, 186, 125, 0.4); }
+.feat-new-6 { box-shadow: inset 3px 0 0 rgba(34, 211, 238, 0.5); }
+.feat-new-6 > code:first-child::after { content: "new · 0.6.6"; color: var(--aqua); background: rgba(34, 211, 238, 0.08); border-color: rgba(34, 211, 238, 0.4); }
 
 /* Section-sub legend pills (feature reference) */
 .sub-em {
@@ -842,6 +845,11 @@ img { max-width: 100%; display: block; }
   color: var(--gold);
   background: rgba(215, 186, 125, 0.08);
   border-color: rgba(215, 186, 125, 0.4);
+}
+.sub-em-aqua {
+  color: var(--aqua);
+  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(34, 211, 238, 0.4);
 }
 
 /* ── Collapsible feature reference (default-collapsed toggle) ── */
@@ -933,6 +941,26 @@ img { max-width: 100%; display: block; }
 .install-card p { color: var(--ink-2); font-size: 0.92rem; margin-bottom: 14px; }
 .install-card .btn { margin-top: 18px; }
 .install-note { margin-top: 16px; font-size: 0.85rem !important; color: var(--ink-3) !important; }
+
+/* ── Launch film ───────────────────────────────────────── */
+.launch-video {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow-2);
+  max-width: 980px;
+  margin: 0 auto;
+}
+.launch-video video { display: block; width: 100%; height: auto; }
+.launch-caption {
+  max-width: 980px;
+  margin: 16px auto 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
 .codeblock {
   display: flex;
   align-items: center;

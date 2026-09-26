@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=0.5.1">
-  <link rel="stylesheet" href="/assets/css/deck.css?v=1.0.2">
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.5.2">
+  <link rel="stylesheet" href="/assets/css/deck.css?v=1.1.0">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="deck-body">
@@ -29,7 +29,7 @@
       <button class="deck-btn" id="btn-prev" aria-label="Previous slide" title="Previous (←)">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="deck-counter" aria-live="polite"><span id="counter-cur">1</span><span class="deck-counter-sep">/</span><span id="counter-total">13</span></div>
+      <div class="deck-counter" aria-live="polite"><span id="counter-cur">1</span><span class="deck-counter-sep">/</span><span id="counter-total">15</span></div>
       <button class="deck-btn" id="btn-next" aria-label="Next slide" title="Next (→)">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
@@ -54,9 +54,9 @@
     <div class="deck-stage" id="deck-stage">
 
       <!-- 01 · Title -->
-      <section class="slide slide--title is-active" id="s1" aria-roledescription="slide" aria-label="Slide 1 of 13">
+      <section class="slide slide--title is-active" id="s1" aria-roledescription="slide" aria-label="Slide 1 of 15">
         <div class="s-title-wrap">
-          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Launch · VS Code extension · v0.6.5</p>
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Launch · VS Code extension · v0.6.6</p>
           <h1 class="s-hero-title">ADO&nbsp;Code</h1>
           <p class="s-hero-lead">Your Azure DevOps backlog, <span class="accent">shipped by AI</span> — inside the editor.</p>
           <p class="s-hero-sub">Fetch work items as a real hierarchy, chat with any LLM, and delegate tasks to coding agents — each in its own isolated git worktree.</p>
@@ -72,7 +72,7 @@
       </section>
 
       <!-- 02 · The problem -->
-      <section class="slide" id="s2" aria-roledescription="slide" aria-label="Slide 2 of 13">
+      <section class="slide" id="s2" aria-roledescription="slide" aria-label="Slide 2 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The problem</p>
           <h2 class="s-title">The board and the code never talk.</h2>
@@ -111,7 +111,7 @@
       </section>
 
       <!-- 03 · The loop -->
-      <section class="slide" id="s3" aria-roledescription="slide" aria-label="Slide 3 of 13">
+      <section class="slide" id="s3" aria-roledescription="slide" aria-label="Slide 3 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The idea</p>
           <h2 class="s-title">One loop, from backlog to merged PR.</h2>
@@ -139,7 +139,7 @@
       </section>
 
       <!-- 04 · What it is -->
-      <section class="slide" id="s4" aria-roledescription="slide" aria-label="Slide 4 of 13">
+      <section class="slide" id="s4" aria-roledescription="slide" aria-label="Slide 4 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The product</p>
           <h2 class="s-title">An AI coding assistant built for Azure DevOps.</h2>
@@ -156,7 +156,7 @@
       </section>
 
       <!-- 05 · Work items tree -->
-      <section class="slide slide--split" id="s5" aria-roledescription="slide" aria-label="Slide 5 of 13">
+      <section class="slide slide--split" id="s5" aria-roledescription="slide" aria-label="Slide 5 of 15">
         <div class="s-split-media">
           <div class="mini-tree" aria-hidden="true">
             <div class="mini-row"><span>▾</span><b style="color:#569cd6">Epic</b> Payment Platform Overhaul</div>
@@ -182,7 +182,7 @@
       </section>
 
       <!-- 06 · Chat modes -->
-      <section class="slide" id="s6" aria-roledescription="slide" aria-label="Slide 6 of 13">
+      <section class="slide" id="s6" aria-roledescription="slide" aria-label="Slide 6 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>AI chat</p>
           <h2 class="s-title">Any model. Four modes.</h2>
@@ -214,7 +214,7 @@
       </section>
 
       <!-- 07 · Agents -->
-      <section class="slide" id="s7" aria-roledescription="slide" aria-label="Slide 7 of 13">
+      <section class="slide" id="s7" aria-roledescription="slide" aria-label="Slide 7 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Agents &amp; worktrees</p>
           <h2 class="s-title">Your backlog, delegated.</h2>
@@ -232,7 +232,7 @@
       </section>
 
       <!-- 08 · Merge loop -->
-      <section class="slide" id="s8" aria-roledescription="slide" aria-label="Slide 8 of 13">
+      <section class="slide" id="s8" aria-roledescription="slide" aria-label="Slide 8 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Finish the job</p>
           <h2 class="s-title">From commit to merged PR, automatically.</h2>
@@ -261,7 +261,7 @@
       </section>
 
       <!-- 09 · Context -->
-      <section class="slide" id="s9" aria-roledescription="slide" aria-label="Slide 9 of 13">
+      <section class="slide" id="s9" aria-roledescription="slide" aria-label="Slide 9 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Context</p>
           <h2 class="s-title">Context that persists.</h2>
@@ -298,7 +298,7 @@
       </section>
 
       <!-- 10 · Guardrails -->
-      <section class="slide" id="s10" aria-roledescription="slide" aria-label="Slide 10 of 13">
+      <section class="slide" id="s10" aria-roledescription="slide" aria-label="Slide 10 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Guardrails</p>
           <h2 class="s-title">Autonomy, with guardrails.</h2>
@@ -325,7 +325,7 @@
       </section>
 
       <!-- 11 · Demo -->
-      <section class="slide slide--split" id="s11" aria-roledescription="slide" aria-label="Slide 11 of 13">
+      <section class="slide slide--split" id="s11" aria-roledescription="slide" aria-label="Slide 11 of 15">
         <div class="s-split-media">
           <div class="window" aria-label="Screenshot-style mockup of ADO Code inside VS Code">
             <div class="win-titlebar">
@@ -378,8 +378,46 @@
         <div class="slide__notes">Walk the mockup: left is the backlog, right is the agent chat, bottom is the branch and status. This is the entire product surface in one screen.</div>
       </section>
 
-      <!-- 12 · Install -->
-      <section class="slide" id="s12" aria-roledescription="slide" aria-label="Slide 12 of 13">
+      <!-- 12 · What's new in v0.6.6 -->
+      <section class="slide" id="s12" aria-roledescription="slide" aria-label="Slide 12 of 15">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Release · v0.6.6</p>
+          <h2 class="s-title">What's new in 0.6.6.</h2>
+        </div>
+        <div class="s-grid s-grid--3">
+          <div class="s-card">
+            <h3>Tool hardening</h3>
+            <ul class="s-bullets">
+              <li>Workspace <code>delete_file</code> tool</li>
+              <li>Batch <code>read_file</code> + read cache</li>
+              <li>Degenerate-loop circuit breaker</li>
+              <li>Quote-aware shell safety + Windows builtins</li>
+            </ul>
+          </div>
+          <div class="s-card">
+            <h3>Context &amp; workflow</h3>
+            <ul class="s-bullets">
+              <li>Overhead-aware context truncation</li>
+              <li>CJK &amp; dense-code token weighting</li>
+              <li>Per-organization PATs</li>
+              <li>Unattached / standalone mode</li>
+            </ul>
+          </div>
+          <div class="s-card">
+            <h3>UI surface &amp; branding</h3>
+            <ul class="s-bullets">
+              <li>Interactive Mermaid + SVG export</li>
+              <li>Chat in the editor area</li>
+              <li>Header quick actions</li>
+              <li>Custom icons + secondary sidebar</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide__notes">Presenting right after the 0.6.6 release? Land the delta: tool-system hardening (delete_file, batch reads, loop breaker, shell safety), token-accounting correctness, per-org PATs and standalone mode, plus the UI surface refresh (Mermaid, chat in the editor, header actions, secondary sidebar).</div>
+      </section>
+
+      <!-- 13 · Install -->
+      <section class="slide" id="s13" aria-roledescription="slide" aria-label="Slide 13 of 15">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Install</p>
           <h2 class="s-title">Up and running in a minute.</h2>
@@ -403,10 +441,24 @@
         <div class="slide__notes">Three-step onboarding. Mention the Marketplace and the terminal install command. Requirements are minimal — that's part of the pitch.</div>
       </section>
 
-      <!-- 13 · Closing -->
-      <section class="slide slide--title" id="s13" aria-roledescription="slide" aria-label="Slide 13 of 13">
+      <!-- 14 · Launch film -->
+      <section class="slide slide--title" id="s14" aria-roledescription="slide" aria-label="Slide 14 of 15">
         <div class="s-title-wrap s-title-wrap--close">
-          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>ADO Code · v0.6.5</p>
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Launch film</p>
+          <h2 class="s-hero-title s-hero-title--close">See it in motion.</h2>
+          <video class="s-launch-video" controls preload="metadata" playsinline poster="/assets/video/ado-code-launch-poster.jpg">
+            <source src="/assets/video/ado-code-launch.mp4" type="video/mp4">
+            <a href="/assets/video/ado-code-launch.mp4">Download the launch film (MP4)</a>
+          </video>
+          <p class="s-close-meta">93 seconds · narrated · 1080p</p>
+        </div>
+        <div class="slide__notes">Play the narrated launch film (93s). It follows the same arc as this deck: the problem, the loop, the modes, delegation, what's new in 0.6.6, and the call to action.</div>
+      </section>
+
+      <!-- 15 · Closing -->
+      <section class="slide slide--title" id="s15" aria-roledescription="slide" aria-label="Slide 15 of 15">
+        <div class="s-title-wrap s-title-wrap--close">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>ADO Code · v0.6.6</p>
           <h2 class="s-hero-title s-hero-title--close">Ship your backlog.</h2>
           <p class="s-hero-sub">Free, open source, no telemetry. Connect ADO, bring a model, delegate the rest.</p>
           <div class="s-close-links">
@@ -436,6 +488,6 @@
     <div class="deck-overview-grid" id="overview-grid"></div>
   </div>
 
-  <script src="/assets/js/deck.js?v=1.0.3"></script>
+  <script src="/assets/js/deck.js?v=1.1.0"></script>
 </body>
 </html>

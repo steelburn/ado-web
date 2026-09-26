@@ -472,3 +472,14 @@ body.notes-open .deck-viewport { bottom: 220px; }
   .deck-chrome-sub, .deck-chrome-brand img { display: none; }
   .deck-counter { min-width: 48px; }
 }
+
+/* ── Launch film slide ───────────────────────────────── */
+.s-launch-video {
+  display: block;
+  width: min(760px, 78%);
+  max-height: 46vh;
+  margin: 18px auto 0;
+  border-radius: 14px;
+  border: 1px solid var(--border, #232a3b);
+  background: #000;
+}
