@@ -10,8 +10,12 @@ Static HTML + CSS + vanilla JS. No build step, no framework, no dependencies.
 Deploys anywhere: nginx container, Netlify, Cloudflare Pages, or any static host.
 
 - `index.html` — single landing page (hero + VS Code mockup, feature highlights, comprehensive feature reference table, modes, agents, commands, install)
+- `deck.html` — presentation deck (v0.6.6): 15 slides with speaker notes, an overview grid, progress bar and keyboard navigation (←/→/Space, G overview, N notes, F fullscreen)
+- `assets/video/ado-code-launch.mp4` (+ `-poster.jpg`) — the 93-second narrated launch film, embedded on the home page and on the deck's launch-film slide
 - `assets/css/style.css` — design tokens + components (dark developer-tool theme, Azure accent, IBM Plex)
+- `assets/css/deck.css` — deck theme (brand-matched, print/PDF rules)
 - `assets/js/main.js` — mode demo, tree mockup, copy-to-clipboard, mobile nav, scroll reveal
+- `assets/js/deck.js` — deck controller (keyboard, overview grid, fullscreen, progress, touch swipe)
 - `assets/img/` — logo, favicon, OG image
 - `Dockerfile` / `nginx.conf` / `security-headers.conf` / `docker-compose.yml` — nginx container deployment (gzip, caching, security headers)
 - `sitemap.xml`, `robots.txt` — SEO basics
@@ -76,6 +80,8 @@ Upload the repository root as the publish directory. No config needed.
   version ships.
 - Feature copy lives in the section markup of `index.html` — keep it in sync
   with the extension's `README.md` release notes.
+- `deck.html` mirrors the same release: bump the version in the title/kicker and
+  add or revise slides when the extension's headline capabilities change.
 
 ## License
 

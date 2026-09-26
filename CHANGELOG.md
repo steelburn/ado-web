@@ -2,6 +2,24 @@
 
 All notable changes to the ADO Code website.
 
+## [0.5.2] — 2026-09-27
+
+### Added
+
+- **Launch film** — a 93-second narrated walkthrough of ADO Code v0.6.6 (`assets/video/ado-code-launch.mp4`, with a poster frame), embedded in a new **Launch film** section on the home page and on a new deck slide. Voiceover from Kokoro-82M and a MusicGen underscore, both generated locally and rendered with HyperFrames from an HTML composition; linked from the site nav and footer
+
+### Changed
+
+- Feature reference table updated to the **v0.6.6** feature set (95 features across 8 categories, up from 83): new rows for the 0.6.6 tool-system hardening (`delete_file` workspace delete tool, batch `read_file` via `paths` with the 400-line window and turn-scoped read cache, the degenerate-loop circuit breaker, quote-aware shell-operator sanitization + Windows `cmd.exe` builtin routing, `search_files` inline-flag parsing) and the 0.6.6 UI/config surface (chat in the editor area, interactive Mermaid diagrams with `Diagram | Code` + Copy Code, Mermaid SVG export/copy, custom branding & Secondary Side Bar container, header quick actions incl. `adoCode.rerunWizard`/`adoCode.openSettings`, per-organization PATs, unattached/standalone project mode, and the token-accounting & context-budgeting overhaul)
+- New **new · 0.6.6** aqua badge (`feat-new-6` + `--aqua` token + `sub-em-aqua` legend pill), replacing 0.6.5 gold as the latest marker
+- Existing rows refreshed for 0.6.6: context management (overhead-aware truncation against `maxTokens − overhead`, updated CJK/dense-code density), dynamic context window (longest-key-first matching with word boundaries), search-files flags, collapsible/dismissible/session-isolated confirmation cards, agent detection spawning the resolved binary (incl. the Claude adapter), full work-item detail rendering Mermaid, and rich-text images
+- Two new highlight cards in the features bento — **Diagrams that render** (Mermaid + SVG export) and **Works without ADO** (standalone project mode)
+- Copy refreshed: hero eyebrow/meta and sub mention Mermaid + standalone mode; Modes → Chat notes collapsible, dismissible, session-isolated consent cards; Commands section notes the view-header quick actions; Install step 2 marks Azure DevOps as optional with per-org PATs
+- Version references bumped 0.6.5 → 0.6.6 (nav badge, hero eyebrow, footer, JSON-LD, feature-reference sub)
+- Asset cache-bust bumped to `?v=0.5.2`
+- **Presentation deck updated to v0.6.6** (the `deck.html` deployed from the presentation-deck branch): two new slides — **What's new in 0.6.6** and the **Launch film** — taking it from 13 to 15 slides; version refs, slide numbering and the counter updated, and the deck asset cache-busts bumped to `?v=1.1.0`
+- Site nav and footer link the launch film and the presentation deck
+
 ## [0.5.1] — 2026-09-09
 
 ### Changed
