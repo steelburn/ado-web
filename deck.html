@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADO Code — Presentation deck</title>
+  <meta name="description" content="A slide deck for presenting ADO Code — the AI coding assistant that connects your Azure DevOps backlog to shipped code.">
+  <meta name="theme-color" content="#0b0e14">
+  <link rel="canonical" href="https://ado-code.ne1.dev/deck.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.5.1">
+  <link rel="stylesheet" href="/assets/css/deck.css?v=1.0.2">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="deck-body">
+
+  <!-- ═══════════════ DECK CHROME (controls) ═══════════════ -->
+  <header class="deck-chrome" role="toolbar" aria-label="Presentation controls">
+    <div class="deck-chrome-brand">
+      <img src="/assets/img/logo.svg" alt="" width="22" height="22">
+      <span class="deck-chrome-name">ADO&nbsp;Code</span>
+      <span class="deck-chrome-sub">deck</span>
+    </div>
+    <div class="deck-chrome-nav">
+      <button class="deck-btn" id="btn-prev" aria-label="Previous slide" title="Previous (←)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="deck-counter" aria-live="polite"><span id="counter-cur">1</span><span class="deck-counter-sep">/</span><span id="counter-total">13</span></div>
+      <button class="deck-btn" id="btn-next" aria-label="Next slide" title="Next (→)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="deck-progress" aria-hidden="true"><div class="deck-progress-fill" id="progress-fill"></div></div>
+    <div class="deck-chrome-tools">
+      <button class="deck-btn" id="btn-notes" aria-pressed="false" title="Speaker notes (N)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 3h10M3 6h10M3 9h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="1.5" width="12" height="13" rx="2" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+      <button class="deck-btn" id="btn-overview" aria-pressed="false" title="Overview grid (G)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+      <button class="deck-btn" id="btn-fullscreen" aria-pressed="false" title="Fullscreen (F)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" id="fs-icon-enter"><path d="M3 5V3h2M11 3h2v2M13 11v2h-2M5 13H3v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" id="fs-icon-exit" style="display:none"><path d="M5 3H3v2M3 11v2h2M11 13h2v-2M13 5V3h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ SLIDES ═══════════════ -->
+  <main class="deck-viewport" id="deck-viewport">
+    <div class="deck-stage" id="deck-stage">
+
+      <!-- 01 · Title -->
+      <section class="slide slide--title is-active" id="s1" aria-roledescription="slide" aria-label="Slide 1 of 13">
+        <div class="s-title-wrap">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Launch · VS Code extension · v0.6.5</p>
+          <h1 class="s-hero-title">ADO&nbsp;Code</h1>
+          <p class="s-hero-lead">Your Azure DevOps backlog, <span class="accent">shipped by AI</span> — inside the editor.</p>
+          <p class="s-hero-sub">Fetch work items as a real hierarchy, chat with any LLM, and delegate tasks to coding agents — each in its own isolated git worktree.</p>
+          <ul class="s-chips">
+            <li>VS Code 1.85+</li>
+            <li>OpenAI-compatible &amp; Anthropic</li>
+            <li>Open source</li>
+            <li>No telemetry</li>
+          </ul>
+        </div>
+        <p class="s-hint" aria-hidden="true">Use ← → or space to navigate · G for overview · F for fullscreen</p>
+        <div class="slide__notes">Launch framing: one sentence pitch. ADO Code is the bridge between the Azure DevOps board and the code — an AI assistant that turns work items into merged pull requests.</div>
+      </section>
+
+      <!-- 02 · The problem -->
+      <section class="slide" id="s2" aria-roledescription="slide" aria-label="Slide 2 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The problem</p>
+          <h2 class="s-title">The board and the code never talk.</h2>
+        </div>
+        <div class="s-cols s-cols--gap">
+          <div class="s-pain">
+            <div class="s-pain-num">01</div>
+            <div class="s-pain-txt">
+              <h3>Work lives in two places</h3>
+              <p>Your work items live in Azure DevOps — the code lives in the editor. The thread between them is manual.</p>
+            </div>
+          </div>
+          <div class="s-pain">
+            <div class="s-pain-num">02</div>
+            <div class="s-pain-txt">
+              <h3>Copy-paste plumbing</h3>
+              <p>Branch names, work-item IDs, PR links — hand-built every time. Slow, and easy to get wrong.</p>
+            </div>
+          </div>
+          <div class="s-pain">
+            <div class="s-pain-num">03</div>
+            <div class="s-pain-txt">
+              <h3>Agents are blind to the backlog</h3>
+              <p>Claude Code, Codex and the rest are powerful — but they don't know your items, your state, or your context.</p>
+            </div>
+          </div>
+          <div class="s-pain">
+            <div class="s-pain-num">04</div>
+            <div class="s-pain-txt">
+              <h3>Every switch drops the thread</h3>
+              <p>Board → editor → agent → PR. Each hop loses the context the last one had.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide__notes">Set up the pain before the pitch: fragmented workflow between ADO and the editor, and agents that don't understand the backlog.</div>
+      </section>
+
+      <!-- 03 · The loop -->
+      <section class="slide" id="s3" aria-roledescription="slide" aria-label="Slide 3 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The idea</p>
+          <h2 class="s-title">One loop, from backlog to merged PR.</h2>
+          <p class="s-sub">ADO Code turns a work item into a branch, hands it to an agent, and closes the loop with a pull request.</p>
+        </div>
+        <div class="deck-flow" aria-hidden="true">
+          <div class="df-step"><span class="df-n">1</span>Pick item</div>
+          <span class="df-arrow">→</span>
+          <div class="df-step"><span class="df-n">2</span>Worktree</div>
+          <span class="df-arrow">→</span>
+          <div class="df-step"><span class="df-n">3</span>Delegate</div>
+          <span class="df-arrow">→</span>
+          <div class="df-step"><span class="df-n">4</span>Commit</div>
+          <span class="df-arrow">→</span>
+          <div class="df-step"><span class="df-n">5</span>Push</div>
+          <span class="df-arrow">→</span>
+          <div class="df-step"><span class="df-n">6</span>PR</div>
+          <span class="df-arrow">→</span>
+          <div class="df-step"><span class="df-n">7</span>Auto-review</div>
+          <span class="df-arrow">→</span>
+          <div class="df-step df-step--done"><span class="df-n">8</span>Merge</div>
+        </div>
+        <p class="s-footnote">After merge, <em>Clean Up After Merge</em> removes the worktree and branch — only once the PR is actually merged.</p>
+        <div class="slide__notes">The core narrative: one loop. Emphasise the final step is automated — commit → push → PR → merge → cleanup — so an item is fully closed out, not just "worked on".</div>
+      </section>
+
+      <!-- 04 · What it is -->
+      <section class="slide" id="s4" aria-roledescription="slide" aria-label="Slide 4 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The product</p>
+          <h2 class="s-title">An AI coding assistant built for Azure DevOps.</h2>
+        </div>
+        <div class="s-grid s-grid--3">
+          <div class="s-card"><h3>Work-item tree</h3><p>Your backlog as a real Epic → Feature → Story → Task hierarchy.</p></div>
+          <div class="s-card"><h3>Any LLM</h3><p>OpenAI-compatible (OpenRouter, Ollama, LM Studio…) and Anthropic.</p></div>
+          <div class="s-card"><h3>Four modes</h3><p>Chat, Plan, Act and YOLO — one toggle from ask to autonomy.</p></div>
+          <div class="s-card"><h3>External agents</h3><p>Delegate to Claude Code, Codex, OpenCode, Hermes, Pi, dsh.</p></div>
+          <div class="s-card"><h3>Isolated worktrees</h3><p>Every run gets its own git worktree — agents never collide.</p></div>
+          <div class="s-card"><h3>MCP + skills</h3><p>Plug in tool servers or load from a built-in skill catalog.</p></div>
+        </div>
+        <div class="slide__notes">High-level capability map. Keep it to six: tree, model, modes, agents, worktrees, MCP/skills. Memory gets its own slide later.</div>
+      </section>
+
+      <!-- 05 · Work items tree -->
+      <section class="slide slide--split" id="s5" aria-roledescription="slide" aria-label="Slide 5 of 13">
+        <div class="s-split-media">
+          <div class="mini-tree" aria-hidden="true">
+            <div class="mini-row"><span>▾</span><b style="color:#569cd6">Epic</b> Payment Platform Overhaul</div>
+            <div class="mini-row mini-indent1"><span>▾</span><b style="color:#c586c0">Feature</b> Checkout v2</div>
+            <div class="mini-row mini-indent2"><span>▾</span><b style="color:#4ec9b0">Story</b> Card payments</div>
+            <div class="mini-row mini-indent3 mini-selected"><span>&nbsp;</span><b style="color:#ce9178">Task</b> Integrate Stripe API <em>ADO-123</em></div>
+            <div class="mini-row mini-indent3"><span>&nbsp;</span><b style="color:#ce9178">Task</b> 3DS validation <em>ADO-124</em></div>
+          </div>
+        </div>
+        <div class="s-split-txt">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Work items</p>
+          <h2 class="s-title">Your backlog, as a real tree.</h2>
+          <ul class="s-bullets">
+            <li>True parent-chain nesting — even when parents belong to someone else</li>
+            <li><strong>My / All / Unassigned</strong> views in one visible toggle</li>
+            <li>Filter by state, type or text — collapsed parents stay visible</li>
+            <li>Assignment cues: blue = you, orange = them, grey = unassigned</li>
+            <li>Take ownership or reassign right from the tree</li>
+            <li>Opening an item auto-creates a <code>feature/ADO-&lt;id&gt;-&lt;slug&gt;</code> branch</li>
+          </ul>
+        </div>
+        <div class="slide__notes">Detail the work-item tree. Highlight the branch-on-pickup behaviour — it feeds directly into the delegation loop.</div>
+      </section>
+
+      <!-- 06 · Chat modes -->
+      <section class="slide" id="s6" aria-roledescription="slide" aria-label="Slide 6 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>AI chat</p>
+          <h2 class="s-title">Any model. Four modes.</h2>
+        </div>
+        <div class="s-grid s-grid--4">
+          <div class="s-mode">
+            <span class="s-mode-tag">default</span>
+            <h3>Chat</h3>
+            <p>Ask, then approve — every action as a consent card.</p>
+          </div>
+          <div class="s-mode">
+            <span class="s-mode-tag s-mode-tag--dim">read-only</span>
+            <h3>Plan</h3>
+            <p>Inspect the repo and propose — nothing edits, nothing runs.</p>
+          </div>
+          <div class="s-mode">
+            <span class="s-mode-tag s-mode-tag--dim">allowlist</span>
+            <h3>Act</h3>
+            <p>Edits applied, commands run against a wildcard allowlist.</p>
+          </div>
+          <div class="s-mode">
+            <span class="s-mode-tag s-mode-tag--warn">autonomy</span>
+            <h3>YOLO</h3>
+            <p>Full autonomy — push still asks, even here.</p>
+          </div>
+        </div>
+        <p class="s-footnote">Every mode shares the same chat, memory and work-item context. Consent cards carry a live countdown that pauses while you're away.</p>
+        <div class="slide__notes">Walk the four modes left-to-right as an escalation of trust. Note YOLO still gates push by default — that's the guardrail that makes autonomy safe.</div>
+      </section>
+
+      <!-- 07 · Agents -->
+      <section class="slide" id="s7" aria-roledescription="slide" aria-label="Slide 7 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Agents &amp; worktrees</p>
+          <h2 class="s-title">Your backlog, delegated.</h2>
+        </div>
+        <div class="s-agents">
+          <div class="s-agent"><span class="s-agent-logo" style="background:#e8e8e8;color:#333">⌘</span>Claude Code</div>
+          <div class="s-agent"><span class="s-agent-logo" style="background:#1c1c1c;color:#fff">⌬</span>Codex</div>
+          <div class="s-agent"><span class="s-agent-logo" style="background:#d7f0ff;color:#0a2540">❯</span>OpenCode</div>
+          <div class="s-agent"><span class="s-agent-logo" style="background:#2b8fe0;color:#fff">✧</span>Hermes</div>
+          <div class="s-agent"><span class="s-agent-logo" style="background:#10141d;color:#4ea6f0">π</span>Pi</div>
+          <div class="s-agent"><span class="s-agent-logo" style="background:#10141d;color:#d7ba7d">≫</span>DeepSeek&nbsp;Harness</div>
+        </div>
+        <p class="s-footnote">Each run gets its own isolated git worktree under <code>.ado-code/worktrees/</code> — parallel agents can never collide on a branch.</p>
+        <div class="slide__notes">Position ADO Code as an orchestrator, not a competitor: it delegates to the agent you already trust, each sandboxed in its own worktree.</div>
+      </section>
+
+      <!-- 08 · Merge loop -->
+      <section class="slide" id="s8" aria-roledescription="slide" aria-label="Slide 8 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Finish the job</p>
+          <h2 class="s-title">From commit to merged PR, automatically.</h2>
+        </div>
+        <div class="s-cols s-cols--gap">
+          <div class="s-steps">
+            <div class="s-step"><span class="s-step-n">1</span><code>commit_worktree</code><span class="s-step-d">Commit the agent's changes</span></div>
+            <div class="s-step"><span class="s-step-n">2</span><code>push_worktree</code><span class="s-step-d">Push to the remote</span></div>
+            <div class="s-step"><span class="s-step-n">3</span><code>create_pull_request</code><span class="s-step-d">Open the ADO pull request</span></div>
+            <div class="s-step"><span class="s-step-n">4</span><code>auto-review</code><span class="s-step-d">LLM reviews the diff, recommends merge</span></div>
+            <div class="s-step"><span class="s-step-n">5</span><code>resolve_pr_conflicts</code><span class="s-step-d">AI fixes conflicts, re-pushes</span></div>
+            <div class="s-step s-step--done"><span class="s-step-n">6</span><code>clean up</code><span class="s-step-d">Remove worktree + branch after merge</span></div>
+          </div>
+          <div class="s-guard">
+            <h3>Guardrails</h3>
+            <ul class="s-bullets">
+              <li>Never force-pushes</li>
+              <li>Refuses protected branches (<code>main</code> / <code>master</code>)</li>
+              <li>Refuses failed runs</li>
+              <li>Blocks concurrent runs on the same item</li>
+              <li>Warns on stale branches</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide__notes">The "finish the job" story: the assistant doesn't stop at code — it pushes, opens the PR, reviews, resolves conflicts and cleans up. Guardrails keep it honest.</div>
+      </section>
+
+      <!-- 09 · Context -->
+      <section class="slide" id="s9" aria-roledescription="slide" aria-label="Slide 9 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Context</p>
+          <h2 class="s-title">Context that persists.</h2>
+        </div>
+        <div class="s-grid s-grid--3">
+          <div class="s-card">
+            <h3>Memory</h3>
+            <ul class="s-bullets">
+              <li>User memory across sessions</li>
+              <li>Workspace conventions in <code>.ado-code/memory/</code></li>
+              <li><code>agent.before</code> / <code>agent.after</code> hooks</li>
+              <li>Fuzzy search, import &amp; export</li>
+            </ul>
+          </div>
+          <div class="s-card">
+            <h3>MCP servers</h3>
+            <ul class="s-bullets">
+              <li>External tool servers, configured in the UI</li>
+              <li>Connect, disconnect &amp; inspect per server</li>
+              <li>AI discovers tools mid-conversation</li>
+            </ul>
+          </div>
+          <div class="s-card">
+            <h3>Skills</h3>
+            <ul class="s-bullets">
+              <li>10+ built-in (Code Review, Testing, Refactoring…)</li>
+              <li>Import from JSON, SKILL.md or archives</li>
+              <li>Community registries via TSV</li>
+            </ul>
+          </div>
+        </div>
+        <p class="s-footnote">Memory is injected into every chat and every agent handoff — and auto-ignored by git &amp; Docker.</p>
+        <div class="slide__notes">Context is the moat: the assistant remembers the user and the project, and it can extend itself with MCP servers and skills.</div>
+      </section>
+
+      <!-- 10 · Guardrails -->
+      <section class="slide" id="s10" aria-roledescription="slide" aria-label="Slide 10 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Guardrails</p>
+          <h2 class="s-title">Autonomy, with guardrails.</h2>
+        </div>
+        <div class="s-cols s-cols--gap">
+          <div class="s-col">
+            <ul class="s-bullets">
+              <li>Consent cards with live countdowns — pause while you're away</li>
+              <li>File checkpoints before every AI edit</li>
+              <li>Protected branches refused, force-push never allowed</li>
+              <li>Push approval stays on even in YOLO mode</li>
+            </ul>
+          </div>
+          <div class="s-col">
+            <ul class="s-bullets">
+              <li>Read-only commands run instantly; risky ones ask</li>
+              <li>Batch edits verified and applied in order</li>
+              <li>Truncated-response guard — no half-executed tools</li>
+              <li>No telemetry · no account · open source</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide__notes">Trust story: autonomy is the feature, guardrails are the contract. No telemetry and open source close the loop for enterprises.</div>
+      </section>
+
+      <!-- 11 · Demo -->
+      <section class="slide slide--split" id="s11" aria-roledescription="slide" aria-label="Slide 11 of 13">
+        <div class="s-split-media">
+          <div class="window" aria-label="Screenshot-style mockup of ADO Code inside VS Code">
+            <div class="win-titlebar">
+              <div class="win-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="win-title">Visual Studio Code — ado-demo (Workspace)</div>
+              <div class="win-spacer"></div>
+            </div>
+            <div class="win-body">
+              <div class="activity-bar" aria-hidden="true"><div class="act-icon">▤</div><div class="act-icon act-active" title="ADO Code">☰</div><div class="act-spacer"></div><div class="act-icon">⚙</div></div>
+              <div class="sidebar">
+                <div class="side-header"><span>WORK ITEMS</span><span class="side-action">⋯</span></div>
+                <div class="tree">
+                  <div class="tree-row tree-parent"><span class="tree-caret">▾</span><span class="tree-type" style="--tc:#569cd6">▮</span><span class="tree-text">Epic: Payment Platform Overhaul</span><span class="tree-id">ADO-120</span></div>
+                  <div class="tree-row tree-parent" style="padding-left:22px"><span class="tree-caret">▾</span><span class="tree-type" style="--tc:#4ec9b0">▮</span><span class="tree-text">Story: Card payments</span><span class="tree-id">ADO-122</span></div>
+                  <div class="tree-row tree-row-selected" style="padding-left:38px"><span class="tree-caret tree-caret-empty"></span><span class="tree-type" style="--tc:#ce9178">▮</span><span class="tree-text">Task: Integrate Stripe API</span><span class="tree-id tree-selected">ADO-123</span><span class="tree-tag tree-tag-you">you</span></div>
+                  <div class="tree-row" style="padding-left:38px"><span class="tree-caret tree-caret-empty"></span><span class="tree-type" style="--tc:#ce9178">▮</span><span class="tree-text">Task: 3DS validation</span><span class="tree-id">ADO-124</span></div>
+                </div>
+              </div>
+              <div class="editor">
+                <div class="mode-pills" role="tablist" aria-label="Tool mode">
+                  <button class="pill pill-active" type="button">Chat</button>
+                  <button class="pill" type="button">Plan</button>
+                  <button class="pill" type="button">Act</button>
+                  <button class="pill" type="button">YOLO</button>
+                </div>
+                <div class="chat">
+                  <div class="msg msg-user"><div class="msg-label">You</div><div class="msg-body">Pick up ADO-123 and implement the Stripe integration.</div></div>
+                  <div class="msg msg-ai">
+                    <div class="msg-label">ADO Code</div>
+                    <div class="msg-body">On it — I'll work through ADO-123, then hand the branch back for review.</div>
+                    <div class="toolcard toolcard-done"><div class="toolcard-head"><span class="toolcard-icon">✎</span> edit_file <span class="toolcard-status">completed</span></div><div class="toolcard-args">src/payments/stripe.ts · 2 edits applied</div></div>
+                  </div>
+                </div>
+                <div class="inputbar"><span class="inputbar-slash">/</span><span class="inputbar-ph">Ask ADO Code to work your items…</span><span class="inputbar-send" aria-hidden="true">➤</span></div>
+              </div>
+            </div>
+            <div class="win-statusbar"><span>☰ ADO Code</span><span class="status-working"><i></i> working…</span><span class="status-right">feature/ADO-123-stripe-integration</span></div>
+          </div>
+        </div>
+        <div class="s-split-txt">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Demo</p>
+          <h2 class="s-title">Inside VS Code.</h2>
+          <ul class="s-bullets">
+            <li>The work-item tree on the left — live ADO hierarchy</li>
+            <li>The chat on the right, with thinking and tool cards inline</li>
+            <li>Status bar shows the active item, mode and branch</li>
+            <li>One session, one item — the whole loop in one place</li>
+          </ul>
+        </div>
+        <div class="slide__notes">Walk the mockup: left is the backlog, right is the agent chat, bottom is the branch and status. This is the entire product surface in one screen.</div>
+      </section>
+
+      <!-- 12 · Install -->
+      <section class="slide" id="s12" aria-roledescription="slide" aria-label="Slide 12 of 13">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Install</p>
+          <h2 class="s-title">Up and running in a minute.</h2>
+        </div>
+        <div class="s-cols s-cols--gap s-cols--3">
+          <div class="s-card">
+            <h3><span class="s-card-n">1</span>Install</h3>
+            <p>From the Marketplace, or right from the terminal.</p>
+            <div class="codeblock"><code>code --install-extension steelburn.ado-code</code><button class="copy-btn" data-copy="code --install-extension steelburn.ado-code" aria-label="Copy install command">⧉</button></div>
+          </div>
+          <div class="s-card">
+            <h3><span class="s-card-n">2</span>Connect ADO</h3>
+            <p>Organization, project, and a PAT with <code>vso.work_write</code> scope.</p>
+          </div>
+          <div class="s-card">
+            <h3><span class="s-card-n">3</span>Add a model</h3>
+            <p>Bring your own key — any OpenAI-compatible API or Anthropic.</p>
+          </div>
+        </div>
+        <p class="s-footnote">Requirements: VS Code 1.85+ · Node.js 18+ · a git-enabled workspace. No telemetry, no account beyond your own providers.</p>
+        <div class="slide__notes">Three-step onboarding. Mention the Marketplace and the terminal install command. Requirements are minimal — that's part of the pitch.</div>
+      </section>
+
+      <!-- 13 · Closing -->
+      <section class="slide slide--title" id="s13" aria-roledescription="slide" aria-label="Slide 13 of 13">
+        <div class="s-title-wrap s-title-wrap--close">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>ADO Code · v0.6.5</p>
+          <h2 class="s-hero-title s-hero-title--close">Ship your backlog.</h2>
+          <p class="s-hero-sub">Free, open source, no telemetry. Connect ADO, bring a model, delegate the rest.</p>
+          <div class="s-close-links">
+            <a class="btn btn-primary btn-lg" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Install from Marketplace</a>
+            <a class="btn btn-ghost btn-lg" href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">GitHub</a>
+          </div>
+          <p class="s-close-meta">steelburn · Khairulnizam Hasan · made for VS Code &amp; Azure DevOps</p>
+        </div>
+        <div class="slide__notes">Close with the call to action and the open-source, no-telemetry reassurance. Point to Marketplace and GitHub.</div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════ SPEAKER NOTES ═══════════════ -->
+  <aside class="deck-notes" id="deck-notes" aria-label="Speaker notes" aria-hidden="true">
+    <div class="deck-notes-head"><span>Speaker notes</span><span class="deck-notes-slide" id="notes-slide">1 / 13</span></div>
+    <div class="deck-notes-body" id="notes-body"></div>
+  </aside>
+
+  <!-- ═══════════════ OVERVIEW GRID ═══════════════ -->
+  <div class="deck-overview" id="deck-overview" aria-label="Slide overview" hidden>
+    <div class="deck-overview-head">
+      <span>Overview</span>
+      <button class="deck-btn" id="btn-overview-close" aria-label="Close overview (Esc)">✕</button>
+    </div>
+    <div class="deck-overview-grid" id="overview-grid"></div>
+  </div>
+
+  <script src="/assets/js/deck.js?v=1.0.3"></script>
+</body>
+</html>
