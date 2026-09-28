@@ -106,7 +106,13 @@
         $$(pillSel, $(group) || root).forEach((p) => {
           p.classList.toggle('pill-active', p === pill);
           p.classList.toggle('mode-pill-active', p === pill);
-          p.setAttribute('aria-selected', p === pill ? 'true' : 'false');
+          if (isHero) {
+            // Hero mode pills are a toggle group, not a tab list.
+            p.setAttribute('aria-pressed', p === pill ? 'true' : 'false');
+          } else {
+            p.setAttribute('aria-selected', p === pill ? 'true' : 'false');
+            p.setAttribute('tabindex', p === pill ? '0' : '-1');
+          }
         });
 
         // Hero: swap the status bar + first AI message to reflect the mode
@@ -169,6 +175,58 @@
     // Never leave content invisible: reveal everything if reveal setup fails.
     if (window.__adoRevealAll) { window.__adoRevealAll(); }
   }
+
+  /* ── Tabs: keyboard support for the Modes tab list ── */
+  function bindTabs(tablist) {
+    const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+    if (tabs.length === 0) { return; }
+    tablist.addEventListener('keydown', (event) => {
+      const current = tabs.indexOf(document.activeElement);
+      if (current === -1) { return; }
+      let next;
+      switch (event.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+          next = (current + 1) % tabs.length;
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          next = (current - 1 + tabs.length) % tabs.length;
+          break;
+        case 'Home':
+          next = 0;
+          break;
+        case 'End':
+          next = tabs.length - 1;
+          break;
+        default:
+          return;
+      }
+      event.preventDefault();
+      tabs[next].focus();
+      tabs[next].click();
+    });
+  }
+  document.querySelectorAll('.modes-pills[role="tablist"]').forEach(bindTabs);
+
+  /* ── Nav: close the mobile menu on Escape and restore focus ── */
+  if (burger && navLinks) {
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') { return; }
+      if (burger.getAttribute('aria-expanded') !== 'true') { return; }
+      burger.setAttribute('aria-expanded', 'false');
+      navLinks.classList.remove('open');
+      burger.focus();
+    });
+  }
+
+  /* ── Copy buttons: announce success to assistive technology ── */
+  document.addEventListener('click', (event) => {
+    const btn = event.target instanceof Element ? event.target.closest('[data-copy]') : null;
+    if (!btn) { return; }
+    const status = document.getElementById('a11y-status');
+    if (status) { status.textContent = 'Command copied to clipboard'; }
+  }, true);
 
   /* ── Respect reduced motion for the status-bar working dot ── */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

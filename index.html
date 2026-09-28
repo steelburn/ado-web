@@ -62,6 +62,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <!-- ═══════════════ NAV ═══════════════ -->
   <header class="nav" id="top">
     <div class="nav-inner">
@@ -70,7 +72,7 @@
         <span class="brand-name">ADO&nbsp;Code</span>
         <span class="brand-ver">v0.6.6</span>
       </a>
-      <nav class="nav-links" aria-label="Primary">
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
         <a href="#features">Features</a>
         <a href="#launch">Launch film</a>
         <a href="#all-features">All features</a>
@@ -87,13 +89,13 @@
         </a>
         <a class="btn btn-primary btn-sm" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Install</a>
       </div>
-      <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <main>
+  <main id="main">
 
     <!-- ═══════════════ HERO ═══════════════ -->
     <section class="hero">
@@ -220,11 +222,11 @@
               </div>
 
               <div class="editor">
-                <div class="mode-pills" role="tablist" aria-label="Tool mode">
-                  <button class="pill pill-active" data-mode="inline" role="tab" aria-selected="true">Chat</button>
-                  <button class="pill" data-mode="plan" role="tab" aria-selected="false">Plan</button>
-                  <button class="pill" data-mode="act" role="tab" aria-selected="false">Act</button>
-                  <button class="pill" data-mode="yolo" role="tab" aria-selected="false">YOLO</button>
+                <div class="mode-pills" role="group" aria-label="Tool mode">
+                  <button class="pill pill-active" data-mode="inline" aria-pressed="true">Chat</button>
+                  <button class="pill" data-mode="plan" aria-pressed="false">Plan</button>
+                  <button class="pill" data-mode="act" aria-pressed="false">Act</button>
+                  <button class="pill" data-mode="yolo" aria-pressed="false">YOLO</button>
                 </div>
                 <div class="chat" id="hero-chat">
                   <div class="msg msg-user">
@@ -558,35 +560,35 @@
 
         <div class="modes reveal">
           <div class="modes-pills" role="tablist" aria-label="Mode details">
-            <button class="mode-pill mode-active" data-mode="inline" role="tab" aria-selected="true">Chat</button>
-            <button class="mode-pill" data-mode="plan" role="tab" aria-selected="false">Plan</button>
-            <button class="mode-pill" data-mode="act" role="tab" aria-selected="false">Act</button>
-            <button class="mode-pill" data-mode="yolo" role="tab" aria-selected="false">YOLO</button>
+            <button class="mode-pill mode-active" id="modes-tab-inline" data-mode="inline" role="tab" aria-selected="true" aria-controls="modes-panel-inline" tabindex="0">Chat</button>
+            <button class="mode-pill" id="modes-tab-plan" data-mode="plan" role="tab" aria-selected="false" aria-controls="modes-panel-plan" tabindex="-1">Plan</button>
+            <button class="mode-pill" id="modes-tab-act" data-mode="act" role="tab" aria-selected="false" aria-controls="modes-panel-act" tabindex="-1">Act</button>
+            <button class="mode-pill" id="modes-tab-yolo" data-mode="yolo" role="tab" aria-selected="false" aria-controls="modes-panel-yolo" tabindex="-1">YOLO</button>
           </div>
 
           <div class="mode-panels">
-            <div class="mode-panel mode-panel-active" data-mode="inline">
+            <div class="mode-panel mode-panel-active" id="modes-panel-inline" role="tabpanel" aria-labelledby="modes-tab-inline" tabindex="0" data-mode="inline">
               <div class="mode-panel-txt">
                 <h3>Chat — ask, then approve</h3>
                 <p>The safe default. The assistant can use tools, but every action is presented as an in-chat consent card before it runs — with a live countdown that pauses while you're away. Cards collapse, dismiss, and stay bound to the session that raised them. Read-only commands run instantly when <em>Auto-approve harmless commands</em> is on: no card, no timer.</p>
                 <div class="mode-tags"><span>consent cards</span><span>collapse &amp; dismiss</span><span>session-isolated</span><span>instant harmless approval</span><span>live countdowns</span></div>
               </div>
             </div>
-            <div class="mode-panel" data-mode="plan">
+            <div class="mode-panel" id="modes-panel-plan" role="tabpanel" aria-labelledby="modes-tab-plan" tabindex="0" data-mode="plan">
               <div class="mode-panel-txt">
                 <h3>Plan — look before you leap</h3>
                 <p>Read-only mode. The model inspects the repo, the work item and its acceptance criteria, then proposes a plan. Nothing is edited, no commands run — the plan comes back as a summary you can approve or refine.</p>
                 <div class="mode-tags"><span>read-only schemas</span><span>repo inspection</span><span>proposal output</span></div>
               </div>
             </div>
-            <div class="mode-panel" data-mode="act">
+            <div class="mode-panel" id="modes-panel-act" role="tabpanel" aria-labelledby="modes-tab-act" tabindex="0" data-mode="act">
               <div class="mode-panel-txt">
                 <h3>Act — the agentic workhorse</h3>
                 <p>Edits are applied directly, terminal commands run against a wildcard allowlist (<code>git *</code>, <code>npm run *</code>…). Independent tool calls execute in parallel, and batched <code>edit_file</code> edits are serialized per file.</p>
                 <div class="mode-tags"><span>terminal allowlist</span><span>parallel tool calls</span><span>batched edits</span></div>
               </div>
             </div>
-            <div class="mode-panel" data-mode="yolo">
+            <div class="mode-panel" id="modes-panel-yolo" role="tabpanel" aria-labelledby="modes-tab-yolo" tabindex="0" data-mode="yolo">
               <div class="mode-panel-txt">
                 <h3>YOLO — full autonomy</h3>
                 <p>Every tool and every command runs without prompts — <strong>except pushing to the remote repo</strong>, which still asks even here (<code>adoCode.yolo.pushApproval</code>, default on; turn it off for full autonomy). Intended for trusted tasks on isolated worktrees where a mistake costs a reset, not a production incident. Checkpoints keep restores one click away.</p>
@@ -751,6 +753,8 @@
       </div>
     </div>
   </footer>
+
+  <div id="a11y-status" class="sr-only" role="status" aria-live="polite"></div>
 
   <script src="/assets/js/main.js?v=0.6.6"></script>
 </body>
