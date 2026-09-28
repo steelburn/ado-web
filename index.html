@@ -9,16 +9,23 @@
   <link rel="canonical" href="https://ado-code.ne1.dev/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-  <!-- Open Graph -->
+  <!-- Open Graph / social cards — PNG because social platforms do not render SVG OG images -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADO Code">
+  <meta property="og:locale" content="en_US">
   <meta property="og:url" content="https://ado-code.ne1.dev/">
   <meta property="og:title" content="ADO Code — AI coding assistant for Azure DevOps">
   <meta property="og:description" content="Fetch work items, chat with any LLM, delegate to coding agents in isolated git worktrees — all inside VS Code.">
-  <meta property="og:image" content="https://ado-code.ne1.dev/assets/img/og-image.svg">
+  <meta property="og:image" content="https://ado-code.ne1.dev/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ADO Code — AI coding assistant with Azure DevOps integration for VS Code">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ADO Code — AI coding assistant for Azure DevOps">
   <meta name="twitter:description" content="Fetch work items, chat with any LLM, delegate to coding agents in isolated git worktrees — all inside VS Code.">
-  <meta name="twitter:image" content="https://ado-code.ne1.dev/assets/img/og-image.svg">
+  <meta name="twitter:image" content="https://ado-code.ne1.dev/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="ADO Code — AI coding assistant with Azure DevOps integration for VS Code">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,12 +58,37 @@
     "name": "ADO Code",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Windows, macOS, Linux",
-    "publisher": { "@type": "Person", "name": "Khairulnizam Hasan", "url": "https://github.com/steelburn" },
+    "author": { "@type": "Person", "name": "Khairulnizam Hasan", "url": "https://github.com/steelburn" },
+    "publisher": { "@type": "Organization", "name": "steelburn", "url": "https://github.com/steelburn" },
     "description": "AI coding assistant with Azure DevOps work item integration for VS Code. Fetch work items, chat with LLMs, delegate tasks to coding agents.",
-    "url": "https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code",
+    "url": "https://ado-code.ne1.dev/",
+    "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code",
+    "installUrl": "https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code",
+    "sameAs": [
+      "https://github.com/steelburn/ado-code",
+      "https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code"
+    ],
+    "softwareHelp": { "@type": "CreativeWork", "url": "https://github.com/steelburn/ado-code" },
+    "screenshot": "https://ado-code.ne1.dev/assets/img/og-image.png",
+    "keywords": "Azure DevOps, VS Code, AI coding assistant, work items, LLM, coding agents, git worktrees",
     "softwareVersion": "0.6.6",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
     "requirements": "VS Code 1.85.0+"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is ADO Code free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ADO Code itself is free. You bring your own Azure DevOps access and your own LLM API key." } },
+      { "@type": "Question", "name": "Does it work with Azure DevOps Server (on-premises)?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Point the connection at your Azure DevOps Services organisation or your Azure DevOps Server collection URL, and authenticate with a personal access token." } },
+      { "@type": "Question", "name": "How do coding agents run — do they touch my working tree?", "acceptedAnswer": { "@type": "Answer", "text": "Delegated tasks run in an isolated git worktree on a separate branch. You review the diff and merge it yourself." } },
+      { "@type": "Question", "name": "Which LLM providers are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any OpenAI-compatible API — including OpenRouter, Ollama and LM Studio — plus the Anthropic API. Model and reasoning effort can be set per mode." } },
+      { "@type": "Question", "name": "What are the four modes?", "acceptedAnswer": { "@type": "Answer", "text": "Chat answers questions, Plan inspects read-only, Act performs agentic work with approvals, and YOLO runs fully autonomously." } },
+      { "@type": "Question", "name": "Is my code sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "Requests go only to the LLM provider you configure with your own key. ADO Code ships no analytics or telemetry of its own." } }
+    ]
   }
   </script>
 </head>
@@ -721,6 +753,43 @@
             </ul>
             <p class="install-note">No telemetry. No account required beyond your own ADO + LLM providers. Open source on <a href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">GitHub</a>.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FAQ ═══════════════ -->
+    <section class="section section-alt" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Questions, answered.</h2>
+          <p class="section-sub">The things people ask before installing.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>Is ADO Code free?</summary>
+            <p>Yes. ADO Code itself is free — you bring your own Azure DevOps access and your own LLM API key (OpenAI-compatible, OpenRouter, Ollama, LM Studio or Anthropic).</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does it work with Azure DevOps Server (on-premises)?</summary>
+            <p>Yes. Point the connection at your Azure DevOps Services organisation or your Azure DevOps Server collection URL, and authenticate with a personal access token.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do coding agents run — do they touch my working tree?</summary>
+            <p>Delegated tasks run in an isolated git worktree on a separate branch. You review the diff and merge it yourself.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Which LLM providers are supported?</summary>
+            <p>Any OpenAI-compatible API — including OpenRouter, Ollama and LM Studio — plus the Anthropic API. Model and reasoning effort can be set per mode.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What are the four modes?</summary>
+            <p>Chat answers questions, Plan inspects read-only, Act performs agentic work with approvals, and YOLO runs fully autonomously.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is my code sent anywhere?</summary>
+            <p>Requests go only to the LLM provider you configure with your own key. ADO Code ships no analytics or telemetry of its own.</p>
+          </details>
         </div>
       </div>
     </section>
