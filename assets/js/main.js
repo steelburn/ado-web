@@ -4,6 +4,9 @@
 (function () {
   'use strict';
 
+  // Flag a successful boot so the inline head safety-net can detect a failed load.
+  window.__adoBooted = true;
+
   const $ = (sel, ctx) => (ctx || document).querySelector(sel);
   const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
 
@@ -141,6 +144,7 @@
   bindModePills(document);
 
   /* ── Reveal on scroll ── */
+  try {
   const revealEls = $$('.reveal');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(
@@ -160,6 +164,10 @@
     revealEls.forEach((el) => io.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add('in'));
+  }
+  } catch (err) {
+    // Never leave content invisible: reveal everything if reveal setup fails.
+    if (window.__adoRevealAll) { window.__adoRevealAll(); }
   }
 
   /* ── Respect reduced motion for the status-bar working dot ── */
