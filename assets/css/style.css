@@ -855,6 +855,36 @@ img { max-width: 100%; display: block; }
 /* ── Collapsible feature reference (default-collapsed toggle) ── */
 /* Explicit hide — do not rely on the UA <details> suppression here. */
 .feat-details:not([open]) > .feat-details-body { display: none; }
+
+/* ── FAQ ──────────────────────────────────────────────── */
+.faq-list { display: grid; gap: 12px; margin-top: 36px; max-width: 820px; }
+.faq-item {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2px 20px;
+}
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  color: var(--accent-hi);
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  transition: transform var(--fast) var(--ease);
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { color: var(--ink-2); padding-bottom: 18px; }
 .feat-toggle {
   display: flex;
   align-items: center;
