@@ -1,0 +1,8 @@
+[
+  { "key": "ctrl+alt+a", "command": "adoCode.chat.focus" },
+  { "key": "ctrl+alt+m", "command": "adoCode.setMode" },
+  { "key": "ctrl+alt+i", "command": "adoCode.selectWorkItem" },
+  { "key": "ctrl+alt+d", "command": "adoCode.showWorkItemDetail" },
+  { "key": "ctrl+alt+s", "command": "adoCode.openSettings" },
+  { "key": "ctrl+alt+v", "command": "adoCode.agentViewDetail" }
+]

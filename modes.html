@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modes — ADO Code</title>
+  <meta name="description" content="Agent, Chat and Plan modes — what each one is for and when to reach for it.">
+  <meta name="theme-color" content="#0b0e14">
+  <link rel="canonical" href="https://ado-code.ne1.dev/modes.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph / social cards — PNG because social platforms do not render SVG OG images -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADO Code">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://ado-code.ne1.dev/modes.html">
+  <meta property="og:title" content="Modes — ADO Code">
+  <meta property="og:description" content="Agent, Chat and Plan modes — what each one is for and when to reach for it.">
+  <meta property="og:image" content="https://ado-code.ne1.dev/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ADO Code — AI coding assistant with Azure DevOps integration for VS Code">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Modes — ADO Code">
+  <meta name="twitter:description" content="Agent, Chat and Plan modes — what each one is for and when to reach for it.">
+  <meta name="twitter:image" content="https://ado-code.ne1.dev/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="ADO Code — AI coding assistant with Azure DevOps integration for VS Code">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Progressive enhancement: reveal animations only hide content when JS is active. -->
+  <script>
+    (function () {
+      var doc = document.documentElement;
+      doc.classList.add('js');
+      function revealAll() {
+        var els = document.querySelectorAll('.reveal');
+        for (var i = 0; i < els.length; i++) { els[i].classList.add('in'); }
+      }
+      window.__adoRevealAll = revealAll;
+      // Safety net: never leave content hidden if the interaction script fails
+      // to boot, a script errors, or an async rejection escapes.
+      window.addEventListener('error', revealAll);
+      window.addEventListener('unhandledrejection', revealAll);
+      window.addEventListener('load', function () {
+        if (!window.__adoBooted) { revealAll(); }
+      });
+    })();
+  </script>
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.8.0">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <header> against, so the hand copies can never drift.
+
+     Per-page rule: copy this block verbatim and add `aria-current="page"` to the
+     link whose data-nav matches the page (see scripts/site-pages.mjs). That one
+     attribute is the only sanctioned difference; the parity test ignores it.
+
+     Nav ids used by assets/js/main.js: #nav-links + .nav-burger
+     (aria-controls="nav-links") — do not rename.
+     ═══════════════════════════════════════════════════════════════════════════ -->
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="ADO Code home">
+        <img src="/assets/img/logo.svg" alt="" width="28" height="28" class="brand-mark">
+        <span class="brand-name">ADO&nbsp;Code</span>
+        <span class="brand-ver">v0.6.6</span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="/features.html" data-nav="features">Features</a>
+        <a href="/gallery.html" data-nav="gallery">Gallery</a>
+        <a href="/modes.html" data-nav="modes" aria-current="page">Modes</a>
+        <a href="/agents.html" data-nav="agents">Agents</a>
+        <a href="/commands.html" data-nav="commands">Commands</a>
+        <a href="/install.html" data-nav="install">Install</a>
+        <a href="/faq.html" data-nav="faq">FAQ</a>
+        <a href="/deck.html" data-nav="deck">Deck</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">
+          GitHub
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3h7v7M13 3 5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 13H3V6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Install</a>
+      </div>
+      <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section-alt" id="modes">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Modes</p>
+          <h1>One toggle from ask to autonomy.</h1>
+          <p class="section-sub">Click a mode to see what it allows. Every mode shares the same chat, memory and work-item context.</p>
+        </div>
+
+        <div class="modes reveal">
+          <div class="modes-pills" role="tablist" aria-label="Mode details">
+            <button class="mode-pill mode-active" id="modes-tab-inline" data-mode="inline" role="tab" aria-selected="true" aria-controls="modes-panel-inline" tabindex="0">Chat</button>
+            <button class="mode-pill" id="modes-tab-plan" data-mode="plan" role="tab" aria-selected="false" aria-controls="modes-panel-plan" tabindex="-1">Plan</button>
+            <button class="mode-pill" id="modes-tab-act" data-mode="act" role="tab" aria-selected="false" aria-controls="modes-panel-act" tabindex="-1">Act</button>
+            <button class="mode-pill" id="modes-tab-yolo" data-mode="yolo" role="tab" aria-selected="false" aria-controls="modes-panel-yolo" tabindex="-1">YOLO</button>
+          </div>
+
+          <div class="mode-panels">
+            <div class="mode-panel mode-panel-active" id="modes-panel-inline" role="tabpanel" aria-labelledby="modes-tab-inline" tabindex="0" data-mode="inline">
+              <div class="mode-panel-txt">
+                <h3>Chat — ask, then approve</h3>
+                <p>The safe default. The assistant can use tools, but every action is presented as an in-chat consent card before it runs — with a live countdown that pauses while you're away. Cards collapse, dismiss, and stay bound to the session that raised them. Read-only commands run instantly when <em>Auto-approve harmless commands</em> is on: no card, no timer.</p>
+                <div class="mode-tags"><span>consent cards</span><span>collapse &amp; dismiss</span><span>session-isolated</span><span>instant harmless approval</span><span>live countdowns</span></div>
+              </div>
+            </div>
+            <div class="mode-panel" id="modes-panel-plan" role="tabpanel" aria-labelledby="modes-tab-plan" tabindex="0" data-mode="plan">
+              <div class="mode-panel-txt">
+                <h3>Plan — look before you leap</h3>
+                <p>Read-only mode. The model inspects the repo, the work item and its acceptance criteria, then proposes a plan. Nothing is edited, no commands run — the plan comes back as a summary you can approve or refine.</p>
+                <div class="mode-tags"><span>read-only schemas</span><span>repo inspection</span><span>proposal output</span></div>
+              </div>
+            </div>
+            <div class="mode-panel" id="modes-panel-act" role="tabpanel" aria-labelledby="modes-tab-act" tabindex="0" data-mode="act">
+              <div class="mode-panel-txt">
+                <h3>Act — the agentic workhorse</h3>
+                <p>Edits are applied directly, terminal commands run against a wildcard allowlist (<code>git *</code>, <code>npm run *</code>…). Independent tool calls execute in parallel, and batched <code>edit_file</code> edits are serialized per file.</p>
+                <div class="mode-tags"><span>terminal allowlist</span><span>parallel tool calls</span><span>batched edits</span></div>
+              </div>
+            </div>
+            <div class="mode-panel" id="modes-panel-yolo" role="tabpanel" aria-labelledby="modes-tab-yolo" tabindex="0" data-mode="yolo">
+              <div class="mode-panel-txt">
+                <h3>YOLO — full autonomy</h3>
+                <p>Every tool and every command runs without prompts — <strong>except pushing to the remote repo</strong>, which still asks even here (<code>adoCode.yolo.pushApproval</code>, default on; turn it off for full autonomy). Intended for trusted tasks on isolated worktrees where a mistake costs a reset, not a production incident. Checkpoints keep restores one click away.</p>
+                <div class="mode-tags"><span>no consent prompts</span><span>push still asks</span><span>full tool access</span><span>checkpoints on</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer> against.
+
+     Links point at real pages (post-split IA): the old same-page #anchors are
+     gone. Unlike the header, the footer is identical on every page (no
+     aria-current), so it must match byte-for-byte.
+     ═══════════════════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="/assets/img/logo.svg" alt="" width="32" height="32">
+        <div>
+          <div class="footer-name">ADO Code</div>
+          <div class="footer-tag">AI coding assistant with Azure DevOps integration</div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Visual Studio Marketplace</a>
+        <a href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">GitHub</a>
+        <a href="/features.html">Features</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/modes.html">Modes</a>
+        <a href="/agents.html">Agents</a>
+        <a href="/commands.html">Commands</a>
+        <a href="/install.html">Install</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/deck.html">Presentation deck</a>
+      </div>
+      <div class="footer-meta">
+        <span>v0.6.6</span>
+        <span>·</span>
+        <span>© 2026 steelburn (Khairulnizam Hasan)</span>
+        <span>·</span>
+        <span>Made for VS Code &amp; Azure DevOps</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="a11y-status" class="sr-only" role="status" aria-live="polite"></div>
+
+  <script src="/assets/js/main.js?v=0.8.0"></script>
+</body>
+</html>

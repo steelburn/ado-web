@@ -1,0 +1,104 @@
+{
+  "_comment": "Deterministic demo dataset served by tools/capture/mocks/ado.mjs. Stands in for a real Azure DevOps org so the capture harness is hermetic (no PAT, no network, stable across runs). Shapes follow the ADO REST 7.1 responses the extension consumes.",
+  "org": "contoso-demo",
+  "project": {
+    "id": "6f1c0a2e-0000-4000-8000-000000000001",
+    "name": "AdoDemo",
+    "description": "Demo project for marketing screenshot capture",
+    "state": "wellFormed",
+    "visibility": "private"
+  },
+  "user": {
+    "id": "b1a2c3d4-0000-4000-8000-0000000000aa",
+    "displayName": "Demo Developer",
+    "uniqueName": "demo@contoso-demo.example",
+    "imageUrl": ""
+  },
+  "team": { "id": "aaaa1111-0000-4000-8000-0000000000bb", "name": "AdoDemo Team" },
+  "repository": {
+    "id": "cccc2222-0000-4000-8000-0000000000cc",
+    "name": "ado-demo",
+    "defaultBranch": "refs/heads/main",
+    "webUrl": "https://dev.azure.com/contoso-demo/AdoDemo/_git/ado-demo"
+  },
+  "workItems": [
+    {
+      "id": 500,
+      "type": "Epic",
+      "title": "Payment Platform Overhaul",
+      "state": "Active",
+      "assignedTo": "Demo Developer",
+      "area": "AdoDemo",
+      "iteration": "AdoDemo\\Sprint 12",
+      "description": "Replace the legacy checkout with a tokenized payment platform.",
+      "acceptanceCriteria": "All checkout flows run on the new platform with zero downtime."
+    },
+    {
+      "id": 501,
+      "type": "Feature",
+      "title": "Checkout revamp",
+      "state": "Active",
+      "assignedTo": "Demo Developer",
+      "parent": 500,
+      "area": "AdoDemo",
+      "iteration": "AdoDemo\\Sprint 12",
+      "description": "New checkout UI and API.",
+      "acceptanceCriteria": "Checkout p95 latency under 300 ms."
+    },
+    {
+      "id": 502,
+      "type": "User Story",
+      "title": "Card tokenization",
+      "state": "Active",
+      "assignedTo": "Demo Developer",
+      "parent": 501,
+      "area": "AdoDemo",
+      "iteration": "AdoDemo\\Sprint 12",
+      "description": "Store a token instead of the raw PAN for every saved card.",
+      "acceptanceCriteria": "Saved cards use tokens.\nTokens are vault-backed.\nExisting cards migrate on first use.",
+      "comments": [
+        { "author": "Demo Developer", "text": "Vault adapter is behind a feature flag." },
+        { "author": "Ada Reviewer", "text": "Please add a migration backfill test." }
+      ]
+    },
+    {
+      "id": 503,
+      "type": "Task",
+      "title": "Add token vault adapter",
+      "state": "Active",
+      "assignedTo": "Demo Developer",
+      "parent": 502,
+      "area": "AdoDemo",
+      "iteration": "AdoDemo\\Sprint 12",
+      "description": "Wrap the vault SDK for token read/write.",
+      "acceptanceCriteria": "Unit tests cover read, write and rotate."
+    },
+    {
+      "id": 504,
+      "type": "Task",
+      "title": "Backfill legacy card tokens",
+      "state": "New",
+      "assignedTo": "Demo Developer",
+      "parent": 502,
+      "area": "AdoDemo",
+      "iteration": "AdoDemo\\Sprint 12",
+      "description": "One-off migration job.",
+      "acceptanceCriteria": "Idempotent; safe to re-run."
+    }
+  ],
+  "pullRequests": [
+    {
+      "pullRequestId": 42,
+      "title": "AB#502 Card tokenization",
+      "status": "active",
+      "sourceRefName": "refs/heads/feature/ab502-card-tokenization",
+      "targetRefName": "refs/heads/main",
+      "createdBy": { "displayName": "Demo Developer" },
+      "webUrl": "https://dev.azure.com/contoso-demo/AdoDemo/_git/ado-demo/pullrequest/42"
+    }
+  ],
+  "mcpServers": [
+    { "name": "filesystem", "status": "connected", "tools": 7 },
+    { "name": "ado-demo-api", "status": "connected", "tools": 12 }
+  ]
+}

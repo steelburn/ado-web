@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agents — ADO Code</title>
+  <meta name="description" content="Delegate work items to coding agents that run in isolated git worktrees.">
+  <meta name="theme-color" content="#0b0e14">
+  <link rel="canonical" href="https://ado-code.ne1.dev/agents.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph / social cards — PNG because social platforms do not render SVG OG images -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADO Code">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://ado-code.ne1.dev/agents.html">
+  <meta property="og:title" content="Agents — ADO Code">
+  <meta property="og:description" content="Delegate work items to coding agents that run in isolated git worktrees.">
+  <meta property="og:image" content="https://ado-code.ne1.dev/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ADO Code — AI coding assistant with Azure DevOps integration for VS Code">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Agents — ADO Code">
+  <meta name="twitter:description" content="Delegate work items to coding agents that run in isolated git worktrees.">
+  <meta name="twitter:image" content="https://ado-code.ne1.dev/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="ADO Code — AI coding assistant with Azure DevOps integration for VS Code">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Progressive enhancement: reveal animations only hide content when JS is active. -->
+  <script>
+    (function () {
+      var doc = document.documentElement;
+      doc.classList.add('js');
+      function revealAll() {
+        var els = document.querySelectorAll('.reveal');
+        for (var i = 0; i < els.length; i++) { els[i].classList.add('in'); }
+      }
+      window.__adoRevealAll = revealAll;
+      // Safety net: never leave content hidden if the interaction script fails
+      // to boot, a script errors, or an async rejection escapes.
+      window.addEventListener('error', revealAll);
+      window.addEventListener('unhandledrejection', revealAll);
+      window.addEventListener('load', function () {
+        if (!window.__adoBooted) { revealAll(); }
+      });
+    })();
+  </script>
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.8.0">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <header> against, so the hand copies can never drift.
+
+     Per-page rule: copy this block verbatim and add `aria-current="page"` to the
+     link whose data-nav matches the page (see scripts/site-pages.mjs). That one
+     attribute is the only sanctioned difference; the parity test ignores it.
+
+     Nav ids used by assets/js/main.js: #nav-links + .nav-burger
+     (aria-controls="nav-links") — do not rename.
+     ═══════════════════════════════════════════════════════════════════════════ -->
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="ADO Code home">
+        <img src="/assets/img/logo.svg" alt="" width="28" height="28" class="brand-mark">
+        <span class="brand-name">ADO&nbsp;Code</span>
+        <span class="brand-ver">v0.6.6</span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="/features.html" data-nav="features">Features</a>
+        <a href="/gallery.html" data-nav="gallery">Gallery</a>
+        <a href="/modes.html" data-nav="modes">Modes</a>
+        <a href="/agents.html" data-nav="agents" aria-current="page">Agents</a>
+        <a href="/commands.html" data-nav="commands">Commands</a>
+        <a href="/install.html" data-nav="install">Install</a>
+        <a href="/faq.html" data-nav="faq">FAQ</a>
+        <a href="/deck.html" data-nav="deck">Deck</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">
+          GitHub
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3h7v7M13 3 5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 13H3V6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Install</a>
+      </div>
+      <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" id="agents">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">External agents</p>
+          <h1>Delegate to the agent you trust.</h1>
+          <p class="section-sub">ADO Code orchestrates external coding agents instead of competing with them — pick the right tool for the task, straight from the chat.</p>
+        </div>
+
+        <div class="agents-grid reveal">
+          <div class="agent-card">
+            <div class="agent-logo" style="background:#e8e8e8;color:#333">⌘</div>
+            <div class="agent-name">Claude Code</div>
+            <p>Full agentic coding with Anthropic models, driven by natural-language prompts.</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-logo" style="background:#1c1c1c;color:#fff">⌬</div>
+            <div class="agent-name">Codex</div>
+            <p>OpenAI's CLI agent for focused, file-level implementation work.</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-logo" style="background:#d7f0ff;color:#0a2540">❯</div>
+            <div class="agent-name">OpenCode</div>
+            <p>Open-source terminal agent — bring your own model and workflow.</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-logo" style="background:#2b8fe0;color:#fff">✧</div>
+            <div class="agent-name">Hermes</div>
+            <p>Nous Research's agent platform, orchestrated right from the chat.</p>
+          </div>
+        </div>
+
+        <div class="agents-note reveal">
+          <p>
+            Claude Code, Codex, OpenCode, Hermes, Pi and DeepSeek Harness (dsh) are detected out of the box — add your
+            own via <code>adoCode.agents.enabled</code>, each declared by binary, supported modes and CLI arguments, with
+            a details panel. Delegating a <em>parent</em> item runs its whole subtree in one
+            worktree, with a numbered delivery checklist the agent must sign off in a <code>## Delivery Report</code> —
+            and with <code>adoCode.agents.autoCompleteChildren</code> on, done children transition to their terminal state
+            automatically.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer> against.
+
+     Links point at real pages (post-split IA): the old same-page #anchors are
+     gone. Unlike the header, the footer is identical on every page (no
+     aria-current), so it must match byte-for-byte.
+     ═══════════════════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="/assets/img/logo.svg" alt="" width="32" height="32">
+        <div>
+          <div class="footer-name">ADO Code</div>
+          <div class="footer-tag">AI coding assistant with Azure DevOps integration</div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Visual Studio Marketplace</a>
+        <a href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">GitHub</a>
+        <a href="/features.html">Features</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/modes.html">Modes</a>
+        <a href="/agents.html">Agents</a>
+        <a href="/commands.html">Commands</a>
+        <a href="/install.html">Install</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/deck.html">Presentation deck</a>
+      </div>
+      <div class="footer-meta">
+        <span>v0.6.6</span>
+        <span>·</span>
+        <span>© 2026 steelburn (Khairulnizam Hasan)</span>
+        <span>·</span>
+        <span>Made for VS Code &amp; Azure DevOps</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="a11y-status" class="sr-only" role="status" aria-live="polite"></div>
+
+  <script src="/assets/js/main.js?v=0.8.0"></script>
+</body>
+</html>

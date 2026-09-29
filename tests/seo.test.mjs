@@ -63,12 +63,15 @@ test('canonical and JSON-LD url point at the site, not the marketplace', () => {
 });
 
 test('the FAQ is visible and matches the FAQPage schema', () => {
-  const faq = jsonLdBlocks.find((b) => b['@type'] === 'FAQPage');
+  const faqHtml = read('faq.html');
+  const faq = [...faqHtml.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map((m) => JSON.parse(m[1]))
+    .find((b) => b['@type'] === 'FAQPage');
   assert.ok(faq, 'expected a FAQPage JSON-LD block');
   const questions = faq.mainEntity.map((q) => q.name);
   assert.ok(questions.length >= 4, 'expected at least four FAQ entries');
 
-  const shown = [...html.matchAll(/<details class="faq-item">\s*<summary>([^<]+)<\/summary>/g)]
+  const shown = [...faqHtml.matchAll(/<details class="faq-item">\s*<summary>([^<]+)<\/summary>/g)]
     .map((m) => m[1]);
   assert.equal(shown.length, questions.length, 'each FAQ schema entry needs a visible <details>');
   for (const q of questions) {

@@ -1,0 +1,48 @@
+{
+  "_comment": "Template for the adoCode settings injected into the capture container. tools/capture/wiring/wire.mjs substitutes angle-bracket-style placeholders (dollar-brace NAME) from tools/capture/.env.capture and writes the result to the code-server User profile and to the demo workspace. Values default to the local mocks so the harness works with zero secrets; drop real values in .env.capture to shoot against a live org.",
+  "adoCode.organizations": [
+    {
+      "name": "${ADO_ORG}",
+      "url": "${ADO_ORG_URL}",
+      "project": "${ADO_PROJECT}",
+      "pat": "${ADO_PAT}"
+    }
+  ],
+  "adoCode.adoOrganization": "${ADO_ORG}",
+  "adoCode.adoProject": "${ADO_PROJECT}",
+  "adoCode.adoServerUrl": "${ADO_ORG_URL}",
+  "adoCode.adoPat": "${ADO_PAT}",
+
+  "adoCode.llmProvider": "${LLM_PROVIDER}",
+  "adoCode.llmApiUrl": "${LLM_API_URL}",
+  "adoCode.llmApiKey": "${LLM_API_KEY}",
+  "adoCode.llmModel": "${LLM_MODEL}",
+
+  "adoCode.mode": "${ADO_CODE_MODE}",
+
+  "adoCode.chat.showThinking": true,
+  "adoCode.chat.showToolCalls": true,
+
+  "adoCode.consent.harmlessAutoApprove": false,
+  "adoCode.consent.autoApproveTools": [],
+
+  "adoCode.git.requireGitRepo": false,
+  "adoCode.git.requireCleanTree": false,
+  "adoCode.git.createBranchOnTaskStart": true,
+  "adoCode.git.prOnCompletion": true,
+
+  "adoCode.mcp.servers": [
+    { "name": "filesystem", "command": "node", "args": ["/opt/capture/mocks/mcp-server.mjs", "filesystem", "read_file,write_file,list_directory,search_files,get_selection"] },
+    { "name": "ado-demo-api", "command": "node", "args": ["/opt/capture/mocks/mcp-server.mjs", "ado-demo-api", "get_work_items,get_work_item,add_comment,create_work_item,update_work_item_state,list_workspace_memory"] }
+  ],
+
+  "adoCode.skillRegistryUrls": ["http://llm-mock:9001/skills.json"],
+
+  "telemetry.telemetryLevel": "off",
+  "workbench.colorTheme": "Default Dark Modern",
+  "window.zoomLevel": 1,
+  "editor.fontSize": 13,
+  "security.workspace.trust.enabled": false,
+  "workbench.startupEditor": "none",
+  "extensions.autoUpdate": false
+}

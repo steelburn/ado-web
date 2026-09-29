@@ -1,0 +1,16 @@
+{
+  "name": "ado-web-capture",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dev-only screenshot capture harness for ado-web: Playwright driving code-server (Docker) to capture the extension's webview shots. Not part of the served site and excluded from the Docker image (.dockerignore: tools/).",
+  "scripts": {
+    "plan": "node capture.mjs --plan",
+    "capture": "node capture.mjs",
+    "up": "docker compose -f docker-compose.capture.yml up -d",
+    "down": "docker compose -f docker-compose.capture.yml down"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}

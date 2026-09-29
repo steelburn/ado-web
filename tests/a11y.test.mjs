@@ -9,6 +9,7 @@ import { dirname, join } from 'node:path';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(root, p), 'utf8');
 const html = read('index.html');
+const modes = read('modes.html');
 const css = read('assets/css/style.css');
 const js = read('assets/js/main.js');
 
@@ -60,7 +61,7 @@ test('the hero mode selector is a toggle group, not a broken tablist', () => {
 });
 
 test('the Modes section implements a complete tab pattern', () => {
-  const tabs = [...html.matchAll(/<button[^>]*role="tab"[^>]*>/g)].map((m) => m[0]);
+  const tabs = [...modes.matchAll(/<button[^>]*role="tab"[^>]*>/g)].map((m) => m[0]);
   assert.equal(tabs.length, 4, 'expected four tabs');
 
   const zeroTabindex = tabs.filter((t) => /tabindex="0"/.test(t));
@@ -71,7 +72,7 @@ test('the Modes section implements a complete tab pattern', () => {
     const selected = tab.match(/aria-selected="(true|false)"/);
     assert.ok(controls, `tab is missing aria-controls: ${tab}`);
     assert.ok(selected, `tab is missing aria-selected: ${tab}`);
-    assert.match(html, new RegExp(`id="${controls[1]}"[^>]*role="tabpanel"`), `tabpanel #${controls[1]} must exist`);
+    assert.match(modes, new RegExp(`id="${controls[1]}"[^>]*role="tabpanel"`), `tabpanel #${controls[1]} must exist`);
     if (selected[1] === 'true') {
       assert.match(tab, /tabindex="0"/, 'the selected tab must be tabbable');
     } else {
@@ -79,7 +80,7 @@ test('the Modes section implements a complete tab pattern', () => {
     }
   }
 
-  for (const panel of html.matchAll(/role="tabpanel"/g)) assert.ok(panel);
+  for (const panel of modes.matchAll(/role="tabpanel"/g)) assert.ok(panel);
   assert.match(js, /ArrowRight|ArrowLeft/, 'expected arrow-key navigation for the tabs');
 });
 

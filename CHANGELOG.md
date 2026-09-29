@@ -2,6 +2,41 @@
 
 All notable changes to the ADO Code website.
 
+## [0.6.0] — 2026-09-28
+
+### Added
+
+- **Screenshot library** — `assets/img/screenshots/` is now a first-class asset with
+  its own source of truth: `manifest.json` declares **12 marketing shots** (id,
+  file, intrinsic size, alt, caption, which pages use them, capture recipe),
+  `scripts/make-screenshots.mjs` renders deterministic stand-in PNGs (Node
+  stdlib only, like the OG-image and diagram generators) and reports the capture
+  backlog (`--check` / `--list` / `--force`), and the folder's `README.md` is the
+  capture guide (window size, theme, demo data, redaction, per-shot recipe).
+- **Screenshot gallery on the home page** — a new `#screens` section (nav link,
+  lead shot + 9-cell grid) wired by id to the manifest.
+- **Screenshot gallery slide in the deck** — a new `s6` slide puts 8 captures in
+  one place; the deck is now **16 slides** (aria-labels renumbered).
+- **`tests/screenshots.test.mjs`** — guards manifest ↔ PNG ↔ markup drift: file
+  exists, real IHDR size, placeholder `tEXt` marker matches the declared status,
+  every `data-shot` resolves, alt/caption copy matches the manifest (single
+  source of copy), every shot is used by exactly the pages listed in `usedOn`,
+  the capture guide documents every shot, and CSS keeps placeholders off the
+  live site.
+
+### Changed
+
+- **Shots are wired by id, not by mockup.** `index.html` and `deck.html` use
+  `<figure class="shot|s-shot" data-shot="…" data-state="placeholder|captured">`;
+  while `data-state="placeholder"` the figure renders as a caption card and the
+  generated stand-in PNG is never displayed. Real captures drop into the same
+  slot with no markup change — and the deck's Work items (`s5`) and Demo (`s12`)
+  slides keep their CSS mockup as the no-capture fallback.
+- `?shots=placeholders` review mode on both pages shows the stand-ins so the
+  gallery layout can be judged before the captures exist.
+- Asset cache-bust bumped: `style.css` → `?v=0.7.0` (index, deck, 404),
+  `deck.css` → `?v=1.2.0`; `SITE_VERSION` is now `0.7.0`.
+
 ## [0.5.2] — 2026-09-27
 
 ### Added
