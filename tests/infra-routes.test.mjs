@@ -33,6 +33,13 @@ test('nginx: the custom 404 error page is wired up', () => {
   assert.match(nginx, /error_page\s+404\s+=\s*404\s+\/404\.html;/);
 });
 
+test('nginx: absolute_redirect is off so 301s stay relative (no dropped port)', () => {
+  // With the default (on), nginx rebuilds Location as $scheme://$host/path and
+  // $host drops the port — a request to :3060 would redirect to :80. The
+  // aliases above are deliberately relative, so this must be off.
+  assert.match(nginx, /^\s*absolute_redirect\s+off\s*;/m);
+});
+
 test('nginx: braces are balanced', () => {
   const open = (nginx.match(/\{/g) || []).length;
   const close = (nginx.match(/\}/g) || []).length;
