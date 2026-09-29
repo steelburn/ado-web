@@ -97,3 +97,44 @@ for (const page of MARKETING_PAGES) {
     );
   });
 }
+
+// Regression guard: the multi-page split once spliced the _partials doc comment
+// into each page WITHOUT its opening `<!--`, which closed the marker comment
+// early so the leftover prose (and a phantom <header>/<footer> element) rendered
+// as visible page content. extractHeader/extractFooter happily found the *real*
+// chrome, so the parity check above stayed green — this catches that class of
+// corrupt-comment defect directly.
+test('no page renders stray or duplicated chrome markup', () => {
+  for (const page of MARKETING_PAGES) {
+    const abs = join(root, page.file);
+    if (!existsSync(abs)) continue;
+    const html = read(page.file);
+
+    const opens = (html.match(/<!--/g) || []).length;
+    const closes = (html.match(/-->/g) || []).length;
+    assert.equal(opens, closes, `${page.file} has unbalanced HTML comments`);
+
+    assert.equal(
+      (html.match(/<header class="nav"/g) || []).length,
+      1,
+      `${page.file} should have exactly one <header class="nav">`,
+    );
+    assert.equal(
+      (html.match(/<footer class="footer"/g) || []).length,
+      1,
+      `${page.file} should have exactly one <footer class="footer">`,
+    );
+
+    // any other raw <header>/<footer> tag is a phantom from a mis-spliced comment
+    assert.equal(
+      (html.match(/<header(?![^>]*\bclass="nav")/g) || []).length,
+      0,
+      `${page.file} contains a stray <header> element`,
+    );
+    assert.equal(
+      (html.match(/<footer(?![^>]*\bclass="footer")/g) || []).length,
+      0,
+      `${page.file} contains a stray <footer> element`,
+    );
+  }
+});
