@@ -71,7 +71,7 @@
       if (target) { window.location.replace(target); }
     })();
   </script>
-  <link rel="stylesheet" href="/assets/css/style.css?v=0.8.0">
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.9.0">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -305,7 +305,55 @@
         </div>
       </div>
     </section>
-  </main>
+
+    <!-- ═══════════════ HIGHLIGHTS ═══════════════ -->
+    <section class="section section-alt" id="highlights" aria-labelledby="highlights-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>Built for how you actually work</span>
+          <h2 id="highlights-title">Three things ADO&nbsp;Code does <span class="accent">better than anything else</span></h2>
+          <p class="section-sub">A guided start for new projects, a chat that lives in your editor, and one&nbsp;click delegation to coding agents &mdash; all wired into your Azure DevOps backlog.</p>
+        </div>
+
+        <div class="bento hl-grid">
+          <article class="bento-card hl-card reveal">
+            <span class="hl-badge">Start here</span>
+            <h3 class="hl-title">New Project Wizard</h3>
+            <p>Point ADO&nbsp;Code at an empty folder and it scaffolds the whole project &mdash; layout, <code>AGENTS.md</code> brief and <code>git&nbsp;init</code> &mdash; then links it to a fresh Azure&nbsp;DevOps repository.</p>
+            <ul class="hl-list">
+              <li>Pick a stack, get a working skeleton</li>
+              <li>Repository + work-item wiring in one pass</li>
+              <li>Re-run any time with &ldquo;Re-run setup&rdquo;</li>
+            </ul>
+            <a class="hl-cta" href="/install.html">Start a project <span aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="bento-card hl-card reveal">
+            <span class="hl-badge">New</span>
+            <h3 class="hl-title">Move chat into the Editor Area</h3>
+            <p>Pop the ADO&nbsp;Code chat out of the sidebar and into a full editor tab. Ask for a plan in one tab, watch the diff land in another &mdash; the conversation pinned next to the code it touches.</p>
+            <ul class="hl-list">
+              <li>Full-width chat beside your code</li>
+              <li>Keep several conversations open at once</li>
+              <li>Same session &mdash; move it in one step</li>
+            </ul>
+            <a class="hl-cta" href="/features.html#all-features">See it in the feature list <span aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="bento-card hl-card reveal">
+            <span class="hl-badge">Fan out</span>
+            <h3 class="hl-title">Delegate to Agents</h3>
+            <p>Hand a work item to an external coding agent and it runs in its own isolated git worktree &mdash; then commits, pushes and opens the pull request while you get on with something else.</p>
+            <ul class="hl-list">
+              <li>Claude&nbsp;Code, Codex, OpenCode, Hermes, Pi, dsh</li>
+              <li>Every run isolated in <code>.ado-code/worktrees/</code></li>
+              <li>Automatic commit &rarr; push &rarr; pull request</li>
+            </ul>
+            <a class="hl-cta" href="/agents.html">How delegation works <span aria-hidden="true">&rarr;</span></a>
+          </article>
+        </div>
+      </div>
+    </section>  </main>
 
   <!-- ═══════════════ FOOTER ═══════════════ -->
   <!-- Hand-duplicated chrome (A1) — identical on every page (no aria-current), so
@@ -344,6 +392,6 @@
 
   <div id="a11y-status" class="sr-only" role="status" aria-live="polite"></div>
 
-  <script src="/assets/js/main.js?v=0.8.0"></script>
+  <script src="/assets/js/main.js?v=0.9.0"></script>
 </body>
 </html>

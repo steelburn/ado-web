@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=0.8.0">
-  <link rel="stylesheet" href="/assets/css/deck.css?v=0.8.0">
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.9.0">
+  <link rel="stylesheet" href="/assets/css/deck.css?v=0.9.0">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="deck-body">
@@ -29,7 +29,7 @@
       <button class="deck-btn" id="btn-prev" aria-label="Previous slide" title="Previous (←)">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="deck-counter" aria-live="polite"><span id="counter-cur">1</span><span class="deck-counter-sep">/</span><span id="counter-total">15</span></div>
+      <div class="deck-counter" aria-live="polite"><span id="counter-cur">1</span><span class="deck-counter-sep">/</span><span id="counter-total">17</span></div>
       <button class="deck-btn" id="btn-next" aria-label="Next slide" title="Next (→)">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
@@ -54,7 +54,7 @@
     <div class="deck-stage" id="deck-stage">
 
       <!-- 01 · Title -->
-      <section class="slide slide--title is-active" id="s1" aria-roledescription="slide" aria-label="Slide 1 of 16">
+      <section class="slide slide--title is-active" id="s1" aria-roledescription="slide" aria-label="Slide 1 of 17">
         <div class="s-title-wrap">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Launch · VS Code extension · v0.6.6</p>
           <h1 class="s-hero-title">ADO&nbsp;Code</h1>
@@ -72,7 +72,7 @@
       </section>
 
       <!-- 02 · The problem -->
-      <section class="slide" id="s2" aria-roledescription="slide" aria-label="Slide 2 of 16">
+      <section class="slide" id="s2" aria-roledescription="slide" aria-label="Slide 2 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The problem</p>
           <h2 class="s-title">The board and the code never talk.</h2>
@@ -111,7 +111,7 @@
       </section>
 
       <!-- 03 · The loop -->
-      <section class="slide" id="s3" aria-roledescription="slide" aria-label="Slide 3 of 16">
+      <section class="slide" id="s3" aria-roledescription="slide" aria-label="Slide 3 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The idea</p>
           <h2 class="s-title">One loop, from backlog to merged PR.</h2>
@@ -139,7 +139,7 @@
       </section>
 
       <!-- 04 · What it is -->
-      <section class="slide" id="s4" aria-roledescription="slide" aria-label="Slide 4 of 16">
+      <section class="slide" id="s4" aria-roledescription="slide" aria-label="Slide 4 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>The product</p>
           <h2 class="s-title">An AI coding assistant built for Azure DevOps.</h2>
@@ -155,12 +155,48 @@
         <div class="slide__notes">High-level capability map. Keep it to six: tree, model, modes, agents, worktrees, MCP/skills. Memory gets its own slide later.</div>
       </section>
 
-      <!-- 05 · Work items tree -->
-      <section class="slide slide--split" id="s5" aria-roledescription="slide" aria-label="Slide 5 of 16">
+
+      <!-- 05 · Highlights -->
+      <section class="slide" id="s5" aria-roledescription="slide" aria-label="Slide 5 of 17">
+        <div class="s-head">
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Highlights</p>
+          <h2 class="s-title">Three things to try first.</h2>
+        </div>
+        <div class="s-cols s-cols--3">
+          <div class="s-card">
+            <h3><span class="s-card-n">01</span>New Project Wizard</h3>
+            <p>Scaffold a whole project from one command — folder layout, <code>AGENTS.md</code>, <code>git init</code>, and an optional Azure DevOps repo link.</p>
+            <ul class="s-bullets">
+              <li>Pick a stack, get a working tree</li>
+              <li>Agent-ready from the first commit</li>
+            </ul>
+          </div>
+          <div class="s-card">
+            <h3><span class="s-card-n">02</span>Chat in the Editor Area</h3>
+            <p>Move chat out of the sidebar into a full editor tab — keep the conversation and the code side by side.</p>
+            <ul class="s-bullets">
+              <li>Drag the panel to any editor group</li>
+              <li>Room for long diffs and answers</li>
+            </ul>
+          </div>
+          <div class="s-card">
+            <h3><span class="s-card-n">03</span>Delegate to Agents</h3>
+            <p>Hand a work item to Claude Code, Codex and other agent CLIs — each run in its own isolated git worktree.</p>
+            <ul class="s-bullets">
+              <li>Auto commit → push → pull request</li>
+              <li>Review the branch, keep your tree clean</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide__notes">The three headline moments: start a project with the wizard, pull chat into the editor area, and delegate real work items to coding agents in isolated git worktrees.</div>
+      </section>
+
+      <!-- 06 · Work items tree -->
+      <section class="slide slide--split" id="s6" aria-roledescription="slide" aria-label="Slide 6 of 17">
         <div class="s-split-media">
           <!-- Real capture supersedes the CSS tree below; the tree stays until it lands. -->
           <figure class="s-shot" data-shot="backlog-tree" data-state="placeholder">
-            <img src="/assets/img/screenshots/backlog-tree.png?v=0.8.0" alt="VS Code with the ADO Code activity bar open, showing a work item tree with an Epic expanded into features, stories and tasks with state icons." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/backlog-tree.png?v=0.9.0" alt="VS Code with the ADO Code activity bar open, showing a work item tree with an Epic expanded into features, stories and tasks with state icons." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Your Azure DevOps hierarchy, fetched into a real editor tree.</figcaption>
           </figure>
 
@@ -187,50 +223,50 @@
         <div class="slide__notes">Detail the work-item tree. Highlight the branch-on-pickup behaviour — it feeds directly into the delegation loop.</div>
       </section>
 
-      <!-- 06 · Chat modes -->
-      <section class="slide" id="s6" aria-roledescription="slide" aria-label="Slide 6 of 16">
+      <!-- 07 · Chat modes -->
+      <section class="slide" id="s7" aria-roledescription="slide" aria-label="Slide 7 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Screenshots</p>
           <h2 class="s-title">See it running.</h2>
         </div>
         <div class="s-shot-grid">
           <figure class="s-shot" data-shot="agent-chat-plan" data-state="placeholder">
-            <img src="/assets/img/screenshots/agent-chat-plan.png?v=0.8.0" alt="Agent chat panel showing a numbered implementation plan, a list of tool calls with status ticks, and a streamed code diff in the editor beside it." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/agent-chat-plan.png?v=0.9.0" alt="Agent chat panel showing a numbered implementation plan, a list of tool calls with status ticks, and a streamed code diff in the editor beside it." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Plan first, then execute — with a visible tool trail.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="worktree-run-card" data-state="placeholder">
-            <img src="/assets/img/screenshots/worktree-run-card.png?v=0.8.0" alt="Run card for a delegated agent showing the isolated git worktree path, generated branch name and a streaming progress log." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/worktree-run-card.png?v=0.9.0" alt="Run card for a delegated agent showing the isolated git worktree path, generated branch name and a streaming progress log." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>An isolated git worktree and branch per delegated run.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="pull-request-open" data-state="placeholder">
-            <img src="/assets/img/screenshots/pull-request-open.png?v=0.8.0" alt="Completed run card showing verification gates marked as passed and an Azure DevOps pull request link created for the run branch." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/pull-request-open.png?v=0.9.0" alt="Completed run card showing verification gates marked as passed and an Azure DevOps pull request link created for the run branch." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Green gates, then a real pull request.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="consent-countdown" data-state="placeholder">
-            <img src="/assets/img/screenshots/consent-countdown.png?v=0.8.0" alt="Chat consent card asking permission to run a terminal command, with a live countdown reading that it auto-approves when the timer expires." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/consent-countdown.png?v=0.9.0" alt="Chat consent card asking permission to run a terminal command, with a live countdown reading that it auto-approves when the timer expires." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Every consent card counts down what happens next.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="memory-panel" data-state="placeholder">
-            <img src="/assets/img/screenshots/memory-panel.png?v=0.8.0" alt="Memory panel listing user-level and project-level notes that the assistant carries across sessions and work items." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/memory-panel.png?v=0.9.0" alt="Memory panel listing user-level and project-level notes that the assistant carries across sessions and work items." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>User and project memory that survives the session.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="mcp-skills" data-state="placeholder">
-            <img src="/assets/img/screenshots/mcp-skills.png?v=0.8.0" alt="MCP, servers and skills manager listing a connected server, its available tools and installed skills." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/mcp-skills.png?v=0.9.0" alt="MCP, servers and skills manager listing a connected server, its available tools and installed skills." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>MCP servers and skills, wired in from one panel.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="modes-selector" data-state="placeholder">
-            <img src="/assets/img/screenshots/modes-selector.png?v=0.8.0" alt="Chat input area with the mode selector open, listing the Ask, Plan, Agent and Auto modes with short descriptions." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/modes-selector.png?v=0.9.0" alt="Chat input area with the mode selector open, listing the Ask, Plan, Agent and Auto modes with short descriptions." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>One toggle from ask to autonomy.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="mermaid-diagram" data-state="placeholder">
-            <img src="/assets/img/screenshots/mermaid-diagram.png?v=0.8.0" alt="Chat message containing a rendered Mermaid flow diagram with connected boxes for a request flow." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/mermaid-diagram.png?v=0.9.0" alt="Chat message containing a rendered Mermaid flow diagram with connected boxes for a request flow." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Architecture answers rendered inline as Mermaid.</figcaption>
           </figure>
         </div>
         <div class="slide__notes">Screenshot gallery: every panel the audience has just heard about, in one place. Captures live in assets/img/screenshots — drop the PNG in, flip data-state to "captured", and the slide fills in without touching the layout.</div>
       </section>
 
-      <section class="slide" id="s7" aria-roledescription="slide" aria-label="Slide 7 of 16">
+      <section class="slide" id="s8" aria-roledescription="slide" aria-label="Slide 8 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>AI chat</p>
           <h2 class="s-title">Any model. Four modes.</h2>
@@ -261,8 +297,8 @@
         <div class="slide__notes">Walk the four modes left-to-right as an escalation of trust. Note YOLO still gates push by default — that's the guardrail that makes autonomy safe.</div>
       </section>
 
-      <!-- 07 · Agents -->
-      <section class="slide" id="s8" aria-roledescription="slide" aria-label="Slide 8 of 16">
+      <!-- 08 · Agents -->
+      <section class="slide" id="s9" aria-roledescription="slide" aria-label="Slide 9 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Agents &amp; worktrees</p>
           <h2 class="s-title">Your backlog, delegated.</h2>
@@ -279,8 +315,8 @@
         <div class="slide__notes">Position ADO Code as an orchestrator, not a competitor: it delegates to the agent you already trust, each sandboxed in its own worktree.</div>
       </section>
 
-      <!-- 08 · Merge loop -->
-      <section class="slide" id="s9" aria-roledescription="slide" aria-label="Slide 9 of 16">
+      <!-- 09 · Merge loop -->
+      <section class="slide" id="s10" aria-roledescription="slide" aria-label="Slide 10 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Finish the job</p>
           <h2 class="s-title">From commit to merged PR, automatically.</h2>
@@ -308,8 +344,8 @@
         <div class="slide__notes">The "finish the job" story: the assistant doesn't stop at code — it pushes, opens the PR, reviews, resolves conflicts and cleans up. Guardrails keep it honest.</div>
       </section>
 
-      <!-- 09 · Context -->
-      <section class="slide" id="s10" aria-roledescription="slide" aria-label="Slide 10 of 16">
+      <!-- 10 · Context -->
+      <section class="slide" id="s11" aria-roledescription="slide" aria-label="Slide 11 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Context</p>
           <h2 class="s-title">Context that persists.</h2>
@@ -345,8 +381,8 @@
         <div class="slide__notes">Context is the moat: the assistant remembers the user and the project, and it can extend itself with MCP servers and skills.</div>
       </section>
 
-      <!-- 10 · Guardrails -->
-      <section class="slide" id="s11" aria-roledescription="slide" aria-label="Slide 11 of 16">
+      <!-- 11 · Guardrails -->
+      <section class="slide" id="s12" aria-roledescription="slide" aria-label="Slide 12 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Guardrails</p>
           <h2 class="s-title">Autonomy, with guardrails.</h2>
@@ -372,12 +408,12 @@
         <div class="slide__notes">Trust story: autonomy is the feature, guardrails are the contract. No telemetry and open source close the loop for enterprises.</div>
       </section>
 
-      <!-- 11 · Demo -->
-      <section class="slide slide--split" id="s12" aria-roledescription="slide" aria-label="Slide 12 of 16">
+      <!-- 12 · Demo -->
+      <section class="slide slide--split" id="s13" aria-roledescription="slide" aria-label="Slide 13 of 17">
         <div class="s-split-media">
           <!-- Real capture supersedes the CSS window below; the window stays until it lands. -->
           <figure class="s-shot" data-shot="command-palette" data-state="placeholder">
-            <img src="/assets/img/screenshots/command-palette.png?v=0.8.0" alt="VS Code command palette filtered to the ADO Code prefix, listing extension commands such as refresh work items and switch mode." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/command-palette.png?v=0.9.0" alt="VS Code command palette filtered to the ADO Code prefix, listing extension commands such as refresh work items and switch mode." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Every command one palette keystroke away.</figcaption>
           </figure>
 
@@ -432,8 +468,8 @@
         <div class="slide__notes">Walk the mockup: left is the backlog, right is the agent chat, bottom is the branch and status. This is the entire product surface in one screen.</div>
       </section>
 
-      <!-- 12 · What's new in v0.6.6 -->
-      <section class="slide" id="s13" aria-roledescription="slide" aria-label="Slide 13 of 16">
+      <!-- 13 · What's new in v0.6.6 -->
+      <section class="slide" id="s14" aria-roledescription="slide" aria-label="Slide 14 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Release · v0.6.6</p>
           <h2 class="s-title">What's new in 0.6.6.</h2>
@@ -470,8 +506,8 @@
         <div class="slide__notes">Presenting right after the 0.6.6 release? Land the delta: tool-system hardening (delete_file, batch reads, loop breaker, shell safety), token-accounting correctness, per-org PATs and standalone mode, plus the UI surface refresh (Mermaid, chat in the editor, header actions, secondary sidebar).</div>
       </section>
 
-      <!-- 13 · Install -->
-      <section class="slide" id="s14" aria-roledescription="slide" aria-label="Slide 14 of 16">
+      <!-- 14 · Install -->
+      <section class="slide" id="s15" aria-roledescription="slide" aria-label="Slide 15 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Install</p>
           <h2 class="s-title">Up and running in a minute.</h2>
@@ -495,8 +531,8 @@
         <div class="slide__notes">Three-step onboarding. Mention the Marketplace and the terminal install command. Requirements are minimal — that's part of the pitch.</div>
       </section>
 
-      <!-- 14 · Launch film -->
-      <section class="slide slide--title" id="s15" aria-roledescription="slide" aria-label="Slide 15 of 16">
+      <!-- 15 · Launch film -->
+      <section class="slide slide--title" id="s16" aria-roledescription="slide" aria-label="Slide 16 of 17">
         <div class="s-title-wrap s-title-wrap--close">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Launch film</p>
           <h2 class="s-hero-title s-hero-title--close">See it in motion.</h2>
@@ -509,8 +545,8 @@
         <div class="slide__notes">Play the narrated launch film (93s). It follows the same arc as this deck: the problem, the loop, the modes, delegation, what's new in 0.6.6, and the call to action.</div>
       </section>
 
-      <!-- 15 · Closing -->
-      <section class="slide slide--title" id="s16" aria-roledescription="slide" aria-label="Slide 16 of 16">
+      <!-- 16 · Closing -->
+      <section class="slide slide--title" id="s17" aria-roledescription="slide" aria-label="Slide 17 of 17">
         <div class="s-title-wrap s-title-wrap--close">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>ADO Code · v0.6.6</p>
           <h2 class="s-hero-title s-hero-title--close">Ship your backlog.</h2>
@@ -542,6 +578,6 @@
     <div class="deck-overview-grid" id="overview-grid"></div>
   </div>
 
-  <script src="/assets/js/deck.js?v=0.8.0"></script>
+  <script src="/assets/js/deck.js?v=0.9.0"></script>
 </body>
 </html>
