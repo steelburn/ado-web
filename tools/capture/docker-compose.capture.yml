@@ -1,0 +1,146 @@
+# Screenshot-capture stack: code-server (VS Code in a browser) + a hermetic demo
+# Azure DevOps org and LLM, so the extension's webviews render real content
+# without a live org, a PAT, or an API key.
+#
+# Docker runs inside WSL2 on this machine (Docker is not on the Windows PATH but
+# `wsl -e docker …` works), so bring the stack up from a WSL shell:
+#
+#   node tools/capture/wiring/wire.mjs                       # render settings from .env.capture
+#   wsl -e bash -lc "cd /mnt/d/Development/vscode/ado-web/tools/capture && docker compose -f docker-compose.capture.yml up -d"
+#
+# Then run the Playwright driver from Windows (it reaches the published port):
+#   node tools/capture/capture.mjs --password <pw> --only agent-chat-plan
+#
+# Services:
+#   ado-mock         ADO REST 7.1 subset         → http://ado-mock:9000  (org contoso-demo)
+#   llm-mock         OpenAI-compatible chat API  → http://llm-mock:9001  (model demo-gpt)
+#   init             seeds the git workspace + installs settings into the volumes (runs once)
+#   extensions-init  installs the built .vsix into the home volume (runs once)
+#   code-server      the editor under test
+#
+# NOTE: settings/extension are staged into the *volumes* by init containers
+# rather than bind-mounted as files. Bind-mounting a file inside a named volume
+# makes Docker create its parent dirs root-owned, which then breaks code-server
+# (it runs as uid 1000 and cannot create extensions/ or User/globalStorage).
+
+services:
+  ado-mock:
+    image: node:24-alpine
+    container_name: ado-mock
+    working_dir: /srv
+    command: node mocks/ado.mjs
+    volumes:
+      - ./mocks:/srv/mocks:ro
+    ports:
+      - "${ADO_MOCK_PORT:-9000}:9000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:9000/_apis/connectionData').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  llm-mock:
+    image: node:24-alpine
+    container_name: llm-mock
+    working_dir: /srv
+    command: node mocks/llm.mjs
+    volumes:
+      - ./mocks:/srv/mocks:ro
+    ports:
+      - "${LLM_MOCK_PORT:-9001}:9001"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:9001/v1/models').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  # Seed the demo workspace (git repo) and place the rendered settings in both
+  # volumes, then hand ownership to the coder user (uid 1000).
+  init:
+    image: alpine:3.20
+    container_name: ado-capture-init
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >
+        set -e;
+        mkdir -p /work /home/User /home/Machine;
+        if [ ! -d /work/.git ]; then
+          cp -r /template/. /work/;
+          cd /work;
+          apk add --no-cache git >/dev/null 2>&1 || true;
+          git init -q;
+          git config user.email demo@contoso-demo.example;
+          git config user.name "Demo Developer";
+          git add -A;
+          git commit -qm "Initial demo workspace";
+        fi;
+        mkdir -p /work/.vscode;
+        cp /generated/workspace/.vscode/settings.json /work/.vscode/settings.json;
+        cp /generated/User/settings.json /home/User/settings.json;
+        cp /generated/User/keybindings.json /home/User/keybindings.json;
+        chown -R 1000:1000 /work /home;
+        echo "init: workspace + settings staged";
+    volumes:
+      - ./workspace:/template:ro
+      - ./.generated:/generated:ro
+      - ado-capture-workspace:/work
+      - ado-capture-home:/home
+
+  # Install the built extension into the home volume as the coder user, so the
+  # control file lands with the right ownership.
+  extensions-init:
+    image: ado-code-capture-code-server
+    build:
+      context: .
+      dockerfile: Dockerfile.code-server
+    container_name: ado-capture-ext
+    user: "1000:1000"
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >
+        code-server --install-extension /tmp/ado-code.vsix --force
+        --extensions-dir /home/coder/.local/share/code-server/extensions;
+        code-server --list-extensions --extensions-dir /home/coder/.local/share/code-server/extensions;
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - ado-capture-home:/home/coder/.local/share/code-server
+      - ${CAPTURE_VSIX:-../../../ado-code/ado-code-0.6.6.vsix}:/tmp/ado-code.vsix:ro
+
+  code-server:
+    # Built from Dockerfile.code-server (adds node/npm the stock image lacks).
+    image: ado-code-capture-code-server
+    build:
+      context: .
+      dockerfile: Dockerfile.code-server
+    container_name: ado-capture
+    depends_on:
+      ado-mock:
+        condition: service_healthy
+      llm-mock:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+      extensions-init:
+        condition: service_completed_successfully
+    environment:
+      PASSWORD: ${CAPTURE_PASSWORD:-ado-capture}
+      DEFAULT_WORKSPACE: /home/coder/ado-demo
+    command:
+      - --disable-update-check
+      - --auth
+      - password
+    ports:
+      - "${CAPTURE_PORT:-8080}:8080"
+    volumes:
+      # Seeded demo workspace (a git repo the agent can branch/commit in).
+      - ado-capture-workspace:/home/coder/ado-demo
+      # Home volume: rendered settings + installed extension.
+      - ado-capture-home:/home/coder/.local/share/code-server
+      # Local mock MCP servers referenced by adoCode.mcp.servers.
+      - ./mocks:/opt/capture/mocks:ro
+
+volumes:
+  ado-capture-home:
+  ado-capture-workspace:

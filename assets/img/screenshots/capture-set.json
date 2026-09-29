@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "description": "Capture routing for the screenshot library. Splits the 12 manifest shots into the ones the automated harness can produce (Playwright driving code-server in Docker → real webview DOM) and the ones that must be hand-captured from the desktop editor. Consumed by tools/capture/capture.mjs (--plan / capture) and guarded by tests/capture-set.test.mjs. The id set must equal assets/img/screenshots/manifest.json.",
+  "route": "playwright-code-server",
+  "runner": "tools/capture/capture.mjs",
+  "compose": "tools/capture/docker-compose.capture.yml",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "deviceScaleFactor": 2
+  },
+  "shots": [
+    {
+      "id": "agent-chat-plan",
+      "mode": "browser",
+      "surface": "chat webview (adoCode.chat)",
+      "scene": "agentChatPlan",
+      "command": "ADO Code: Focus Chat",
+      "scenario": "plan",
+      "open": "run `ADO Code: Focus Chat` (adoCode.chat.focus), then send \"Plan AB#502\"",
+      "settle": "an assistant message with the `## Plan — AB#502` heading is rendered"
+    },
+    {
+      "id": "consent-countdown",
+      "mode": "browser",
+      "surface": "chat webview (adoCode.chat)",
+      "scene": "consentCountdown",
+      "command": "ADO Code: Focus Chat",
+      "scenario": "consent",
+      "open": "run `ADO Code: Focus Chat`, send a prompt; the mock replies with a run_terminal_command tool call",
+      "settle": "a `.consent-card` with `.consent-card-timer-text` is visible"
+    },
+    {
+      "id": "pull-request-open",
+      "mode": "browser",
+      "surface": "chat webview (adoCode.chat)",
+      "scene": "pullRequestOpen",
+      "command": "ADO Code: Focus Chat",
+      "scenario": "done",
+      "open": "run `ADO Code: Focus Chat`, send a prompt; the mock reports the gates green and the PR opened",
+      "settle": "an assistant message mentioning the created pull request is rendered"
+    },
+    {
+      "id": "run-verification",
+      "mode": "browser",
+      "surface": "chat webview (adoCode.chat)",
+      "scene": "runVerification",
+      "command": "ADO Code: Focus Chat",
+      "scenario": "gates",
+      "open": "run `ADO Code: Focus Chat`, send \"run the verification gates\"",
+      "settle": "an assistant message with the tests / lint / build gate summary is rendered"
+    },
+    {
+      "id": "modes-selector",
+      "mode": "browser",
+      "surface": "chat webview input toolbar (InputBar)",
+      "scene": "modesSelector",
+      "command": "ADO Code: Focus Chat",
+      "open": "run `ADO Code: Focus Chat`, then click `.mode-toggle` in the input toolbar",
+      "settle": "the mode menu (Ask / Plan / Agent / Auto) is open"
+    },
+    {
+      "id": "mermaid-diagram",
+      "mode": "browser",
+      "surface": "chat webview markdown (adoCode.chat)",
+      "scene": "mermaidDiagram",
+      "command": "ADO Code: Focus Chat",
+      "scenario": "mermaid",
+      "open": "run `ADO Code: Focus Chat`, send \"draw the checkout flow\"; the mock replies with a mermaid fence",
+      "settle": "the inline Mermaid diagram renders (svg inside `.markdown-body`)"
+    },
+    {
+      "id": "mcp-skills",
+      "mode": "browser",
+      "surface": "configuration webview (adoCode.openSettings)",
+      "scene": "mcpSkills",
+      "command": "ADO Code: Configuration…",
+      "open": "run `ADO Code: Configuration…` (adoCode.openSettings) on the MCP/Skills tab",
+      "settle": "the MCP server list (`.config-mcp`) shows the connected demo servers, or the skills catalog renders"
+    },
+    {
+      "id": "work-item-webview",
+      "mode": "browser",
+      "surface": "work item detail webview (WorkItemDetailPanel)",
+      "scene": "workItemWebview",
+      "command": "ADO Code: Show Full Details",
+      "open": "select work item 502 (`ADO Code: Select Work Item`), then run `ADO Code: Show Full Details`",
+      "settle": "the work item detail webview shows the description, acceptance criteria and discussion",
+      "note": "Most fragile scene: `Show Full Details` needs a selected work item, and selection goes through a native QuickPick. If it proves unreliable in the web shell, hand-capture this shot."
+    },
+
+    {
+      "id": "backlog-tree",
+      "mode": "manual",
+      "surface": "native work items tree (adoCode.workItems)",
+      "reason": "Tree views are virtualised native workbench chrome; code-server's web shell does not render their rows faithfully (no real explorer styling, different scroll model).",
+      "how": "Desktop VS Code with the demo org connected: expand Epic → Feature → Story → Task in the ADO Code work items view, 1440x900 @2x."
+    },
+    {
+      "id": "command-palette",
+      "mode": "manual",
+      "surface": "native QuickPick (workbench command palette)",
+      "reason": "The QuickPick is native workbench chrome, not a webview; the web shell renders it differently (and it is the surface we need pixel-accurate).",
+      "how": "Desktop VS Code: Ctrl+Shift+P, type `ADO Code:`, screenshot the palette."
+    },
+    {
+      "id": "worktree-run-card",
+      "mode": "manual",
+      "surface": "native worktrees tree (adoCode.worktrees) + run card",
+      "reason": "The run card lives in the native worktrees tree, and it only appears after a real delegated run creates a worktree — neither is reproducible from a static render.",
+      "how": "Desktop VS Code: delegate a task so a worktree is created, expand the ADO Code worktrees view, capture the run card."
+    },
+    {
+      "id": "memory-panel",
+      "mode": "manual",
+      "surface": "native QuickPick / status tree (adoCode.showMemory, adoCode.status)",
+      "reason": "`ADO Code: Show Memory` opens a native QuickPick of stored entries and the memory scopes also render as rows in the native status tree; there is no memory webview, so the browser route cannot produce this shot.",
+      "how": "Desktop VS Code: add a user + workspace memory entry, run `ADO Code: Show Memory`, capture the QuickPick listing both scopes."
+    }
+  ]
+}

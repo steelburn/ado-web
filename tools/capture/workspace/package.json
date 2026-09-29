@@ -1,0 +1,13 @@
+{
+  "name": "ado-demo-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Seeded demo workspace for the screenshot-capture harness (Payment Platform Overhaul).",
+  "scripts": {
+    "test": "node --test test/",
+    "lint": "node --check src/vault/adapter.js && node --check src/checkout.js",
+    "build": "node -e \"console.log('build ok')\"",
+    "migrate:card-tokens": "node scripts/migrate-card-tokens.js"
+  }
+}

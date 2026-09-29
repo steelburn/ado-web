@@ -1,0 +1,26 @@
+# Capture image: codercom/code-server + a real Node.js runtime.
+#
+# The demo needs `node`/`npm` *inside* this container:
+#   • the extension launches its MCP servers as local stdio processes
+#     (adoCode.mcp.servers → `node /opt/capture/mocks/mcp-server.mjs`), and
+#   • the demo workspace's gate scripts run `npm test|lint|build` in the
+#     integrated terminal.
+# The stock code-server image ships neither, which is why the editor reported
+# "MCP: 0 server(s) connected" and the verification scene had no gates to run.
+# (Verified: `docker exec ado-capture command -v node` → NO_NODE.)
+#
+# Node is copied from an official Debian-based image on purpose: code-server's
+# base is Debian, and the alpine node builds are musl-linked — they would copy
+# in fine and then die at exec time. A glibc build is required.
+FROM node:20-bookworm-slim AS node
+
+FROM codercom/code-server:latest
+USER root
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+ && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
+ && ln -sf /usr/local/lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack \
+ && node --version && npm --version
+# code-server runs as uid 1000; keep that as the default for the running image.
+USER 1000

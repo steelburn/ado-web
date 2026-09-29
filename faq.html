@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — ADO Code</title>
+  <meta name="description" content="Answers to the questions people ask before installing ADO Code.">
+  <meta name="theme-color" content="#0b0e14">
+  <link rel="canonical" href="https://ado-code.ne1.dev/faq.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph / social cards — PNG because social platforms do not render SVG OG images -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADO Code">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://ado-code.ne1.dev/faq.html">
+  <meta property="og:title" content="FAQ — ADO Code">
+  <meta property="og:description" content="Answers to the questions people ask before installing ADO Code.">
+  <meta property="og:image" content="https://ado-code.ne1.dev/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ADO Code — AI coding assistant with Azure DevOps integration for VS Code">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ — ADO Code">
+  <meta name="twitter:description" content="Answers to the questions people ask before installing ADO Code.">
+  <meta name="twitter:image" content="https://ado-code.ne1.dev/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="ADO Code — AI coding assistant with Azure DevOps integration for VS Code">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Progressive enhancement: reveal animations only hide content when JS is active. -->
+  <script>
+    (function () {
+      var doc = document.documentElement;
+      doc.classList.add('js');
+      function revealAll() {
+        var els = document.querySelectorAll('.reveal');
+        for (var i = 0; i < els.length; i++) { els[i].classList.add('in'); }
+      }
+      window.__adoRevealAll = revealAll;
+      // Safety net: never leave content hidden if the interaction script fails
+      // to boot, a script errors, or an async rejection escapes.
+      window.addEventListener('error', revealAll);
+      window.addEventListener('unhandledrejection', revealAll);
+      window.addEventListener('load', function () {
+        if (!window.__adoBooted) { revealAll(); }
+      });
+    })();
+  </script>
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.8.0">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is ADO Code free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ADO Code itself is free. You bring your own Azure DevOps access and your own LLM API key." } },
+      { "@type": "Question", "name": "Does it work with Azure DevOps Server (on-premises)?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Point the connection at your Azure DevOps Services organisation or your Azure DevOps Server collection URL, and authenticate with a personal access token." } },
+      { "@type": "Question", "name": "How do coding agents run — do they touch my working tree?", "acceptedAnswer": { "@type": "Answer", "text": "Delegated tasks run in an isolated git worktree on a separate branch. You review the diff and merge it yourself." } },
+      { "@type": "Question", "name": "Which LLM providers are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any OpenAI-compatible API — including OpenRouter, Ollama and LM Studio — plus the Anthropic API. Model and reasoning effort can be set per mode." } },
+      { "@type": "Question", "name": "What are the four modes?", "acceptedAnswer": { "@type": "Answer", "text": "Chat answers questions, Plan inspects read-only, Act performs agentic work with approvals, and YOLO runs fully autonomously." } },
+      { "@type": "Question", "name": "Is my code sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "Requests go only to the LLM provider you configure with your own key. ADO Code ships no analytics or telemetry of its own." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <!-- Hand-duplicated chrome (A1) — copy _partials/header.html verbatim, then add
+       aria-current="page" to the link whose data-nav matches this page; that one
+       attribute is the sanctioned difference (the parity test ignores it). Keep
+       #nav-links and .nav-burger — assets/js/main.js depends on them. -->
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="ADO Code home">
+        <img src="/assets/img/logo.svg" alt="" width="28" height="28" class="brand-mark">
+        <span class="brand-name">ADO&nbsp;Code</span>
+        <span class="brand-ver">v0.6.6</span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="/features.html" data-nav="features">Features</a>
+        <a href="/gallery.html" data-nav="gallery">Gallery</a>
+        <a href="/modes.html" data-nav="modes">Modes</a>
+        <a href="/agents.html" data-nav="agents">Agents</a>
+        <a href="/commands.html" data-nav="commands">Commands</a>
+        <a href="/install.html" data-nav="install">Install</a>
+        <a href="/faq.html" data-nav="faq" aria-current="page">FAQ</a>
+        <a href="/deck.html" data-nav="deck">Deck</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">
+          GitHub
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3h7v7M13 3 5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 13H3V6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Install</a>
+      </div>
+      <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section-alt" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h1>Questions, answered.</h1>
+          <p class="section-sub">The things people ask before installing.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>Is ADO Code free?</summary>
+            <p>Yes. ADO Code itself is free — you bring your own Azure DevOps access and your own LLM API key (OpenAI-compatible, OpenRouter, Ollama, LM Studio or Anthropic).</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does it work with Azure DevOps Server (on-premises)?</summary>
+            <p>Yes. Point the connection at your Azure DevOps Services organisation or your Azure DevOps Server collection URL, and authenticate with a personal access token.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do coding agents run — do they touch my working tree?</summary>
+            <p>Delegated tasks run in an isolated git worktree on a separate branch. You review the diff and merge it yourself.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Which LLM providers are supported?</summary>
+            <p>Any OpenAI-compatible API — including OpenRouter, Ollama and LM Studio — plus the Anthropic API. Model and reasoning effort can be set per mode.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What are the four modes?</summary>
+            <p>Chat answers questions, Plan inspects read-only, Act performs agentic work with approvals, and YOLO runs fully autonomously.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is my code sent anywhere?</summary>
+            <p>Requests go only to the LLM provider you configure with your own key. ADO Code ships no analytics or telemetry of its own.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <!-- Hand-duplicated chrome (A1) — identical on every page (no aria-current), so
+       it must match _partials/footer.html byte-for-byte. Links point at real pages
+       (post-split IA); the old same-page #anchors are gone. -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="/assets/img/logo.svg" alt="" width="32" height="32">
+        <div>
+          <div class="footer-name">ADO Code</div>
+          <div class="footer-tag">AI coding assistant with Azure DevOps integration</div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://marketplace.visualstudio.com/items?itemName=steelburn.ado-code" target="_blank" rel="noopener">Visual Studio Marketplace</a>
+        <a href="https://github.com/steelburn/ado-code" target="_blank" rel="noopener">GitHub</a>
+        <a href="/features.html">Features</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/modes.html">Modes</a>
+        <a href="/agents.html">Agents</a>
+        <a href="/commands.html">Commands</a>
+        <a href="/install.html">Install</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/deck.html">Presentation deck</a>
+      </div>
+      <div class="footer-meta">
+        <span>v0.6.6</span>
+        <span>·</span>
+        <span>© 2026 steelburn (Khairulnizam Hasan)</span>
+        <span>·</span>
+        <span>Made for VS Code &amp; Azure DevOps</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="a11y-status" class="sr-only" role="status" aria-live="polite"></div>
+
+  <script src="/assets/js/main.js?v=0.8.0"></script>
+</body>
+</html>

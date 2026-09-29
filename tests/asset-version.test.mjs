@@ -1,31 +1,34 @@
-// Guards against cache-bust drift: every `?v=` query in index.html must be
-// identical and must match the single-source SITE_VERSION.
+// Guards against cache-bust drift: every `?v=` query in every root HTML page
+// must be identical and must match the single-source SITE_VERSION. Before the
+// multi-page split this inspected index.html only; it now covers the whole
+// page set (see scripts/site-pages.mjs for the IA single source of truth).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { SITE_VERSION } from '../scripts/site-version.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const html = readFileSync(join(root, 'index.html'), 'utf8');
+const pages = readdirSync(root).filter((f) => f.endsWith('.html'));
 
-const versions = [...html.matchAll(/\?v=([0-9A-Za-z._-]+)/g)].map((m) => m[1]);
-
-test('index.html contains at least one asset version query', () => {
-  assert.ok(versions.length >= 1, 'expected at least one ?v= query in index.html');
+test('every page contains at least one asset version query', () => {
+  for (const file of pages) {
+    const html = readFileSync(join(root, file), 'utf8');
+    const versions = [...html.matchAll(/[?&]v=([0-9.]+)/g)];
+    assert.ok(versions.length >= 1, `expected at least one ?v= query in ${file}`);
+  }
 });
 
-test('all asset version queries are identical (no drift)', () => {
-  assert.equal(
-    new Set(versions).size,
-    1,
-    `cache-bust drift detected across ?v= queries: ${versions.join(', ')}`
-  );
-});
-
-test('asset version queries match the single source SITE_VERSION', () => {
-  for (const v of new Set(versions)) {
-    assert.equal(v, SITE_VERSION, `?v=${v} does not match SITE_VERSION=${SITE_VERSION}`);
+test('every asset version query matches SITE_VERSION', () => {
+  for (const file of pages) {
+    const html = readFileSync(join(root, file), 'utf8');
+    for (const m of html.matchAll(/[?&]v=([0-9.]+)/g)) {
+      assert.equal(
+        m[1],
+        SITE_VERSION,
+        `${file}: ?v=${m[1]} does not match SITE_VERSION ${SITE_VERSION} (cache-bust drift)`,
+      );
+    }
   }
 });

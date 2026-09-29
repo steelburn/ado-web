@@ -197,6 +197,45 @@
   white-space: nowrap;
 }
 
+/* ── Screenshot figures (assets/img/screenshots) ─────── */
+/* Same contract as the landing page: <figure class="s-shot" data-shot="…"
+   data-state="…">. Placeholders render as caption cards; the generated stand-in
+   PNG is only shown in the ?shots=placeholders review mode. A real capture
+   supersedes the CSS mockup it was drawn from (see the sibling rules below). */
+.s-shot { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.s-shot img { width: 100%; height: auto; background: var(--bg-1); border: 1px solid var(--border); border-radius: 12px; }
+.s-shot figcaption { color: var(--ink-2); font-size: var(--ds-sm, 0.9rem); line-height: 1.4; }
+.s-shot figcaption strong { color: var(--ink); font-weight: 600; }
+
+.s-shot[data-state="placeholder"] {
+  padding: 16px 18px;
+  background: var(--bg-2);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+.s-shot[data-state="placeholder"] img { display: none; }
+.s-shot[data-state="placeholder"]::before {
+  content: "Capture pending";
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--ds-xs, 0.7rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-hi);
+}
+html[data-shots="placeholders"] .s-shot[data-state="placeholder"] { padding: 0; background: none; border: 0; }
+html[data-shots="placeholders"] .s-shot[data-state="placeholder"] img { display: block; }
+html[data-shots="placeholders"] .s-shot[data-state="placeholder"]::before { content: none; }
+
+.s-shot-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 12px; align-content: start; min-height: 0; }
+
+/* A capture replaces the mockup in a media slot; the mockup stays until then. */
+.s-split-media > .s-shot[data-state="placeholder"] { display: none; }
+.s-shot[data-state="captured"] + .window,
+.s-shot[data-state="captured"] + .mini-tree,
+html[data-shots="placeholders"] .s-shot + .window,
+html[data-shots="placeholders"] .s-shot + .mini-tree { display: none; }
+
 /* ── Bullets / lists ─────────────────────────────────── */
 .s-bullets { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
 .s-bullets li {
