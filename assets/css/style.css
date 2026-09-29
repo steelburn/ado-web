@@ -1187,3 +1187,41 @@ html[data-shots="placeholders"] .shot[data-state="placeholder"]::before { conten
   .hero-cta .btn-ghost code { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .flow { justify-content: flex-start; }
 }
+
+/* ── Highlights emphasis (New Project Wizard · Editor chat · Agent delegation) ── */
+.hl-grid { align-items: stretch; }
+.hl-card { display: flex; flex-direction: column; gap: 10px; }
+.hl-badge {
+  align-self: flex-start;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink, #e6e9f0);
+  background: rgba(0, 120, 212, 0.14);
+  border: 1px solid rgba(0, 120, 212, 0.4);
+  border-radius: 99px;
+  padding: 3px 10px;
+}
+.hl-card h3 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 2px; }
+.hl-card p { color: var(--ink-2, #a9b3c6); font-size: 0.94rem; }
+.hl-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 4px 0 0; padding: 0; }
+.hl-list li { position: relative; padding-left: 22px; color: var(--ink-2, #a9b3c6); font-size: 0.9rem; }
+.hl-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.5em;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: var(--accent, #0078d4);
+  box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.16);
+}
+.hl-cta {
+  margin-top: auto;
+  padding-top: 12px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--accent, #0078d4);
+  text-decoration: none;
+}
+.hl-cta:hover { text-decoration: underline; }
