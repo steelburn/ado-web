@@ -6,10 +6,20 @@ Marketing / landing site for the **ADO Code** VS Code extension
 
 ## Stack
 
-Static HTML + CSS + vanilla JS. No build step, no framework, no dependencies.
-Deploys anywhere: nginx container, Netlify, Cloudflare Pages, or any static host.
+Static HTML + CSS + vanilla JS. **No build step, no bundler, no framework, no
+dependencies** — shared page chrome (header/footer) is hand-duplicated across
+every page and kept honest by a parity test. Deploys anywhere: nginx container,
+Netlify, Cloudflare Pages, or any static host.
 
-- `index.html` — single landing page (hero + VS Code mockup, feature highlights, screenshot gallery, comprehensive feature reference table, modes, agents, commands, install)
+- `index.html` — landing page (hero + VS Code mockup, capability highlights, install CTA)
+- `features.html` — the feature reference: highlights + the comprehensive feature table
+- `gallery.html` — screenshot gallery + the launch film
+- `modes.html` — the Modes tab demo
+- `agents.html` — the agents overview
+- `commands.html` — the command reference
+- `install.html` — install steps
+- `faq.html` — FAQ (own `FAQPage` JSON-LD + `<details>` accordions)
+- `404.html` — not-found page (`noindex`)
 - `deck.html` — presentation deck (v0.6.6): 16 slides (including a screenshot gallery) with speaker notes, an overview grid, progress bar and keyboard navigation (←/→/Space, G overview, N notes, F fullscreen)
 - `assets/video/ado-code-launch.mp4` (+ `-poster.jpg`) — the 93-second narrated launch film, embedded on the home page and on the deck's launch-film slide
 - `assets/css/style.css` — design tokens + components (dark developer-tool theme, Azure accent, IBM Plex)
@@ -18,8 +28,10 @@ Deploys anywhere: nginx container, Netlify, Cloudflare Pages, or any static host
 - `assets/js/deck.js` — deck controller (keyboard, overview grid, fullscreen, progress, touch swipe)
 - `assets/img/` — logo, favicon, OG image
 - `assets/img/screenshots/` — marketing screenshot library: `manifest.json` (source of truth), capture guide, one PNG per shot (`node scripts/make-screenshots.mjs`)
-- `Dockerfile` / `nginx.conf` / `security-headers.conf` / `docker-compose.yml` — nginx container deployment (gzip, caching, security headers)
-- `sitemap.xml`, `robots.txt` — SEO basics
+- `Dockerfile` / `nginx.conf` / `security-headers.conf` / `docker-compose.yml` — nginx container deployment (gzip, caching, security headers); `nginx.conf` also carries the extensionless 301 aliases (`/features` → `/features.html`, …, `/deck`) and the `404.html` error page
+- `sitemap.xml`, `robots.txt` — SEO basics; the sitemap lists all 9 pages with `lastmod`
+- `_partials/header.html` / `_partials/footer.html` — canonical chrome (copied into each page; not a build input)
+- `scripts/site-pages.mjs` — single source of truth for the page set (titles, canonicals, nav, JSON-LD)
 
 ## Screenshots
 
@@ -43,7 +55,7 @@ While `data-state="placeholder"` the figure renders as a caption card and the
 generated stand-in is never displayed. To publish a capture: drop the PNG in
 `assets/img/screenshots/`, flip `data-state` (and the manifest `status`) to
 `captured`, bump `SITE_VERSION` and run `node scripts/set-site-version.mjs`.
-Review the layout with stand-ins visible via `index.html?shots=placeholders`.
+Review the layout with stand-ins visible via `gallery.html?shots=placeholders`.
 `tests/screenshots.test.mjs` fails if the manifest, the PNGs, the markup copy or
 the capture guide drift apart.
 
@@ -103,10 +115,15 @@ Upload the repository root as the publish directory. No config needed.
 ## Updating content
 
 - Version shown in the nav badge, hero eyebrow, hero meta and footer is hardcoded
-  in `index.html` (also in the JSON-LD block). Bump it when a new extension
-  version ships.
-- Feature copy lives in the section markup of `index.html` — keep it in sync
-  with the extension's `README.md` release notes.
+  in **every** page's markup (and the JSON-LD block): bump `SITE_VERSION` in
+  `scripts/site-version.mjs`, run `node scripts/set-site-version.mjs`, then update
+  the extension version strings when a new extension version ships.
+- Feature copy lives in the per-page markup (`features.html`, `modes.html`,
+  `agents.html`, `commands.html`, …) — keep it in sync with the extension's
+  `README.md` release notes.
+- Adding a page: add it to `scripts/site-pages.mjs`, copy the chrome from
+  `_partials/`, link it in the nav, and add a `<url>` to `sitemap.xml` — the
+  structural tests enforce all of this.
 - `deck.html` mirrors the same release: bump the version in the title/kicker and
   add or revise slides when the extension's headline capabilities change.
 
@@ -131,7 +148,8 @@ Chrome/Edge, and the SVG + PNG are written to `docs/diagrams/`.
 
 `docs/quiz.md` is a 10-question ADO Code quiz (8 single-answer, 2 multi-select)
 with a sourced answer key, for onboarding, demos and docs. Answers are grounded
-in `index.html` copy and the slide deck, so re-verify the key when marketing copy
+in the page copy (`faq.html`, `features.html`, …) and the slide deck, so re-verify
+the key when marketing copy
 changes. `tests/quiz.test.mjs` guards the structure (10 questions, 8 single +
 2 multi-select, and an answer key that only cites options actually offered)
 and `tests/quiz-evidence.test.mjs` guards derivation: `docs/quiz.md` carries an
