@@ -55,15 +55,10 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ═══════════════ NAV ═══════════════ -->
-  <header> against, so the hand copies can never drift.
-
-     Per-page rule: copy this block verbatim and add `aria-current="page"` to the
-     link whose data-nav matches the page (see scripts/site-pages.mjs). That one
-     attribute is the only sanctioned difference; the parity test ignores it.
-
-     Nav ids used by assets/js/main.js: #nav-links + .nav-burger
-     (aria-controls="nav-links") — do not rename.
-     ═══════════════════════════════════════════════════════════════════════════ -->
+  <!-- Hand-duplicated chrome (A1) — copy _partials/header.html verbatim, then add
+       aria-current="page" to the link whose data-nav matches this page; that one
+       attribute is the sanctioned difference (the parity test ignores it). Keep
+       #nav-links and .nav-burger — assets/js/main.js depends on them. -->
   <header class="nav" id="top">
     <div class="nav-inner">
       <a class="brand" href="/" aria-label="ADO Code home">
@@ -175,12 +170,9 @@
   </main>
 
   <!-- ═══════════════ FOOTER ═══════════════ -->
-  <footer> against.
-
-     Links point at real pages (post-split IA): the old same-page #anchors are
-     gone. Unlike the header, the footer is identical on every page (no
-     aria-current), so it must match byte-for-byte.
-     ═══════════════════════════════════════════════════════════════════════════ -->
+  <!-- Hand-duplicated chrome (A1) — identical on every page (no aria-current), so
+       it must match _partials/footer.html byte-for-byte. Links point at real pages
+       (post-split IA); the old same-page #anchors are gone. -->
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
