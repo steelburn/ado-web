@@ -1087,6 +1087,52 @@ summary:focus-visible {
 .shot figcaption { color: var(--ink-3); font-size: 0.92rem; line-height: 1.55; }
 .shot figcaption strong { color: var(--ink); font-weight: 600; }
 
+/* ── Screenshot zoom → full-screen lightbox ─────────── */
+.shot--zoom img { cursor: zoom-in; }
+.shot--zoom:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: var(--radius); }
+
+.shot-lb {
+  position: fixed; inset: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: center;
+  padding: 5vmin;
+  background: rgba(4, 6, 12, 0.94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.shot-lb[hidden] { display: none; }
+.shot-lb__stage {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  max-width: 100%; max-height: 100%;
+}
+.shot-lb__img {
+  display: block;
+  max-width: min(94vw, 1800px);
+  max-height: 80vh;
+  width: auto; height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-1);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+.shot-lb__cap {
+  margin: 0;
+  max-width: min(94vw, 1100px);
+  text-align: center;
+  color: var(--ink-2);
+  font-size: 0.95rem; line-height: 1.5;
+}
+.shot-lb__cap[hidden] { display: none; }
+.shot-lb__close {
+  position: absolute; top: 18px; right: 20px;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); background: var(--bg-1); color: var(--ink);
+  font-size: 1rem; line-height: 1; cursor: pointer;
+}
+.shot-lb__close:hover { color: var(--accent); border-color: var(--accent); }
+.shot-lb__close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media print { .shot-lb, .shot-lb * { display: none !important; } }
+
 .shot[data-state="placeholder"] {
   padding: 22px 24px;
   background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
@@ -1233,3 +1279,12 @@ html[data-shots="placeholders"] .shot[data-state="placeholder"]::before { conten
   text-decoration: none;
 }
 .hl-cta:hover { text-decoration: underline; }
+.hl-card--goal .hl-badge--goal {
+  color: var(--rose, #f07178);
+  background: rgba(240, 113, 120, 0.14);
+  border-color: rgba(240, 113, 120, 0.42);
+}
+.hl-card--goal .hl-list li::before {
+  background: var(--rose, #f07178);
+  box-shadow: 0 0 0 3px rgba(240, 113, 120, 0.16);
+}

@@ -228,6 +228,78 @@
     if (status) { status.textContent = 'Command copied to clipboard'; }
   }, true);
 
+  /* ── Screenshot lightbox ─────────────────────────────────────────────
+     Gallery screenshots open full-screen on click, Enter or Space (a real
+     capture, or a placeholder stand-in in ?shots=placeholders mode). Esc, the
+     ✕ button or a click on the backdrop closes it. Pages without the #shot-lb
+     overlay are left untouched (deck.html wires its own viewer in deck.js). */
+  const shotLb = $('#shot-lb');
+  if (shotLb && $('figure.shot')) {
+    const shotLbImg = $('#shot-lb-img');
+    const shotLbCap = $('#shot-lb-cap');
+    const shotLbClose = $('#shot-lb-close');
+    let shotLbOpen = false;
+    let shotLbReturn = null;
+
+    function zoomableShot(fig) {
+      const img = fig.querySelector('img');
+      if (!img || !img.getAttribute('src')) return null;
+      if (getComputedStyle(img).display === 'none') return null;
+      return img;
+    }
+
+    function openShot(fig) {
+      const img = zoomableShot(fig);
+      if (!img || shotLbOpen) return;
+      shotLbReturn = document.activeElement;
+      shotLbImg.src = img.getAttribute('src');
+      shotLbImg.alt = img.getAttribute('alt') || '';
+      const cap = fig.querySelector('figcaption');
+      const capText = cap ? cap.textContent.trim() : '';
+      shotLbCap.textContent = capText;
+      shotLbCap.hidden = !capText;
+      shotLb.hidden = false;
+      shotLbOpen = true;
+      if (shotLbClose) shotLbClose.focus();
+    }
+
+    function closeShot() {
+      if (!shotLbOpen) return;
+      shotLb.hidden = true;
+      shotLbOpen = false;
+      shotLbImg.removeAttribute('src');
+      if (shotLbReturn && typeof shotLbReturn.focus === 'function') shotLbReturn.focus();
+      shotLbReturn = null;
+    }
+
+    $('figure.shot').forEach((fig) => {
+      if (!zoomableShot(fig)) return;
+      const cap = fig.querySelector('figcaption');
+      fig.classList.add('shot--zoom');
+      fig.tabIndex = 0;
+      fig.setAttribute('role', 'button');
+      fig.setAttribute('aria-label', 'View screenshot full screen' + (cap ? ': ' + cap.textContent.trim() : ''));
+      fig.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openShot(fig);
+      });
+      fig.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          e.stopPropagation();
+          openShot(fig);
+        }
+      });
+    });
+
+    if (shotLbClose) shotLbClose.addEventListener('click', (e) => { e.preventDefault(); closeShot(); });
+    shotLb.addEventListener('click', (e) => { if (e.target === shotLb) closeShot(); });
+    document.addEventListener('keydown', (e) => {
+      if (shotLbOpen && e.key === 'Escape') { e.preventDefault(); closeShot(); }
+    });
+  }
+
   /* ── Respect reduced motion for the status-bar working dot ── */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('reduced-motion');

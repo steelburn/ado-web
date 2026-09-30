@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=0.10.0">
-  <link rel="stylesheet" href="/assets/css/deck.css?v=0.10.0">
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.11.0">
+  <link rel="stylesheet" href="/assets/css/deck.css?v=0.11.0">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="deck-body">
@@ -67,7 +67,7 @@
             <li>No telemetry</li>
           </ul>
         </div>
-        <p class="s-hint" aria-hidden="true">Use ← → or space to navigate · G for overview · F for fullscreen</p>
+        <p class="s-hint" aria-hidden="true">Use ← → or space to navigate · G for overview · F for fullscreen · click a screenshot to zoom</p>
         <div class="slide__notes">Launch framing: one sentence pitch. ADO Code is the bridge between the Azure DevOps board and the code — an AI assistant that turns work items into merged pull requests.</div>
       </section>
 
@@ -160,9 +160,9 @@
       <section class="slide" id="s5" aria-roledescription="slide" aria-label="Slide 5 of 17">
         <div class="s-head">
           <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Highlights</p>
-          <h2 class="s-title">Three things to try first.</h2>
+          <h2 class="s-title">Four things to try first.</h2>
         </div>
-        <div class="s-cols s-cols--3">
+        <div class="s-cols s-cols--4">
           <div class="s-card">
             <h3><span class="s-card-n">01</span>New Project Wizard</h3>
             <p>Scaffold a whole project from one command — folder layout, <code>AGENTS.md</code>, <code>git init</code>, and an optional Azure DevOps repo link.</p>
@@ -187,8 +187,16 @@
               <li>Review the branch, keep your tree clean</li>
             </ul>
           </div>
+          <div class="s-card">
+            <h3><span class="s-card-n">04</span>Goal &amp; To-do</h3>
+            <p>Pin a session Goal and work it as a To-do list in the activity bar — every step tracked as it lands.</p>
+            <ul class="s-bullets">
+              <li>The objective survives the conversation</li>
+              <li>Checkboxes tick over as the agent works</li>
+            </ul>
+          </div>
         </div>
-        <div class="slide__notes">The three headline moments: start a project with the wizard, pull chat into the editor area, and delegate real work items to coding agents in isolated git worktrees.</div>
+        <div class="slide__notes">The four headline moments: start a project with the wizard, pull chat into the editor area, keep a Goal &amp; To-do list on screen, and delegate real work items to coding agents in isolated git worktrees.</div>
       </section>
 
       <!-- 06 · Work items tree -->
@@ -196,7 +204,7 @@
         <div class="s-split-media">
           <!-- Real capture supersedes the CSS tree below; the tree stays until it lands. -->
           <figure class="s-shot" data-shot="backlog-tree" data-state="placeholder">
-            <img src="/assets/img/screenshots/backlog-tree.png?v=0.10.0" alt="VS Code with the ADO Code activity bar open, showing a work item tree with an Epic expanded into features, stories and tasks with state icons." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/backlog-tree.png?v=0.11.0" alt="VS Code with the ADO Code activity bar open, showing a work item tree with an Epic expanded into features, stories and tasks with state icons." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Your Azure DevOps hierarchy, fetched into a real editor tree.</figcaption>
           </figure>
 
@@ -232,39 +240,39 @@
         </div>
         <div class="s-shot-grid">
           <figure class="s-shot" data-shot="agent-chat-plan" data-state="captured">
-            <img src="/assets/img/screenshots/agent-chat-plan.png?v=0.10.0" alt="Agent chat panel showing a numbered implementation plan, a list of tool calls with status ticks, and a streamed code diff in the editor beside it." width="1919" height="1086" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/agent-chat-plan.png?v=0.11.0" alt="Agent chat panel showing a numbered implementation plan, a list of tool calls with status ticks, and a streamed code diff in the editor beside it." width="1919" height="1086" loading="lazy" decoding="async">
             <figcaption>Plan first, then execute — with a visible tool trail.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="worktree-run-card" data-state="placeholder">
-            <img src="/assets/img/screenshots/worktree-run-card.png?v=0.10.0" alt="Run card for a delegated agent showing the isolated git worktree path, generated branch name and a streaming progress log." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/worktree-run-card.png?v=0.11.0" alt="Run card for a delegated agent showing the isolated git worktree path, generated branch name and a streaming progress log." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>An isolated git worktree and branch per delegated run.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="pull-request-open" data-state="captured">
-            <img src="/assets/img/screenshots/pull-request-open.png?v=0.10.0" alt="Completed run card showing verification gates marked as passed and an Azure DevOps pull request link created for the run branch." width="2880" height="1800" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/pull-request-open.png?v=0.11.0" alt="Completed run card showing verification gates marked as passed and an Azure DevOps pull request link created for the run branch." width="2880" height="1800" loading="lazy" decoding="async">
             <figcaption>Green gates, then a real pull request.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="consent-countdown" data-state="placeholder">
-            <img src="/assets/img/screenshots/consent-countdown.png?v=0.10.0" alt="Chat consent card asking permission to run a terminal command, with a live countdown reading that it auto-approves when the timer expires." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/consent-countdown.png?v=0.11.0" alt="Chat consent card asking permission to run a terminal command, with a live countdown reading that it auto-approves when the timer expires." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Every consent card counts down what happens next.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="memory-panel" data-state="captured">
-            <img src="/assets/img/screenshots/memory-panel.png?v=0.10.0" alt="Memory panel listing user-level and project-level notes that the assistant carries across sessions and work items." width="1919" height="1032" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/memory-panel.png?v=0.11.0" alt="Memory panel listing user-level and project-level notes that the assistant carries across sessions and work items." width="1919" height="1032" loading="lazy" decoding="async">
             <figcaption>User and project memory that survives the session.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="mcp-skills" data-state="placeholder">
-            <img src="/assets/img/screenshots/mcp-skills.png?v=0.10.0" alt="MCP, servers and skills manager listing a connected server, its available tools and installed skills." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/mcp-skills.png?v=0.11.0" alt="MCP, servers and skills manager listing a connected server, its available tools and installed skills." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>MCP servers and skills, wired in from one panel.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="modes-selector" data-state="captured">
-            <img src="/assets/img/screenshots/modes-selector.png?v=0.10.0" alt="Chat input area with the mode selector open, listing the Ask, Plan, Agent and Auto modes with short descriptions." width="2880" height="1800" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/modes-selector.png?v=0.11.0" alt="Chat input area with the mode selector open, listing the Ask, Plan, Agent and Auto modes with short descriptions." width="2880" height="1800" loading="lazy" decoding="async">
             <figcaption>One toggle from ask to autonomy.</figcaption>
           </figure>
           <figure class="s-shot" data-shot="mermaid-diagram" data-state="captured">
-            <img src="/assets/img/screenshots/mermaid-diagram.png?v=0.10.0" alt="Chat message containing a rendered Mermaid flow diagram with connected boxes for a request flow." width="2880" height="1800" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/mermaid-diagram.png?v=0.11.0" alt="Chat message containing a rendered Mermaid flow diagram with connected boxes for a request flow." width="2880" height="1800" loading="lazy" decoding="async">
             <figcaption>Architecture answers rendered inline as Mermaid.</figcaption>
           </figure>
         </div>
-        <div class="slide__notes">Screenshot gallery: every panel the audience has just heard about, in one place. Captures live in assets/img/screenshots — drop the PNG in, flip data-state to "captured", and the slide fills in without touching the layout.</div>
+        <div class="slide__notes">Screenshot gallery: every panel the audience has just heard about, in one place. Click any screenshot (or focus it and press Enter) to open it full-screen; Esc returns to the slide. Captures live in assets/img/screenshots — drop the PNG in, flip data-state to "captured", and the slide fills in without touching the layout.</div>
       </section>
 
       <section class="slide" id="s8" aria-roledescription="slide" aria-label="Slide 8 of 17">
@@ -414,7 +422,7 @@
         <div class="s-split-media">
           <!-- Real capture supersedes the CSS window below; the window stays until it lands. -->
           <figure class="s-shot" data-shot="command-palette" data-state="placeholder">
-            <img src="/assets/img/screenshots/command-palette.png?v=0.10.0" alt="VS Code command palette filtered to the ADO Code prefix, listing extension commands such as refresh work items and switch mode." width="1440" height="900" loading="lazy" decoding="async">
+            <img src="/assets/img/screenshots/command-palette.png?v=0.11.0" alt="VS Code command palette filtered to the ADO Code prefix, listing extension commands such as refresh work items and switch mode." width="1440" height="900" loading="lazy" decoding="async">
             <figcaption>Every command one palette keystroke away.</figcaption>
           </figure>
 
@@ -577,6 +585,17 @@
     <div class="deck-overview-grid" id="overview-grid"></div>
   </div>
 
-  <script src="/assets/js/deck.js?v=0.10.0"></script>
+  <!-- Screenshot viewer: click any screenshot (or focus it and press Enter) to open it full-screen. -->
+  <div class="shot-lb" id="shot-lb" role="dialog" aria-modal="true" aria-label="Screenshot viewer" hidden>
+    <button class="shot-lb__close" id="shot-lb-close" type="button" aria-label="Close the screenshot (Esc)">
+      <span aria-hidden="true">&#10005;</span>
+    </button>
+    <div class="shot-lb__stage">
+      <img class="shot-lb__img" id="shot-lb-img" alt="" decoding="async">
+      <p class="shot-lb__cap" id="shot-lb-cap" hidden></p>
+    </div>
+  </div>
+
+  <script src="/assets/js/deck.js?v=0.11.0"></script>
 </body>
 </html>

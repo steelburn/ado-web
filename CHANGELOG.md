@@ -2,6 +2,30 @@
 
 All notable changes to the ADO Code website.
 
+## [0.11.0] — 2026-09-30
+
+### Added
+
+- **Full-screen screenshots on the deck and gallery** — clicking (or focusing
+  and pressing Enter on) any screenshot in `deck.html` or `gallery.html` opens it
+  in a lightbox at its natural size, with the caption beneath it. `Esc`, the ✕
+  or a click on the backdrop closes it; the deck's keyboard shortcuts and the
+  background-click slide advance pause while it is open, and the overlay is
+  hidden in the print/export view.
+- **Goal & To-do highlight** — the session Goal and its To-do list are now a
+  fourth headline feature: a card in the landing page's `#highlights` bento, the
+  same card at the top of the Features page, and a fourth card on the deck's
+  Highlights slide (now a four-column grid).
+
+### Changed
+
+- `SITE_VERSION` `0.10.0` → `0.11.0`; `?v=` rewritten across all 10 root pages.
+
+### Tests
+
+- New `tests/deck-lightbox.test.mjs` (5), `tests/gallery-lightbox.test.mjs` (5)
+  and `tests/goal-todo-highlight.test.mjs` (6) guards; the suite is now 196 tests.
+
 ## [0.10.0] — 2026-09-30
 
 Documents the extension's **0.6.7** release.
