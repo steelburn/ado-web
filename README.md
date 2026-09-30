@@ -20,7 +20,7 @@ Netlify, Cloudflare Pages, or any static host.
 - `install.html` — install steps
 - `faq.html` — FAQ (own `FAQPage` JSON-LD + `<details>` accordions)
 - `404.html` — not-found page (`noindex`)
-- `deck.html` — presentation deck (v0.6.6): 16 slides (including a screenshot gallery) with speaker notes, an overview grid, progress bar and keyboard navigation (←/→/Space, G overview, N notes, F fullscreen)
+- `deck.html` — presentation deck (v0.6.7): 17 slides (including a screenshot gallery and a capability-highlights slide) with speaker notes, an overview grid, progress bar and keyboard navigation (←/→/Space, G overview, N notes, F fullscreen)
 - `assets/video/ado-code-launch.mp4` (+ `-poster.jpg`) — the 93-second narrated launch film, embedded on the home page and on the deck's launch-film slide
 - `assets/css/style.css` — design tokens + components (dark developer-tool theme, Azure accent, IBM Plex)
 - `assets/css/deck.css` — deck theme (brand-matched, print/PDF rules)

@@ -34,7 +34,7 @@ test fails otherwise.
 1. **Docker** — present in WSL2 (`wsl -e docker ps`). Not needed on the Windows PATH.
 2. **code-server image** — pulled by `docker compose up`.
 3. **The extension `.vsix`** — mounted and installed (default
-   `../ado-code/ado-code-0.6.6.vsix`).
+   `../ado-code/ado-code-0.6.7.vsix`).
 4. **Demo data** — a workspace with the "Payment Platform Overhaul" epic, a green
    pipeline and an open PR. The captures need a reachable Azure DevOps org and an
    LLM key, otherwise the surfaces render empty states.

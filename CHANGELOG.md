@@ -2,6 +2,40 @@
 
 All notable changes to the ADO Code website.
 
+## [0.10.0] — 2026-09-30
+
+Documents the extension's **0.6.7** release.
+
+### Added
+
+- **0.6.7 feature rows** — ten new rows in the feature reference (session To-do
+  list and goal, the `set_goal` / `update_todo_list` / `read_todo_list` tools in
+  every mode, `/goal`, Thinking & Tools persistence, honest tool-card status,
+  cleaner streaming answers, memory previews, opening memory files, per-session
+  to-do storage and editable checklists), taking the table to **105 capabilities
+  across 8 areas**. They carry a new `new · 0.6.7` rose badge.
+- **Version guard test** — `tests/version-consistency.test.mjs` pins every
+  version-bearing surface (header/footer chrome, hero eyebrow, JSON-LD
+  `softwareVersion`, the feature heading + legend + table totals, the deck
+  kickers and What's-new slide, the README and the capture tooling) to a single
+  `PRODUCT_VERSION`, so a release bump is a deliberate, test-guarded change.
+
+### Changed
+
+- **Extension version 0.6.6 → 0.6.7** everywhere it appears in copy — page
+  headers/footers, the hero eyebrow, `softwareVersion` in index.html's JSON-LD,
+  the feature-reference heading and legend, the gallery's launch-film line, the
+  deck's launch/closing kickers, the README and the capture tooling's `.vsix`
+  mount.
+- **Deck “What's new” slide** rewritten for 0.6.7 (three cards: *Plan in the
+  open*, *A record you can trust*, *Memory & housekeeping*).
+- **`assets/css/style.css`** — new `--rose` token plus the `new · 0.6.7` badge
+  and legend swatch.
+- **Asset cache-bust** `?v=0.9.0` → `?v=0.10.0` across all root pages
+  (`SITE_VERSION` in `scripts/site-version.mjs`).
+- **`sitemap.xml`** `lastmod` bumped to 2026-09-30.
+- **`README.md`** deck line corrected to the current 17 slides.
+
 ## [0.7.0] — 2026-09-29
 
 ### Added

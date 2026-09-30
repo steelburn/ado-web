@@ -106,7 +106,7 @@ services:
         condition: service_completed_successfully
     volumes:
       - ado-capture-home:/home/coder/.local/share/code-server
-      - ${CAPTURE_VSIX:-../../../ado-code/ado-code-0.6.6.vsix}:/tmp/ado-code.vsix:ro
+      - ${CAPTURE_VSIX:-../../../ado-code/ado-code-0.6.7.vsix}:/tmp/ado-code.vsix:ro
 
   code-server:
     # Built from Dockerfile.code-server (adds node/npm the stock image lacks).
