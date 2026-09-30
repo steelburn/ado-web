@@ -52,10 +52,15 @@ Review the layout with stand-ins visible by appending `?shots=placeholders` to
 | --- | --- |
 | Window | 1440×900 content area, no OS chrome (VS Code maximised on a 1440×900 viewport is fine) |
 | Theme | VS Code default dark (`Dark+`), zoom level 1, no custom CSS |
-| Device pixel ratio | 2 when capturing on a HiDPI display; downscale to 1440×900 |
+| Device pixel ratio | 2 when capturing on a HiDPI display; keep the PNG at its captured size (1440×900 @2x = 2880×1800) |
 | Format | PNG, 8-bit, no alpha needed |
 | Demo data | workspace `ado-demo`, organization `ne1-demo`, project `Payments` |
 | Redaction | no real PATs, org names, user avatars, customer names or tokens on screen |
+
+`width` / `height` in the manifest are the PNG's **intrinsic pixel** size — they must
+match the file exactly (the guard compares them, and the figure's `width`/`height`
+attributes mirror them). A 1440×900 window captured at DPR 2 is therefore declared
+`2880×1800`; hand captures keep whatever window size they were taken at.
 
 Tips:
 
@@ -83,6 +88,7 @@ is the plan; each row also carries a `capture` recipe in `manifest.json`.
 | 10 | `run-verification` | `run-verification.png` | tests / lint / build gates | gallery | — |
 | 11 | `modes-selector` | `modes-selector.png` | Ask / Plan / Agent / Auto | — | `s6` gallery |
 | 12 | `mermaid-diagram` | `mermaid-diagram.png` | inline rendered Mermaid diagram | — | `s6` gallery |
+| 13 | `todo-panel` | `todo-panel.png` | session to-do checklist with the pinned goal | gallery | — |
 
 ## Workflow: add or populate a shot
 

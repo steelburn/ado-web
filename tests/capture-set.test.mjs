@@ -4,7 +4,7 @@
 // produce and which are hand-captured. It must not drift from the manifest, or
 // the harness will silently skip (or mislabel) shots. Four things are locked:
 //   1. capture-set ↔ manifest : the id sets are equal, no dupes.
-//   2. the split             : exactly 8 browser + 4 manual, with the manual set
+//   2. the split             : exactly 8 browser + 5 manual, with the manual set
 //                              pinned so a regression cannot move a shot silently.
 //   3. field completeness    : every browser shot has a scene/open/settle and a
 //                              unique scene key; every manual shot has a reason.
@@ -21,7 +21,7 @@ import { ROOT, loadManifest } from '../scripts/screenshots.mjs';
 const CAPTURE_SET = join(ROOT, 'assets/img/screenshots/capture-set.json');
 const MODES = ['browser', 'manual'];
 // Pinned on purpose: moving a shot between modes is a deliberate act.
-const EXPECTED_MANUAL = ['backlog-tree', 'command-palette', 'worktree-run-card', 'memory-panel'];
+const EXPECTED_MANUAL = ['backlog-tree', 'command-palette', 'worktree-run-card', 'memory-panel', 'todo-panel'];
 
 function loadCaptureSet() {
   return JSON.parse(readFileSync(CAPTURE_SET, 'utf8'));
@@ -53,12 +53,12 @@ test('every shot has a valid mode', () => {
   }
 });
 
-test('split is exactly 8 browser + 4 manual', () => {
+test('split is exactly 8 browser + 5 manual', () => {
   const shots = loadCaptureSet().shots;
   const browser = shots.filter((s) => s.mode === 'browser');
   const manual = shots.filter((s) => s.mode === 'manual');
   assert.equal(browser.length, 8, 'expected 8 automated shots');
-  assert.equal(manual.length, 4, 'expected 4 hand-captured shots');
+  assert.equal(manual.length, 5, 'expected 5 hand-captured shots');
 });
 
 test('the hand-captured set is pinned', () => {
@@ -118,6 +118,6 @@ test('--plan runs offline and reports the expected split', () => {
     cwd: ROOT,
   });
   assert.match(out, /8 browser shots/);
-  assert.match(out, /4 native shots/);
+  assert.match(out, /5 native shots/);
   for (const id of EXPECTED_MANUAL) assert.ok(out.includes(id), `plan omits ${id}`);
 });
