@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Capture routing for the screenshot library. Splits the 12 manifest shots into the ones the automated harness can produce (Playwright driving code-server in Docker → real webview DOM) and the ones that must be hand-captured from the desktop editor. Consumed by tools/capture/capture.mjs (--plan / capture) and guarded by tests/capture-set.test.mjs. The id set must equal assets/img/screenshots/manifest.json.",
+  "description": "Capture routing for the screenshot library. Splits the 13 manifest shots into the ones the automated harness can produce (Playwright driving code-server in Docker → real webview DOM) and the ones that must be hand-captured from the desktop editor. Consumed by tools/capture/capture.mjs (--plan / capture) and guarded by tests/capture-set.test.mjs. The id set must equal assets/img/screenshots/manifest.json.",
   "route": "playwright-code-server",
   "runner": "tools/capture/capture.mjs",
   "compose": "tools/capture/docker-compose.capture.yml",
@@ -116,6 +116,13 @@
       "surface": "native QuickPick / status tree (adoCode.showMemory, adoCode.status)",
       "reason": "`ADO Code: Show Memory` opens a native QuickPick of stored entries and the memory scopes also render as rows in the native status tree; there is no memory webview, so the browser route cannot produce this shot.",
       "how": "Desktop VS Code: add a user + workspace memory entry, run `ADO Code: Show Memory`, capture the QuickPick listing both scopes."
+    },
+    {
+      "id": "todo-panel",
+      "mode": "manual",
+      "surface": "native To-do view (activity bar)",
+      "reason": "The To-do view is native workbench chrome: real tree rows with checkboxes, status icons and a per-session badge. code-server's web shell does not render those rows faithfully, so the harness cannot produce it.",
+      "how": "Desktop VS Code: set a session goal, let the agent add a few to-do items in different states, then capture the To-do view open in the activity bar."
     }
   ]
 }
