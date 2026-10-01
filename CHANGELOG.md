@@ -4,11 +4,35 @@ All notable changes to the ADO Code website.
 
 ## [Unreleased]
 
+### Added
+
+- **0.7.0 feature rows in the table** — fifteen rows documenting the capabilities
+  the feature reference had never covered: mid-run **steer vs. queue** input
+  (`adoCode.chat.inputWhileBusy`), **chat density modes** (`adoCode.chat.density`),
+  **AI delegation suggestions** (`adoCode.chat.suggestDelegation`), the chat-area
+  declutter pass (folded tool rows, quiet reasoning text, attachment chips,
+  jump-to-latest / collapse-all, one quiet status line), **detached background
+  runs** with their stop guard and the `Running` / `Background run` session badge,
+  session-scoped and **archived** goals, live session naming, `/remember` really
+  persisting, and the shared error banner / settings-coverage fixes.
+- **Capability counts 105 → 120** in the feature-reference heading and its toggle,
+  with the per-area `feat-cat-count` badges updated to match (chat 30→41,
+  agents 14→15, memory 8→9, ux 16→18). Every new row carries the `new · 0.6.5+`
+  badge, so the 0.6.5-onward window stays the single rule.
+
+### Tests
+
+- New guard in `tests/version-consistency.test.mjs`: the feature table must
+  document the documented release's capability set (steer/queue, density modes,
+  delegation suggestions, the declutter pass, background runs, archived goals and
+  the settings-coverage guard). Suite 197 → 198.
+
 ### Changed
 
 - **Extension version 0.6.7 → 0.7.0** throughout page copy, the index JSON-LD and
   the deck. 0.6.8 was never released, so its changes shipped inside 0.7.0. A pure
-  version-string re-label — the documented feature set is unchanged.
+  version-string re-label at the time; the feature table has since gained the
+  real 0.7.0 rows (see **Added**).
 - **Deck “What’s new” slide** rewritten for 0.7.0 (three cards: *Steer, don’t
   stop*, *A calmer chat*, *Runs that don’t blink*) — mid-run steer vs. queue input,
   chat density modes, background runs that survive a session switch, delegation

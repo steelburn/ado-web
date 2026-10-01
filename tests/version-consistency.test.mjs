@@ -113,6 +113,31 @@ test('features page heading, legend and table agree on the release', () => {
   );
 });
 
+test('features.html documents every capability of the documented release', () => {
+  const html = read('features.html');
+  // The 0.7.0 capability set: mid-run steer/queue + chat density modes + AI
+  // delegation suggestions (the three new settings), the chat-area declutter
+  // pass, detached background runs (guard + Running badge), session-scoped and
+  // archived goals, /remember actually persisting, and the shared error banner
+  // / settings-coverage fixes. Each marker is copy that only ships with a row.
+  const RELEASE_CAPABILITIES = [
+    'adoCode.chat.inputWhileBusy',
+    'adoCode.chat.density',
+    'adoCode.chat.suggestDelegation',
+    'Ran N tools',
+    'Latest answer',
+    'Background run',
+    'View Archived Goals',
+    'settings-coverage',
+  ];
+  for (const marker of RELEASE_CAPABILITIES) {
+    assert.ok(
+      html.includes(marker),
+      `features.html must document ${marker} in a table row`,
+    );
+  }
+});
+
 test('the "new" badge tracks the release window, not one release', () => {
   const css = read('assets/css/style.css');
   assert.ok(css.includes('.feat-new {'), 'style.css must define the .feat-new badge');
