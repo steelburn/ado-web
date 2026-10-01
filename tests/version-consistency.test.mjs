@@ -23,6 +23,9 @@ const read = (rel) => readFileSync(join(root, rel), 'utf8');
 const PRODUCT_VERSION = '0.7.0';
 const PREVIOUS_VERSION = '0.6.7';
 
+// Rows from this release onward are marketed as "new" on features.html.
+const NEW_SINCE = '0.6.5';
+
 // Pages that carry the hand-duplicated chrome (header brand badge + footer).
 const CHROME_PAGES = [
   'index.html',
@@ -80,13 +83,16 @@ test('features page heading, legend and table agree on the release', () => {
   assert.ok(sub, 'feature-reference heading must state version + capability count');
   assert.equal(sub[1], PRODUCT_VERSION, 'feature heading version must be current');
   assert.ok(
-    html.includes(`<em class="sub-em sub-em-rose">new · ${PRODUCT_VERSION}</em>`) ||
-      /new · 0\.6\.7<\/em>/.test(html),
-    `legend must introduce the ${PRODUCT_VERSION} rows`,
+    html.includes(`<em class="sub-em sub-em-rose">new · ${NEW_SINCE}+</em>`),
+    `legend must introduce the rows new since ${NEW_SINCE}`,
   );
   assert.ok(
-    /class="feat-row feat-new-7"/.test(html),
-    'at least one feature row must be tagged new for 0.7.0',
+    /class="feat-row feat-new"/.test(html),
+    `at least one feature row must be tagged new since ${NEW_SINCE}`,
+  );
+  assert.ok(
+    !/class="feat-row feat-new-\d/.test(html),
+    'feature rows must not carry a per-release badge class',
   );
 
   // The declared totals must equal the real table: category counts sum, the
@@ -107,12 +113,27 @@ test('features page heading, legend and table agree on the release', () => {
   );
 });
 
-test('new badge style exists for the release', () => {
+test('the "new" badge tracks the release window, not one release', () => {
   const css = read('assets/css/style.css');
-  assert.ok(css.includes('.feat-new-7'), 'style.css must define a .feat-new-7 badge');
+  assert.ok(css.includes('.feat-new {'), 'style.css must define the .feat-new badge');
   assert.ok(
-    css.includes(`content: "new · ${PRODUCT_VERSION}"`),
-    'style.css must label the .feat-new-7 badge with the release',
+    css.includes(`content: "new · ${NEW_SINCE}+"`),
+    'style.css must label the badge with the new-since range',
+  );
+  assert.ok(!/\.feat-new-\d/.test(css), 'per-release badge classes must be gone');
+  assert.ok(
+    !/content: "new · \d+\.\d+\.\d+"/.test(css),
+    'no badge may pin an exact release',
+  );
+});
+
+test('the new-since baseline is not ahead of the documented release', () => {
+  const parts = (v) => v.split('.').map(Number);
+  const [a, b] = [parts(NEW_SINCE), parts(PRODUCT_VERSION)];
+  const i = a.findIndex((n, k) => n !== b[k]);
+  assert.ok(
+    i === -1 || a[i] < b[i],
+    `new-since ${NEW_SINCE} must not exceed ${PRODUCT_VERSION}`,
   );
 });
 

@@ -13,6 +13,13 @@ All notable changes to the ADO Code website.
   stop*, *A calmer chat*, *Runs that don’t blink*) — mid-run steer vs. queue input,
   chat density modes, background runs that survive a session switch, delegation
   suggestions and archived goals. The slide had still described the 0.6.7 set.
+- **Feature-table “new” badge now marks a release window** — rows new since
+  **0.6.5** carry a single `new · 0.6.5+` badge instead of six per-release
+  pills (`new · 0.6.1` … `new · 0.7.0`). Rows from 0.6.1/0.6.2/0.6.4 are no
+  longer advertised as new, and the ten rows previously mislabelled
+  `new · 0.7.0` (they shipped in 0.6.7) now sit correctly inside the window.
+  The `feat-new-<n>` classes and the now-unused `sub-em-*` legend colours were
+  retired.
 
 ## [0.11.0] — 2026-09-30
 
