@@ -179,6 +179,23 @@ test('deck announces the release and its own What\'s new slide', () => {
   );
 });
 
+test("the deck's What's new slide covers the release capability set", () => {
+  const html = read('deck.html');
+  // The deck must not lag the table: when rows are added for a release,
+  // this guard fails until the What's new slide covers them too.
+  const markers = [
+    'session-scoped',             // session-scoped To-do view
+    'error banner',               // one shared error banner
+    'control for every setting',  // every setting has a UI control
+  ];
+  for (const marker of markers) {
+    assert.ok(
+      html.includes(marker),
+      `the deck What's new slide must cover ${marker}`,
+    );
+  }
+});
+
 test('no page still advertises the previous release', () => {
   const pages = readdirSync(root).filter((f) => f.endsWith('.html'));
   for (const page of pages) {

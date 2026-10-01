@@ -44,6 +44,12 @@ All notable changes to the ADO Code website.
   `new · 0.7.0` (they shipped in 0.6.7) now sit correctly inside the window.
   The `feat-new-<n>` classes and the now-unused `sub-em-*` legend colours were
   retired.
+- **Deck "What's new" slide refreshed** — the slide now covers the full documented
+  0.7.0 capability set, matching the feature table: it gained the session-scoped
+  To-do view and the consistency pass (one shared error banner, a control for every
+  setting). Guarded by a new test, "the deck's What's new slide covers the release
+  capability set", so the deck can no longer lag the table when rows are added for a
+  release.
 
 ## [0.11.0] — 2026-09-30
 
