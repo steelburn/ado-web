@@ -486,31 +486,31 @@
         </div>
         <div class="s-grid s-grid--3">
           <div class="s-card">
-            <h3>Plan in the open</h3>
+            <h3>Steer, don't stop</h3>
             <ul class="s-bullets">
-              <li>Session <strong>To-do</strong> view + session goal</li>
-              <li><code>set_goal</code> / <code>update_todo_list</code> / <code>read_todo_list</code> in every mode</li>
-              <li><code>/goal</code> sets, edits or clears the objective</li>
+              <li>Type while the AI works: <strong>Steer</strong> folds your instruction into the running turn, <strong>Queue</strong> parks it as a numbered chip</li>
+              <li><code>adoCode.chat.inputWhileBusy</code> — default <code>steer</code>; steering never discards work in progress</li>
+              <li>Enter now works mid-turn, multi-line input stays readable, history stops auto-jumping</li>
             </ul>
           </div>
           <div class="s-card">
-            <h3>A record you can trust</h3>
+            <h3>A calmer chat</h3>
             <ul class="s-bullets">
-              <li>Thinking &amp; Tools survive a session reload</li>
-              <li>Completed tool cards never spin as “running”</li>
-              <li>Pre-tool reasoning can't leak into the answer</li>
+              <li>Density modes via <code>adoCode.chat.density</code> — comfortable, compact or answers-only</li>
+              <li>Tool calls fold into one activity row, reasoning reads as quiet text, attachments render as chips</li>
+              <li>A turn summary line, jump-to-latest and collapse-all keep long threads scannable</li>
             </ul>
           </div>
           <div class="s-card">
-            <h3>Memory &amp; housekeeping</h3>
+            <h3>Runs that don't blink</h3>
             <ul class="s-bullets">
-              <li>Memory rows: parsed preview + Open / Preview / Copy</li>
-              <li>Lists stored per session, editable from the view</li>
-              <li>Windows-safe temp cleanup</li>
+              <li>Switching sessions no longer aborts a running turn — it continues detached behind a <strong>Running</strong> badge</li>
+              <li>Warned before a background run is stopped; the session name updates as soon as the topic is known</li>
+              <li>Delegation suggestions, <strong>View Archived Goals</strong> for superseded objectives, and <code>/remember</code> now actually remembers</li>
             </ul>
           </div>
         </div>
-        <div class="slide__notes">Presenting right after the 0.7.0 release? Land the delta: the session To-do list and goal (with set_goal/update_todo_list tools in every mode and the /goal command), a Thinking &amp; Tools record that survives a reload, honest tool-card status, cleaner streaming answers, and the memory-preview + open-file polish.</div>
+        <div class="slide__notes">Presenting the 0.7.0 delta: mid-run input — <strong>Steer</strong> folds your instruction into the running turn, <strong>Queue</strong> parks it — plus chat density modes, a decluttered tool and reasoning stream, background runs that survive a session switch behind a <strong>Running</strong> badge, delegation suggestions, and archived goals you can still reopen.</div>
       </section>
 
       <!-- 14 · Install -->

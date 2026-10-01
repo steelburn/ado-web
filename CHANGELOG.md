@@ -2,6 +2,18 @@
 
 All notable changes to the ADO Code website.
 
+## [Unreleased]
+
+### Changed
+
+- **Extension version 0.6.7 → 0.7.0** throughout page copy, the index JSON-LD and
+  the deck. 0.6.8 was never released, so its changes shipped inside 0.7.0. A pure
+  version-string re-label — the documented feature set is unchanged.
+- **Deck “What’s new” slide** rewritten for 0.7.0 (three cards: *Steer, don’t
+  stop*, *A calmer chat*, *Runs that don’t blink*) — mid-run steer vs. queue input,
+  chat density modes, background runs that survive a session switch, delegation
+  suggestions and archived goals. The slide had still described the 0.6.7 set.
+
 ## [0.11.0] — 2026-09-30
 
 ### Added
