@@ -2,7 +2,7 @@
 //
 // This is the version used in the `?v=` query string on stylesheets/scripts
 // in index.html. It is intentionally separate from the *extension* version
-// shown in the page copy (e.g. "v0.6.7" next to the product name): the asset
+// shown in the page copy (e.g. "v0.7.0" next to the product name): the asset
 // version only needs to change whenever the site's CSS/JS change, so returning
 // visitors fetch fresh files past nginx's `immutable` cache.
 //

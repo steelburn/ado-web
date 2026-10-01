@@ -20,8 +20,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (rel) => readFileSync(join(root, rel), 'utf8');
 
 // The extension release the site currently documents.
-const PRODUCT_VERSION = '0.6.7';
-const PREVIOUS_VERSION = '0.6.6';
+const PRODUCT_VERSION = '0.7.0';
+const PREVIOUS_VERSION = '0.6.7';
 
 // Pages that carry the hand-duplicated chrome (header brand badge + footer).
 const CHROME_PAGES = [
@@ -86,7 +86,7 @@ test('features page heading, legend and table agree on the release', () => {
   );
   assert.ok(
     /class="feat-row feat-new-7"/.test(html),
-    'at least one feature row must be tagged new for 0.6.7',
+    'at least one feature row must be tagged new for 0.7.0',
   );
 
   // The declared totals must equal the real table: category counts sum, the

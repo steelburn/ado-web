@@ -859,7 +859,7 @@ summary:focus-visible {
 .feat-new-5 > code:first-child::after { content: "new · 0.6.5"; color: var(--gold); background: rgba(215, 186, 125, 0.08); border-color: rgba(215, 186, 125, 0.4); }
 .feat-new-6 { box-shadow: inset 3px 0 0 rgba(34, 211, 238, 0.5); }
 .feat-new-7 { box-shadow: inset 3px 0 0 rgba(240, 113, 120, 0.5); }
-.feat-new-7 > code:first-child::after { content: "new · 0.6.7"; color: var(--rose); background: rgba(240, 113, 120, 0.08); border-color: rgba(240, 113, 120, 0.4); }
+.feat-new-7 > code:first-child::after { content: "new · 0.7.0"; color: var(--rose); background: rgba(240, 113, 120, 0.08); border-color: rgba(240, 113, 120, 0.4); }
 .feat-new-6 > code:first-child::after { content: "new · 0.6.6"; color: var(--aqua); background: rgba(34, 211, 238, 0.08); border-color: rgba(34, 211, 238, 0.4); }
 
 /* Section-sub legend pills (feature reference) */
