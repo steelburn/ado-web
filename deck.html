@@ -478,41 +478,40 @@
         <div class="slide__notes">Walk the mockup: left is the backlog, right is the agent chat, bottom is the branch and status. This is the entire product surface in one screen.</div>
       </section>
 
-      <!-- 13 · What's new in v0.7.0 -->
+      <!-- 13 · What's new since v0.6.5 -->
       <section class="slide" id="s14" aria-roledescription="slide" aria-label="Slide 14 of 17">
         <div class="s-head">
-          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Release · v0.7.0</p>
-          <h2 class="s-title">What's new in 0.7.0.</h2>
+          <p class="s-kicker"><span class="s-kicker-dot" aria-hidden="true"></span>Release window · v0.6.5 → v0.7.0</p>
+          <h2 class="s-title">What's new since 0.6.5.</h2>
         </div>
         <div class="s-grid s-grid--3">
           <div class="s-card">
-            <h3>Steer, don't stop</h3>
+            <h3>A session that remembers</h3>
             <ul class="s-bullets">
-              <li>Type while the AI works: <strong>Steer</strong> folds your instruction into the running turn, <strong>Queue</strong> parks it as a numbered chip</li>
-              <li><code>adoCode.chat.inputWhileBusy</code> — default <code>steer</code>; steering never discards work in progress</li>
-              <li>Enter now works mid-turn, multi-line input stays readable, history stops auto-jumping</li>
+              <li><strong>Goal</strong> + a session <strong>To-do list</strong> in the activity bar</li>
+              <li><strong>Editable checklists</strong>, session-scoped storage, archives</li>
+              <li>Cards <strong>survive a reload</strong>; <code>/remember</code> memory files</li>
             </ul>
           </div>
           <div class="s-card">
-            <h3>A calmer chat</h3>
+            <h3>A calmer, sturdier chat</h3>
             <ul class="s-bullets">
-              <li>Density modes via <code>adoCode.chat.density</code> — comfortable, compact or answers-only</li>
-              <li>Tool calls fold into one activity row, reasoning reads as quiet text, attachments render as chips</li>
-              <li>A turn summary line, jump-to-latest and collapse-all keep long threads scannable</li>
+              <li><strong>Steer</strong> vs. <strong>Queue</strong>, density modes, quieter turns</li>
+              <li><strong>Batch file reads</strong>, a loop <strong>circuit breaker</strong>, safer shells</li>
+              <li><strong>Chat in the editor area</strong>; mermaid <strong>exports to SVG</strong></li>
             </ul>
           </div>
           <div class="s-card">
             <h3>Runs that don't blink</h3>
             <ul class="s-bullets">
-              <li>Switching sessions no longer aborts a running turn — it continues detached behind a <strong>Running</strong> badge</li>
-              <li>Warned before a background run is stopped; the session name updates as soon as the topic is known</li>
-              <li>Delegation suggestions, <strong>View Archived Goals</strong> for superseded objectives, and <code>/remember</code> now actually remembers</li>
-              <li>A session-scoped <strong>To-do</strong> view keeps the plan beside the chat</li>
+              <li>One work item per session, or <strong>unattached</strong> to a project</li>
+              <li><strong>Detached background runs</strong>, guarded, with a status badge</li>
+              <li>The AI <strong>suggests delegating</strong>; <strong>Review Task Detail</strong> checks it</li>
             </ul>
           </div>
         </div>
-        <p class="s-footnote">One shared <em>error banner</em> replaces the scattered per-surface errors, and there is a <em>control for every setting</em> — a new setting can no longer ship without a UI switch.</p>
-        <div class="slide__notes">Presenting the 0.7.0 delta: mid-run input — <strong>Steer</strong> folds your instruction into the running turn, <strong>Queue</strong> parks it — plus chat density modes, a decluttered tool and reasoning stream, background runs that survive a session switch behind a <strong>Running</strong> badge, delegation suggestions, and archived goals you can still reopen. The slide also names the session-scoped To-do view and the consistency pass — one shared error banner, and a control for every setting.</div>
+        <p class="s-footnote">Also in this window: <em>per-organization PATs</em>, a <em>token-accounting overhaul</em>, one shared <em>error banner</em>, a <em>control for every setting</em>.</p>
+        <div class="slide__notes">The whole 0.6.5 → 0.7.0 window on one slide. Session: Goal plus a session To-do list in the activity bar with To-do tools in every mode, per-session to-do storage, editable checklists, a session-scoped To-do view and Archived Goals; thinking and tool cards survive a reload; /remember plus memory previews and one-click opening of memory files. Chat: Steer vs. Queue via adoCode.chat.inputWhileBusy, density modes, folded tool rows, quiet reasoning, attachment chips, jump-to-latest and collapse-all, batch file reads, a loop circuit breaker, a workspace delete tool, shell-safety and Windows command handling, honest tool cards, cleaner streaming, one quiet status line, a token-accounting overhaul, a control for every setting, and one shared error banner. Runs: one work item per session or unattached project mode, detached background runs with a guard and a Running/Background badge, live session names, AI task review from Review Task Detail, delegation suggestions, chat in the editor area, header quick actions, a secondary sidebar, inline mermaid that exports to SVG, and per-organization PATs. features.html lists all 39 capabilities; the deck is the curated tour.</div>
       </section>
 
       <!-- 14 · Install -->

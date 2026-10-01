@@ -29,6 +29,14 @@ All notable changes to the ADO Code website.
 - New guard in `tests/architecture-doc.test.mjs`: the architecture doc must
   label its asset edges with `SITE_VERSION`, its committed SVG exports must match,
   and its deck slide count must match `deck.html`. Suite 199 → 202.
+- `tests/version-consistency.test.mjs` spans the whole window now: the What’s new
+  slide must announce “What’s new since 0.6.5.”, name the `v0.6.5 → v0.7.0` window,
+  and cover seventeen capability markers across the table’s areas. Suite 202 → 203.
+- The What's new slide's fixed 16:9 canvas is guarded now:
+  `tests/version-consistency.test.mjs` fails if a column gains a fourth bullet
+  (measured at the real 1280×720 canvas, four two-line bullets run 3px past the
+  598px content box), if a bullet passes 58 characters, or if the footnote passes
+  130. The slide itself was cut to three bullets a column. Suite 203 → 204.
 
 ### Changed
 
@@ -59,6 +67,21 @@ All notable changes to the ADO Code website.
   exported SVG/PNG now read `?v=0.11.0` / `17-slide`, and
   `scripts/set-site-version.mjs` rewrites the doc alongside the root pages, so the
   next `SITE_VERSION` bump cannot leave it stale.
+- **Deck “What’s new” slide widened to the whole release window** — it used to stop
+  at 0.7.0; it now covers every capability the table marks `new · 0.6.5+`, so its three
+  cards group the 0.6.5 → 0.7.0 window: *A session that remembers* (Goal & To-do,
+  per-session storage and editable checklists, archived goals, memory files and
+  `/remember`), *A calmer, sturdier chat* (batch file reads, the loop circuit
+  breaker, shell-safety guardrails, steer vs. queue, density, honest tool cards,
+  the token-accounting overhaul) and *Runs that don’t blink* (unattached project
+  mode, detached background runs, live session names, delegation suggestions, AI
+  task review, editor-area chat and inline mermaid). The heading is now “What’s new
+  since 0.6.5.” with a `v0.6.5 → v0.7.0` kicker. It is also **sized to fit its fixed
+  canvas**: the slide sits in a fixed 1280×720 canvas with `overflow: hidden`,
+  and the wider copy ran 271px past the 598px content box (the 0.7.0-only
+  version already ran 155px past), so each column now carries three tighter
+  bullets — measured at 69px of clearance.
+  The slide’s speaker notes keep the long form of every trimmed capability.
 
 ## [0.11.0] — 2026-09-30
 

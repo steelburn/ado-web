@@ -162,11 +162,11 @@ test('the new-since baseline is not ahead of the documented release', () => {
   );
 });
 
-test('deck announces the release and its own What\'s new slide', () => {
+test('deck announces the release window and its own What\'s new slide', () => {
   const html = read('deck.html');
   assert.ok(
-    html.includes(`What's new in ${PRODUCT_VERSION}.`),
-    "deck must have a What's-new slide for the current release",
+    html.includes(`What's new since ${NEW_SINCE}.`),
+    "deck must have a What's-new slide for the marketed window (since 0.6.5)",
   );
   assert.ok(
     !html.includes(`What's new in ${PREVIOUS_VERSION}.`),
@@ -179,12 +179,27 @@ test('deck announces the release and its own What\'s new slide', () => {
   );
 });
 
-test("the deck's What's new slide covers the release capability set", () => {
+test("the deck's What's new slide covers the release-window capability set", () => {
   const html = read('deck.html');
-  // The deck must not lag the table: when rows are added for a release,
-  // this guard fails until the What's new slide covers them too.
+  // The deck must not lag the table: every area the table marks "new" since
+  // NEW_SINCE must be represented on the What's new slide. This guard fails
+  // until the slide covers them too.
   const markers = [
     'session-scoped',             // session-scoped To-do view
+    'editable checklists',        // per-session To-do storage
+    'survive a reload',           // thinking & tool cards persist
+    '/remember',                  // workspace memory
+    'Steer',                      // steer vs. queue mid-run input
+    'circuit breaker',            // loop circuit breaker
+    'Batch file reads',           // batched tool reads
+    'token-accounting overhaul',  // model / token accounting
+    'Detached background runs',   // detached background runs
+    'unattached',                 // unattached project mode
+    'Review Task Detail',         // AI task review
+    'Chat in the editor area',    // editor-area chat
+    'exports to SVG',             // mermaid diagrams
+    'suggests delegating',        // delegation suggestions
+    'per-organization PATs',      // per-org tokens
     'error banner',               // one shared error banner
     'control for every setting',  // every setting has a UI control
   ];
@@ -194,6 +209,14 @@ test("the deck's What's new slide covers the release capability set", () => {
       `the deck What's new slide must cover ${marker}`,
     );
   }
+});
+
+test("the deck's What's new slide names the marketed release window", () => {
+  const html = read('deck.html');
+  assert.ok(
+    html.includes(`v${NEW_SINCE} → v${PRODUCT_VERSION}`),
+    "deck What's-new slide must name the 0.6.5 → 0.7.0 window",
+  );
 });
 
 test('no page still advertises the previous release', () => {
@@ -218,5 +241,46 @@ test('README and capture tooling name the current version', () => {
   assert.ok(
     compose.includes(`ado-code-${PRODUCT_VERSION}.vsix`),
     'capture tooling must mount the current .vsix',
+  );
+});
+
+// The What's new slide lives in a FIXED 16:9 canvas: `.js .deck-stage` is
+// 1280x720 and `.slide` is `overflow: hidden`, so anything past the 598px
+// content box is silently clipped. Measured with headless Chrome at the real
+// canvas size: 3 two-line bullets per column leave ~69px of headroom, a 4th
+// bullet overflows, and a single three-line bullet costs 29px. These are the
+// copy limits the slide is known to fit inside — trim the copy, do not grow the box.
+test("the deck's What's new slide fits its fixed 16:9 canvas", () => {
+  const MAX_BULLETS = 3;
+  const MAX_BULLET_CHARS = 58;
+  const MAX_FOOTNOTE_CHARS = 130;
+  const html = read('deck.html');
+  const start = html.indexOf('id="s14"');
+  assert.ok(start > -1, "the deck must still carry the What's new slide (#s14)");
+  const block = html.slice(start, html.indexOf('</section>', start));
+  const cards = [...block.matchAll(/<ul class="s-bullets">([\s\S]*?)<\/ul>/g)];
+  assert.equal(cards.length, 3, "the What's new slide keeps its three columns");
+  cards.forEach((card, i) => {
+    const bullets = [...card[1].matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) =>
+      m[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(),
+    );
+    assert.ok(bullets.length > 0, `column ${i + 1} keeps at least one bullet`);
+    assert.ok(
+      bullets.length <= MAX_BULLETS,
+      `column ${i + 1} has ${bullets.length} bullets — more than ${MAX_BULLETS} overflows the slide's fixed 16:9 canvas`,
+    );
+    for (const bullet of bullets) {
+      assert.ok(
+        bullet.length <= MAX_BULLET_CHARS,
+        `column ${i + 1} bullet is ${bullet.length} chars (max ${MAX_BULLET_CHARS} — longer wraps to a third line and clips): ${bullet}`,
+      );
+    }
+  });
+  const foot = block.match(/<p class="s-footnote">([\s\S]*?)<\/p>/);
+  assert.ok(foot, "the What's new slide keeps its footnote");
+  const footText = foot[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  assert.ok(
+    footText.length <= MAX_FOOTNOTE_CHARS,
+    `the footnote is ${footText.length} chars — keep it within ${MAX_FOOTNOTE_CHARS} so it stays one line`,
   );
 });
