@@ -26,6 +26,9 @@ All notable changes to the ADO Code website.
   document the documented release's capability set (steer/queue, density modes,
   delegation suggestions, the declutter pass, background runs, archived goals and
   the settings-coverage guard). Suite 197 → 198.
+- New guard in `tests/architecture-doc.test.mjs`: the architecture doc must
+  label its asset edges with `SITE_VERSION`, its committed SVG exports must match,
+  and its deck slide count must match `deck.html`. Suite 199 → 202.
 
 ### Changed
 
@@ -50,6 +53,12 @@ All notable changes to the ADO Code website.
   setting). Guarded by a new test, "the deck's What's new slide covers the release
   capability set", so the deck can no longer lag the table when rows are added for a
   release.
+- **`docs/architecture.md` cache-bust drift fixed** — the diagram’s IDX→STY/MAIN
+  edges had advertised `?v=0.7.0` since the page split while the site shipped
+  `?v=0.11.0`, and the deck node still read “16-slide”. The mermaid source and its
+  exported SVG/PNG now read `?v=0.11.0` / `17-slide`, and
+  `scripts/set-site-version.mjs` rewrites the doc alongside the root pages, so the
+  next `SITE_VERSION` bump cannot leave it stale.
 
 ## [0.11.0] — 2026-09-30
 

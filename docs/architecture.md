@@ -80,7 +80,7 @@ their assets.
 flowchart LR
     subgraph Pages["HTML entry points"]
         IDX["index.html<br/>single landing page"]
-        DECK["deck.html<br/>16-slide deck"]
+        DECK["deck.html<br/>17-slide deck"]
         E404["404.html"]
     end
 
@@ -105,8 +105,8 @@ flowchart LR
         LD["JSON-LD structured data<br/>(inline in index.html)"]
     end
 
-    IDX -->|"?v=0.7.0"| STY
-    IDX -->|"?v=0.7.0"| MAIN
+    IDX -->|"?v=0.11.0"| STY
+    IDX -->|"?v=0.11.0"| MAIN
     IDX --> IMG
     IDX --> VID
     IDX --> LD
@@ -130,7 +130,11 @@ Notes:
   navigation, `G` overview grid, `N` speaker notes, `F` fullscreen, progress bar,
   and touch swipe.
 - Assets are referenced with a **`?v=` cache-bust query string** so nginx's
-  `immutable` caching can be used safely (see §4).
+  `immutable` caching can be used safely (see §4). The `?v=` labels on the
+  IDX→STY/MAIN edges above therefore track `SITE_VERSION`
+  (`scripts/site-version.mjs`): `node scripts/set-site-version.mjs` rewrites
+  them together with the pages, and `tests/architecture-doc.test.mjs` fails if
+  they drift.
 
 ---
 
