@@ -27,6 +27,13 @@ All notable changes to the ADO Code website.
   eyebrow, JSON-LD `softwareVersion`, feature-reference heading and legend and
   the deck kickers all moved from v0.7.0 to v0.8.3. The gallery's launch-film
   line no longer names a version, because the film predates 0.8.x.
+- **Two more shots are real 0.8.3 captures** — `consent-countdown.png` and
+  `mcp-skills.png` came off the code-server + Playwright harness, taking the
+  library to 9 captured of 13. The consent card only renders in **Chat** mode
+  (Act and Yolo auto-approve every tool call), and the Configuration panel is
+  reached from the chat's ⋯ menu: `adoCode.openSettings` has no working
+  chord in the web shell and resolves to a second webview frame, not the chat's.
+- **`SITE_VERSION` 0.12.0 -> 0.13.0** so the two new screenshots bust caches.
 - **The deck's What's-new slide covers the whole window** — it leads with the
   remote console, documentation projects and the agent changes, with the earlier
   0.6.5 → 0.7.0 work recapped in the speaker notes, so the slide stays inside its

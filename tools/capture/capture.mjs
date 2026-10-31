@@ -120,6 +120,23 @@ function makeHelpers(page, opts) {
     async focusView(page, label) {
       await page.locator(`.activitybar [aria-label="${label}"]`).first().click();
     },
+    // Open an entry of the chat webview's \u22ef (kebab) menu by label.
+    // Some surfaces (Configuration) are only reachable this way: their command
+    // ids resolve to no-op chords inside the code-server web shell.
+    async openMenu(label) {
+      await frame().locator('.kebab-trigger').first().click();
+      const item = frame().locator('.kebab-dropdown').getByText(label, { exact: false }).first();
+      await item.waitFor({ state: 'visible', timeout: 5000 });
+      await item.click();
+    },
+    // Mode chips (Chat / Plan / Act / Yolo) live in the chat webview toolbar.
+    // Act and Yolo auto-approve every tool call, so the consent card only
+    // renders in Chat mode — consent scenes must switch modes first.
+    async setMode(label) {
+      const chip = frame().locator('.mode-option').filter({ hasText: label }).first();
+      await chip.click();
+      await page.waitForTimeout(500);
+    },
     // Palette fallback, kept for ad-hoc/debug use. Prefer runCommandId: see CHORDS.
     async runCommand(page, title) {
       await page.keyboard.press('Control+Shift+P');
@@ -199,6 +216,8 @@ const SCENES = {
   },
   async consentCountdown({ helpers, page }) {
     await helpers.openChat(page);
+    // Act/Yolo auto-approve tools; switch to Chat so the card can render.
+    await helpers.setMode('Chat');
     await helpers.chat(page, 'Run the card-token migration migration job.');
     await helpers.frame().locator('.consent-card').first().waitFor();
     await helpers.frame().locator('.consent-card-timer-text').first().waitFor();
@@ -229,9 +248,12 @@ const SCENES = {
     await helpers.frame().locator('.markdown-body svg').first().waitFor();
   },
   async mcpSkills({ helpers, page }) {
-    // Configuration webview (adoCode.openSettings) → MCP servers / Skills tab.
-    await helpers.runCommandId(page, 'adoCode.openSettings');
-    await helpers.waitForWebview(page);
+    // Configuration webview → MCP servers / Skills. Opened from the chat kebab
+    // menu: the adoCode.openSettings command has no working chord in the web
+    // shell, and the panel resolves as a second webview frame, not the chat one.
+    await helpers.openChat(page);
+    await helpers.openMenu('Configuration');
+    await helpers.waitForWebview(page, '.config-mcp, .skill-catalog');
     await helpers.frame().locator('.config-mcp, .skill-catalog').first().waitFor();
   },
   async workItemWebview({ helpers, page }) {
