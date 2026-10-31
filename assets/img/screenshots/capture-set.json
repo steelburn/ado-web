@@ -84,17 +84,19 @@
       "surface": "work item detail webview (WorkItemDetailPanel)",
       "scene": "workItemWebview",
       "command": "ADO Code: Show Full Details",
-      "open": "select work item 502 (`ADO Code: Select Work Item`), then run `ADO Code: Show Full Details`",
-      "settle": "the work item detail webview shows the description, acceptance criteria and discussion",
-      "note": "Most fragile scene: `Show Full Details` needs a selected work item, and selection goes through a native QuickPick. If it proves unreliable in the web shell, hand-capture this shot."
+      "open": "expand the tree to `Card tokenization` (#502), right-click the row, then choose `Show Full Details`",
+      "settle": "the work item detail webview opens in an editor tab (`User Story #502`) showing description, acceptance criteria and discussion",
+      "note": "`Show Full Details` must be invoked from the tree item's context menu — the command palette and the Ctrl+Alt+D chord both fail because they carry no tree item (`Cannot read properties of undefined (reading 'workItemId')`). The detail renders in its own webview panel in the editor area, not inside the Chat webview."
     },
 
     {
       "id": "backlog-tree",
-      "mode": "manual",
-      "surface": "native work items tree (adoCode.workItems)",
-      "reason": "Tree views are virtualised native workbench chrome; code-server's web shell does not render their rows faithfully (no real explorer styling, different scroll model).",
-      "how": "Desktop VS Code with the demo org connected: expand Epic → Feature → Story → Task in the ADO Code work items view, 1440x900 @2x."
+      "mode": "browser",
+      "surface": "work items tree (adoCode.workItems)",
+      "scene": "backlogTree",
+      "open": "click the ADO Code activity-bar container, collapse the Chat and To-do panes, then expand Epic → Feature → Story → Task in the Work Items tree",
+      "settle": "the tree shows all four levels: #500 Epic → #501 Feature → #502 User Story → #503/#504 Tasks",
+      "note": "Captured from the real code-server workbench, so the tree styling is the web workbench's, not desktop VS Code's. Collapsing the panes above the tree keeps all four levels in frame."
     },
     {
       "id": "command-palette",

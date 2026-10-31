@@ -204,6 +204,46 @@ function makeHelpers(page, opts) {
     async openSidebar(page) {
       await page.locator('.activitybar').first().click();
     },
+    // The ADO Code views (Chat, To-do, Work Items, Status, Worktrees) share ONE
+    // activity-bar container, so opening it reveals the work items tree as well
+    // as the chat webview. The container's class carries a build hash, hence the
+    // substring match.
+    async openAdoContainer(page) {
+      const item = page
+        .locator('.activitybar .action-item:has([class*="activity-workbench-view-extension-adoCode"])')
+        .first();
+      // Idempotent: the icon is a toggle, so clicking it while the container is
+      // already open hides the whole sidebar (and kills the chat webview).
+      const expanded = await item.getAttribute('aria-expanded');
+      const live = page.frames().some((f) => /fake\.html/.test(f.url()));
+      if (expanded !== 'true' || !live) await item.click();
+      await this.waitForWebview(page);
+    },
+    // Expand Epic -> Feature -> Story in the work items tree (Task rows are the
+    // leaves). Rows are addressed by their title text, not by index: the flat
+    // list also holds the to-do, status and worktree rows.
+    async expandBacklog(page) {
+      for (const title of ['Payment Platform Overhaul', 'Checkout revamp', 'Card tokenization']) {
+        const row = page.locator('.sidebar .monaco-list-row', { hasText: title }).first();
+        const twisty = row.locator('.monaco-tl-twistie').first();
+        if (await twisty.count()) {
+          await twisty.click({ force: true });
+          await page.waitForTimeout(1500);
+        }
+      }
+    },
+    // Invoke a tree item context-menu command: it is the only route that hands
+    // `adoCode.showWorkItemDetail` the tree item it needs (the palette/chord
+    // path throws "Cannot read properties of undefined (reading 'workItemId')").
+    async treeItemCommand(page, title, label) {
+      await page.locator('.sidebar .monaco-list-row', { hasText: title }).first().click({ button: 'right' });
+      await page.waitForTimeout(1500);
+      await page
+        .locator('.context-view .action-item, .monaco-menu .action-item')
+        .filter({ hasText: label })
+        .first()
+        .click({ timeout: 10000 });
+    },
   };
 }
 
@@ -256,15 +296,29 @@ const SCENES = {
     await helpers.waitForWebview(page, '.config-mcp, .skill-catalog');
     await helpers.frame().locator('.config-mcp, .skill-catalog').first().waitFor();
   },
+  async backlogTree({ helpers, page }) {
+    await helpers.openAdoContainer(page);
+    // Give the tree the sidebar's vertical room: collapse the panes above it.
+    for (const label of ['Chat', 'To-do']) {
+      const head = page.locator('.sidebar .pane-header', { hasText: label }).first();
+      if (await head.count()) await head.click({ force: true }).catch(() => {});
+      await page.waitForTimeout(800);
+    }
+    await helpers.expandBacklog(page);
+    // Settle: the deepest (Task) rows are present.
+    await page.locator('.sidebar .monaco-list-row', { hasText: 'Add token vault adapter' }).first().waitFor();
+  },
   async workItemWebview({ helpers, page }) {
-    // Fragile: needs a selected work item; selection normally goes through a
-    // native QuickPick. See capture-set.json note for this shot.
-    await helpers.runCommandId(page, 'adoCode.selectWorkItem');
-    await page.locator('.quick-input-box input').fill('502');
-    await page.locator('.quick-input-box input').press('Enter');
-    await helpers.runCommandId(page, 'adoCode.showWorkItemDetail');
-    await helpers.waitForWebview(page);
-    await helpers.frame().getByText(/acceptance criteria/i).first().waitFor();
+    // The detail panel is opened from the tree item's context menu, which is the
+    // only path that passes the tree item through to the command.
+    await helpers.openAdoContainer(page);
+    await helpers.expandBacklog(page);
+    await helpers.treeItemCommand(page, 'Card tokenization', 'Show Full Details');
+    // The detail panel is a *second* webview, opened in the editor area, so bind
+    // the frame by a selector only it contains: the chat webview never renders an
+    // acceptance-criteria list.
+    await helpers.waitForWebview(page, 'text=Acceptance Criteria');
+    await page.locator('.tabs-container .tab', { hasText: '#502' }).first().waitFor();
   },
 };
 
