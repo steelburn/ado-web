@@ -20,8 +20,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (rel) => readFileSync(join(root, rel), 'utf8');
 
 // The extension release the site currently documents.
-const PRODUCT_VERSION = '0.7.0';
-const PREVIOUS_VERSION = '0.6.7';
+const PRODUCT_VERSION = '0.8.3';
+const PREVIOUS_VERSION = '0.7.0';
 
 // Rows from this release onward are marketed as "new" on features.html.
 const NEW_SINCE = '0.6.5';
@@ -202,6 +202,12 @@ test("the deck's What's new slide covers the release-window capability set", () 
     'per-organization PATs',      // per-org tokens
     'error banner',               // one shared error banner
     'control for every setting',  // every setting has a UI control
+    'QR-paired console',          // remote console pairing
+    'doc-ba',                     // documentation project templates
+    'KRiSA',                      // government governance mode
+    'Tiered testing',             // AGENTS.md test ladder
+    'interrupt a running tool',   // mid-run interruption
+    'memory budgets',             // budgeted memory injection
   ];
   for (const marker of markers) {
     assert.ok(

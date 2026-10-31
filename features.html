@@ -49,7 +49,7 @@
       });
     })();
   </script>
-  <link rel="stylesheet" href="/assets/css/style.css?v=0.11.0">
+  <link rel="stylesheet" href="/assets/css/style.css?v=0.12.0">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -64,7 +64,7 @@
       <a class="brand" href="/" aria-label="ADO Code home">
         <img src="/assets/img/logo.svg" alt="" width="28" height="28" class="brand-mark">
         <span class="brand-name">ADO&nbsp;Code</span>
-        <span class="brand-ver">v0.7.0</span>
+        <span class="brand-ver">v0.8.3</span>
       </a>
       <nav class="nav-links" id="nav-links" aria-label="Primary">
         <a href="/features.html" data-nav="features" aria-current="page">Features</a>
@@ -238,14 +238,14 @@
         <div class="section-head reveal">
           <p class="eyebrow">Feature reference</p>
           <h2>Everything ADO Code does.</h2>
-          <p class="section-sub">Everything ADO Code does in v0.7.0 — 120 capabilities across 8 areas, straight from the release notes. The list is long, so it stays collapsed until you ask for it.</p>
+          <p class="section-sub">Everything ADO Code does in v0.8.3 — 138 capabilities across 10 areas, straight from the release notes. The list is long, so it stays collapsed until you ask for it.</p>
         </div>
 
         <details class="feat-details reveal" id="feat-details">
           <summary class="feat-toggle">
             <span class="feat-toggle-ico" aria-hidden="true">☰</span>
             <span class="feat-toggle-label">Show the full feature list</span>
-            <span class="feat-toggle-count">120 features · 8 categories</span>
+            <span class="feat-toggle-count">138 features · 10 categories</span>
             <span class="feat-chevron" aria-hidden="true"></span>
           </summary>
           <div class="feat-details-body">
@@ -269,7 +269,7 @@
 
           <div class="feat-row feat-new"><code>Unattached project mode</code><span>A <strong>None (no project)</strong> choice in the chat header's project dropdown runs ADO Code standalone — the work-items tree and board go dormant, stored bindings are cleared without missing-credential warnings, and the assistant works as a plain coding tool over the local repo. When ADO credentials are configured, projects are still fetched in the background so you can re-attach at any time (the setup wizard now offers <strong>None</strong> as its default initial option).</span></div>
 
-          <div class="feat-cat" id="feat-chat" style="--cat:#569cd6"><span class="feat-cat-ico">💬</span>AI Chat &amp; Modes<span class="feat-cat-count">41</span></div>
+          <div class="feat-cat" id="feat-chat" style="--cat:#569cd6"><span class="feat-cat-ico">💬</span>AI Chat &amp; Modes<span class="feat-cat-count">42</span></div>
           <div class="feat-row"><code>Any LLM, one chat</code><span>OpenAI-compatible APIs (OpenRouter, Ollama, LM Studio…) and Anthropic — bring your own key and model.</span></div>
           <div class="feat-row"><code>Chat / Plan / Act / YOLO</code><span>Click-to-switch tool modes: Chat (ask + approve), Plan (read-only), Act (auto-approve with allowlist), YOLO (full autonomy) — also cycled from the Status Panel.</span></div>
           <div class="feat-row"><code>Agentic tool loop</code><span>Tool calling with an agentic loop, mode-aware system prompts (role, tools, guidelines, environment) and an iteration budget per turn — 100 by default (configurable up to 1000), where each iteration is one model round-trip that may fire several tools in parallel.</span></div>
@@ -313,7 +313,8 @@
           <div class="feat-row feat-new"><code>Session name updates live</code><span>The auto-assigned session name (derived from the first user message) now appears the moment the AI has processed the opening message, with no need to switch away and back to refresh the header and history dropdown.</span></div>
           <div class="feat-row feat-new"><code>Session-scoped To-do view</code><span>The To-do view renders only the <strong>active chat session's</strong> goal and steps (or the empty placeholder), so switching sessions never leaves another session's list behind.</span></div>
           <div class="feat-row feat-new"><code>Archived goals</code><span>When a new goal is set for a session after the previous one was fully completed, the old goal and its finished steps move to a per-session <code>archive/</code> store so the history stays traceable; read them back through the To-do view's <strong>View Archived Goals</strong> toggle. Deleting a session removes its archive, while the plain <strong>Clear</strong> intentionally keeps it.</span></div>
-          <div class="feat-cat" id="feat-agents" style="--cat:#c586c0"><span class="feat-cat-ico">🤖</span>Agents &amp; Worktrees<span class="feat-cat-count">15</span></div>
+          <div class="feat-row feat-new"><code>Interrupt a running tool</code><span>A message typed while a tool is still running now <strong>interrupts that tool</strong> instead of waiting for it to finish — the turn keeps its progress and the interruption is reported back to the model.</span></div>
+          <div class="feat-cat" id="feat-agents" style="--cat:#c586c0"><span class="feat-cat-ico">🤖</span>Agents &amp; Worktrees<span class="feat-cat-count">16</span></div>
           <div class="feat-row"><code>External agent orchestration</code><span>Delegate to Claude Code, Codex, OpenCode, Hermes, Pi, DeepSeek Harness (dsh) and more — each declared by binary, supported modes and CLI arguments, with a details panel.</span></div>
           <div class="feat-row"><code>Agent detection — Windows-safe</code><span>Detection probes what your terminal can actually run: on Windows it walks a fallback chain (<code>.cmd</code> shim → <code>.exe</code> → bare name) and delegation spawns <strong>that same binary</strong> — native <code>claude.exe</code> installs are detected, npm shims launch through <code>cmd.exe</code> with correct quoting (no ENOENT), and detection re-probes after 15&nbsp;s so an agent installed while VS Code is open shows up without a reload. The Claude adapter's own <code>runTask</code>/<code>resumeTask</code> resolve the executable the same way instead of hard-coding the bare name.</span></div>
           <div class="feat-row"><code>DeepSeek Harness (dsh)</code><span>First-class agent support — auto-detected via <code>dsh --version</code> and delegated through the headless profile (prints the final answer, exits 0 on success). Available from chat, <code>/delegate</code>, the work-item context menu and the <code>delegate_to_agent</code> tool.</span></div>
@@ -330,6 +331,14 @@
           <div class="feat-row"><code>Summary panel</code><span>Completion summaries open in a styled HTML panel with metadata and duration; batch cleanup removes all completed worktrees at once.</span></div>
 
           <div class="feat-row feat-new"><code>AI delegation suggestions</code><span>With <code>adoCode.chat.suggestDelegation</code> on (the default) the assistant can recommend handing a coding task to an installed external agent, rendering a compact suggestion card with <strong>Delegate</strong> (starts the run) and <strong>Dismiss</strong>; turn the setting off to suppress the suggestion prompt entirely.</span></div>
+          <div class="feat-row feat-new"><code>Tiered testing contract</code><span>The <code>AGENTS.md</code> ADO Code generates now derives a test ladder from the scripts the workspace actually defines: type-check on every edit, <code>test:changed</code> over the touched modules while iterating, the full suite before a commit, and host/e2e only on request.</span></div>
+          <div class="feat-cat" id="feat-remote" style="--cat:#4fc1ff"><span class="feat-cat-ico">📱</span>Remote Console<span class="feat-cat-count">6</span></div>
+          <div class="feat-row feat-new"><code>Phone console</code><span>Pair a phone by scanning the <strong>QR code</strong>; the console it opens is a single-page app with <strong>Thread</strong>, <strong>Approvals</strong> and <strong>Runs</strong> tabs, so the whole conversation — not just the unread tail — is reachable from the device.</span></div>
+          <div class="feat-row feat-new"><code>Approvals from the phone</code><span>Tool approval prompts can be answered on the phone. Answering on either surface clears the prompt on both, so a turn never sits blocked waiting for the host.</span></div>
+          <div class="feat-row feat-new"><code>Live run list</code><span>Every agent run with its status, token count and duration. A run that is still progressing when the phone joins is reported as progressing — it used to look stalled or missing.</span></div>
+          <div class="feat-row feat-new"><code>Parallel runs in tabs</code><span>Concurrent runs get a tab each, with their own thread, journal and health panel, so one blocked run no longer hides the others.</span></div>
+          <div class="feat-row feat-new"><code>Console settings</code><span>Stream transport, listen port, pairing mode and the agent/model used for remote sessions are all configurable from the phone.</span></div>
+          <div class="feat-row feat-new"><code>Choice parity</code><span>A choice block answered on one surface now closes on both — the phone and the chat panel stay in step.</span></div>
           <div class="feat-cat" id="feat-git" style="--cat:#ce9178"><span class="feat-cat-ico">⑂</span>Git Workflow<span class="feat-cat-count">5</span></div>
           <div class="feat-row"><code>Branch on pickup</code><span>Auto-creates <code>feature/ADO-&lt;id&gt;-&lt;slug&gt;</code> branches when a task starts (slugged from the work item title).</span></div>
           <div class="feat-row"><code>Changelog on completion</code><span>Updates CHANGELOG.md when a task finishes, with optional auto-commit and posting the entry back to ADO as a comment.</span></div>
@@ -348,7 +357,7 @@
           <div class="feat-row feat-new"><code>Open memory files</code><span>Clicking a memory row opens the backing file; the context menu adds <strong>Open Memory File</strong>, <strong>Preview Memory (Markdown)</strong> and <strong>Copy Memory Content</strong>.</span></div>
 
           <div class="feat-row feat-new"><code>/remember actually remembers</code><span><code>/remember &lt;text&gt;</code> now persists a <code>preference</code> memory — the same store injected into the system prompt — and reports the new count, instead of writing to a notes store nothing ever read; <code>/forget</code> clears that store and reports how many entries were removed.</span></div>
-          <div class="feat-cat" id="feat-mcp" style="--cat:#9cdcfe"><span class="feat-cat-ico">🧩</span>MCP &amp; Skills<span class="feat-cat-count">7</span></div>
+          <div class="feat-cat" id="feat-mcp" style="--cat:#9cdcfe"><span class="feat-cat-ico">🧩</span>MCP &amp; Skills<span class="feat-cat-count">9</span></div>
           <div class="feat-row"><code>MCP servers</code><span>Model Context Protocol support for external tool servers — configure in the UI, right-click to disconnect/reconnect/view details.</span></div>
           <div class="feat-row"><code>Skill catalog</code><span>Browse, install and manage reusable AI skills — 10+ built-in (Code Review, Documentation, Testing, Refactoring, Security Audit, Performance Profiler, Deployment Checklist, Database Schema Review, Accessibility Audit) with search and enable/disable.</span></div>
           <div class="feat-row"><code>AI skill execution</code><span>The AI can discover and run enabled skills mid-conversation via <code>execute_skill</code>; “Execute in Chat” injects the skill prompt and triggers the LLM.</span></div>
@@ -357,7 +366,9 @@
           <div class="feat-row"><code>Project creation wizard</code><span>Multi-step wizard for 9 templates — Node.js (TS/JS), Python, React, Next.js, Laravel, .NET Web API/Console, Empty. Creates projects anywhere: the open workspace folder (blank directories included) is used automatically or you pick one; ADO integration creates the work item in your active project, template option defaults pre-fill, the chosen initial branch is honored and invalid project names are rejected up front (<code>/new-project</code>).</span></div>
           <div class="feat-row"><code>File checkpoints</code><span>Auto-save before AI edits, restore on demand — a safety net for autonomous runs.</span></div>
 
-          <div class="feat-cat" id="feat-model" style="--cat:#d7ba7d"><span class="feat-cat-ico">✦</span>Model Intelligence &amp; Context<span class="feat-cat-count">11</span></div>
+          <div class="feat-row feat-new"><code>Wizard dependency check</code><span>The project wizard gained a <strong>Dependencies</strong> step. What the host can satisfy itself is installed autonomously; a missing runtime or SDK is surfaced with guidance <em>before</em> a single file is scaffolded.</span></div>
+          <div class="feat-row feat-new"><code>Mobile &amp; monorepo scaffolds</code><span><code>/new-project</code> now scaffolds mobile apps and monorepo microservices alongside the existing templates, with workspace tooling wired up for the monorepo layout.</span></div>
+          <div class="feat-cat" id="feat-model" style="--cat:#d7ba7d"><span class="feat-cat-ico">✦</span>Model Intelligence &amp; Context<span class="feat-cat-count">13</span></div>
           <div class="feat-row"><code>Capability detection</code><span>Vision and tool-calling support inferred per model — image attach is disabled for non-vision models, and models without tools get a persistent warning. Three layers: per-model overrides &gt; live gateway data &gt; name heuristic.</span></div>
           <div class="feat-row"><code>Capability overrides</code><span><code>adoCode.llm.capabilityOverrides</code> declares vision/tool support per model id when auto-detection is wrong — edited as structured rows in the Configuration page.</span></div>
           <div class="feat-row"><code>Dynamic context window</code><span>Context size auto-detected from <code>/models</code> (Ollama <code>n_ctx</code>, OpenRouter <code>context_length</code>…) — live data overrides the built-in table. Known models now match by longest key first with word-boundary guards, so <code>o1-mini</code> resolves to 128k instead of falling through to <code>o1</code> and unrelated ids containing <code>o1</code> don't false-match.</span></div>
@@ -371,6 +382,15 @@
 
           <div class="feat-row feat-new"><code>Token-accounting overhaul</code><span>Tool output is capped by the content's <em>actual</em> chars-per-token density rather than a flat ratio, so capped payloads don't overshoot their budget; Anthropic native counting serializes tool turns into real <code>tool_use</code>/<code>tool_result</code> blocks (no silent HTTP 400s); and OpenAI reasoning models are skipped instead of probed with a wasteful <code>max_tokens: 1</code> call.</span></div>
 
+          <div class="feat-row feat-new"><code>Context budgets</code><span>Every artifact ADO Code generates is measured against a budget — the work-item discussion thread and each injected category included — with a regression suite pinning the limits so a quietly relaxed budget fails a test.</span></div>
+          <div class="feat-row feat-new"><code>Memory budgets</code><span>Memory injected into a prompt is budgeted and oversized writes are refused up front, instead of being silently truncated on the way in.</span></div>
+          <div class="feat-cat" id="feat-docs" style="--cat:#ce9178"><span class="feat-cat-ico">📄</span>Documentation Projects<span class="feat-cat-count">6</span></div>
+          <div class="feat-row feat-new"><code>Documentation projects</code><span>A <strong>Documentation</strong> category in the new-project wizard, with three role templates: <code>doc-ba</code> (business analysis), <code>doc-writer</code> (IT documentation) and <code>doc-tester</code> (test &amp; UAT) — each emitting its own document set, registers and control files.</span></div>
+          <div class="feat-row feat-new"><code>Governed front matter</code><span>Every document carries doc id, version, owner and approver in YAML front matter, and every register is emitted as both Markdown and CSV from one column contract — so the two never drift.</span></div>
+          <div class="feat-row feat-new"><code>KRiSA (Government) mode</code><span>Turning on <code>governance: KRiSA (Government)</code> swaps in a 26-artefact catalogue, a per-role compliance matrix and classification handling (TERHAD / RESTRICTED).</span></div>
+          <div class="feat-row feat-new"><code>Export to Word, Excel &amp; PNG</code><span>An export step on documentation projects: Markdown → DOCX with tracked approvals, registers → XLSX, and Mermaid diagrams → PNG at 2× scale.</span></div>
+          <div class="feat-row feat-new"><code>Source-inputs tree</code><span>Each project gets <code>inputs/&lt;doc-type&gt;/</code> folders plus an index, so source material lives beside the document set that cites it.</span></div>
+          <div class="feat-row feat-new"><code>Docs from chat</code><span><code>list_doc_templates</code> and <code>build_documentation</code> expose the same templates the wizard uses, so a document set can be scaffolded from a chat turn.</span></div>
           <div class="feat-cat" id="feat-ux" style="--cat:#6a9955"><span class="feat-cat-ico">⚙</span>Configuration &amp; UX<span class="feat-cat-count">18</span></div>
           <div class="feat-row"><code>Configuration page</code><span>Settings grouped into sidebar categories — Connection, AI &amp; Modes, Permissions, Workflow, Integrations — each with a setting-count badge; Advanced toggle gates per-mode models, capability overrides, choice detection and native token counting. Model pickers — main model, per-mode rows, choice-detection model and capability overrides — are dropdowns auto-filled from the provider's model list when credentials are saved (type-a-custom-model escape hatch and Refresh buttons included), not bare text fields.</span></div>
           <div class="feat-row"><code>Focused wizard views</code><span>Opening the Configuration page, the project wizard or first-run setup collapses the sibling sidebar views so the wizard gets the full view container — they are restored when it closes, and views you had hidden yourself stay hidden. The chat kebab’s “Configuration…” now opens the in-app Configuration page instead of VS Code’s native settings.</span></div>
@@ -423,7 +443,7 @@
         <a href="/deck.html">Presentation deck</a>
       </div>
       <div class="footer-meta">
-        <span>v0.7.0</span>
+        <span>v0.8.3</span>
         <span>·</span>
         <span>© 2026 steelburn (Khairulnizam Hasan)</span>
         <span>·</span>
@@ -434,6 +454,6 @@
 
   <div id="a11y-status" class="sr-only" role="status" aria-live="polite"></div>
 
-  <script src="/assets/js/main.js?v=0.11.0"></script>
+  <script src="/assets/js/main.js?v=0.12.0"></script>
 </body>
 </html>

@@ -2,7 +2,41 @@
 
 All notable changes to the ADO Code website.
 
-## [Unreleased]
+## [0.8.3] — 2026-10-31
+
+### Added
+
+- **Two new areas in the feature reference** — **Documentation Projects**
+  (`doc-ba` / `doc-writer` / `doc-tester` templates, governed front matter,
+  Markdown + CSV registers, KRiSA (Government) mode, Word / Excel / PNG export,
+  the source-inputs tree, docs-from-chat tools) and the **Remote Console**
+  (QR-paired single-page console with Thread / Approvals / Runs, phone-side tool
+  approvals, live and parallel run lists, console settings, choice-card parity).
+- **Rows for the rest of the 0.6.5 → 0.8.3 window** — the project wizard's
+  dependency step, mobile and monorepo scaffolds, the tiered testing contract in
+  `AGENTS.md`, interrupting a running tool, context budgets and memory budgets.
+  The reference now documents **138 capabilities across 10 areas** (was 120
+  across 8).
+- **Six new deck markers** — `tests/version-consistency.test.mjs` now guards the
+  remote console, `doc-ba`, KRiSA, tiered testing, mid-run interruption and
+  memory budgets on the What's-new slide.
+
+### Changed
+
+- **The site documents ADO Code 0.8.3** — the header badge, footer, hero
+  eyebrow, JSON-LD `softwareVersion`, feature-reference heading and legend and
+  the deck kickers all moved from v0.7.0 to v0.8.3. The gallery's launch-film
+  line no longer names a version, because the film predates 0.8.x.
+- **The deck's What's-new slide covers the whole window** — it leads with the
+  remote console, documentation projects and the agent changes, with the earlier
+  0.6.5 → 0.7.0 work recapped in the speaker notes, so the slide stays inside its
+  fixed 16:9 canvas while the guard still sees every marker.
+- **Capture tooling pinned to 0.8.3** — `tools/capture/docker-compose.capture.yml`
+  and its README install `ado-code-0.8.3.vsix`.
+- **`agent-chat-plan.png` recaptured against 0.8.3** — the chat panel, its
+  Thinking/Tools cards and the plan block now come from the real extension.
+
+## [0.7.0] — 2026-10-01
 
 ### Added
 

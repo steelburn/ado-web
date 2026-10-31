@@ -105,8 +105,8 @@ flowchart LR
         LD["JSON-LD structured data<br/>(inline in index.html)"]
     end
 
-    IDX -->|"?v=0.11.0"| STY
-    IDX -->|"?v=0.11.0"| MAIN
+    IDX -->|"?v=0.12.0"| STY
+    IDX -->|"?v=0.12.0"| MAIN
     IDX --> IMG
     IDX --> VID
     IDX --> LD
