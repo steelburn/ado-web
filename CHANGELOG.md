@@ -2,6 +2,45 @@
 
 All notable changes to the ADO Code website.
 
+## [0.8.4] — 2026-11-05
+
+### Added
+
+- **The site documents ADO Code v0.8.4.** Version copy moved 0.8.3 → 0.8.4 in the
+  header badges, footers, hero eyebrow, `index.html` JSON-LD `softwareVersion`,
+  the feature-reference heading, the gallery line, the deck kickers, the README
+  and the capture tooling.
+- **Four new feature rows for 0.8.4** — goal and to-do state kept when a turn
+  runs out of iterations, the Setup Wizard verifying the connection
+  ("Connection verified") instead of asking for a project, the three chat
+  verbosity knobs collapsed into one dial, and What's New reachable from the
+  first second of activation. The feature reference is now **142 capabilities
+  across 10 areas**.
+
+### Changed
+
+- **"New" tagging now starts at 0.8.0.** The window badge was `new · 0.6.5+` on 57
+  rows; it is `new · 0.8.0+` on 21 — the 0.8.0 documentation projects, the
+  0.8.1–0.8.3 remote console, tiered testing, the wizard dependency check and
+  mobile/monorepo scaffolds, plus the four 0.8.4 rows. The 40 rows from the
+  0.6.5 → 0.7.x window lost the badge, and the legend, the CSS badge label and
+  the version-consistency guard (`NEW_SINCE`) moved with them.
+- **The deck's What's new slide narrowed to v0.8.0 → v0.8.4.** The title, kicker,
+  the interrupt-a-running-tool bullet (0.7.2) and the footnote (per-organization
+  PATs, token accounting, error banner, settings coverage — all pre-0.8.0) gave
+  way to the 0.8.x story; the speaker notes now walk the window release by
+  release.
+- **The two "New" highlight chips became "Side by side"** — editor-area chat is
+  no longer a new feature under the 0.8.0 baseline.
+- **`SITE_VERSION` 0.14.0 → 0.15.0** so the badge-label CSS change busts caches;
+  the `?v=` query was rewritten across all ten root pages and the architecture
+  diagram in `docs/architecture.md`.
+
+### Notes
+
+- The screenshot set is unchanged: the 13 gallery shots are still the real 0.8.3
+  captures, so a re-capture against a 0.8.4 build is still pending.
+
 ## [0.8.3] — 2026-10-31
 
 ### Added

@@ -850,7 +850,7 @@ summary:focus-visible {
   white-space: nowrap;
 }
 .feat-new { box-shadow: inset 3px 0 0 rgba(240, 113, 120, 0.5); }
-.feat-new > code:first-child::after { content: "new · 0.6.5+"; color: var(--rose); background: rgba(240, 113, 120, 0.08); border-color: rgba(240, 113, 120, 0.4); }
+.feat-new > code:first-child::after { content: "new · 0.8.0+"; color: var(--rose); background: rgba(240, 113, 120, 0.08); border-color: rgba(240, 113, 120, 0.4); }
 
 /* Section-sub legend pills (feature reference) */
 .sub-em {

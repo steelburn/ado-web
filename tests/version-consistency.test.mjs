@@ -20,11 +20,11 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (rel) => readFileSync(join(root, rel), 'utf8');
 
 // The extension release the site currently documents.
-const PRODUCT_VERSION = '0.8.3';
-const PREVIOUS_VERSION = '0.7.0';
+const PRODUCT_VERSION = '0.8.4';
+const PREVIOUS_VERSION = '0.8.3';
 
 // Rows from this release onward are marketed as "new" on features.html.
-const NEW_SINCE = '0.6.5';
+const NEW_SINCE = '0.8.0';
 
 // Pages that carry the hand-duplicated chrome (header brand badge + footer).
 const CHROME_PAGES = [
@@ -117,22 +117,30 @@ test('features.html documents every capability of the documented release', () =>
   const html = read('features.html');
   // The 0.7.0 capability set: mid-run steer/queue + chat density modes + AI
   // delegation suggestions (the three new settings), the chat-area declutter
-  // pass, detached background runs (guard + Running badge), session-scoped and
-  // archived goals, /remember actually persisting, and the shared error banner
-  // / settings-coverage fixes. Each marker is copy that only ships with a row.
+  // The 0.8.0 → 0.8.4 window: documentation projects (0.8.0), the remote
+  // oversight console (0.8.1-0.8.3), tiered testing with the wizard dependency
+  // check and mobile/monorepo scaffolds (0.8.3), and the 0.8.4 sharpening pass.
+  // Each marker is copy that only ships with a row.
   const RELEASE_CAPABILITIES = [
-    'adoCode.chat.inputWhileBusy',
-    'adoCode.chat.density',
-    'adoCode.chat.suggestDelegation',
-    'Ran N tools',
-    'Latest answer',
-    'Background run',
-    'View Archived Goals',
-    'settings-coverage',
-  ];
+  'doc-ba',
+  'krisa',
+  'source-inputs',
+  'tiered testing',
+  'context budgets',
+  'memory budgets',
+  'dependency check',
+  'monorepo',
+  'qr-paired',
+  'approvals',
+  'goal and to-do',
+  'connection verified',
+  'verbosity',
+  "what's new",
+  'export to word',
+];
   for (const marker of RELEASE_CAPABILITIES) {
     assert.ok(
-      html.includes(marker),
+      html.toLowerCase().includes(marker.toLowerCase()),
       `features.html must document ${marker} in a table row`,
     );
   }
@@ -185,33 +193,25 @@ test("the deck's What's new slide covers the release-window capability set", () 
   // NEW_SINCE must be represented on the What's new slide. This guard fails
   // until the slide covers them too.
   const markers = [
-    'session-scoped',             // session-scoped To-do view
-    'editable checklists',        // per-session To-do storage
-    'survive a reload',           // thinking & tool cards persist
-    '/remember',                  // workspace memory
-    'Steer',                      // steer vs. queue mid-run input
-    'circuit breaker',            // loop circuit breaker
-    'Batch file reads',           // batched tool reads
-    'token-accounting overhaul',  // model / token accounting
-    'Detached background runs',   // detached background runs
-    'unattached',                 // unattached project mode
-    'Review Task Detail',         // AI task review
-    'Chat in the editor area',    // editor-area chat
-    'exports to SVG',             // mermaid diagrams
-    'suggests delegating',        // delegation suggestions
-    'per-organization PATs',      // per-org tokens
-    'error banner',               // one shared error banner
-    'control for every setting',  // every setting has a UI control
-    'QR-paired console',          // remote console pairing
-    'doc-ba',                     // documentation project templates
-    'KRiSA',                      // government governance mode
-    'Tiered testing',             // AGENTS.md test ladder
-    'interrupt a running tool',   // mid-run interruption
-    'memory budgets',             // budgeted memory injection
-  ];
+      'doc-ba',
+      'krisa',
+      'source-inputs',
+      'tiered testing',
+      'context budgets',
+      'memory budgets',
+      'dependency check',
+      'monorepo',
+      'qr-paired',
+      'approvals',
+      'goal and to-do',
+      'connection verified',
+      'verbosity',
+      "what's new",
+      'export to word',
+    ];
   for (const marker of markers) {
     assert.ok(
-      html.includes(marker),
+      html.toLowerCase().includes(marker.toLowerCase()),
       `the deck What's new slide must cover ${marker}`,
     );
   }
@@ -221,7 +221,7 @@ test("the deck's What's new slide names the marketed release window", () => {
   const html = read('deck.html');
   assert.ok(
     html.includes(`v${NEW_SINCE} → v${PRODUCT_VERSION}`),
-    "deck What's-new slide must name the 0.6.5 → 0.7.0 window",
+    `deck What’s-new slide must name the v${NEW_SINCE} → v${PRODUCT_VERSION} window`,
   );
 });
 
