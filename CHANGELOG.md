@@ -2,6 +2,31 @@
 
 All notable changes to the ADO Code website.
 
+## [0.8.5] — 2026-11-13
+
+### Added
+
+- **The site documents ADO Code v0.8.5.** Version copy moved 0.8.4 → 0.8.5 in the
+  header badges, footers, hero eyebrow, `index.html` JSON-LD `softwareVersion`,
+  the feature-reference heading, the deck kickers, the README and the capture
+  tooling.
+- **Six new feature rows for 0.8.5** — the `explore_codebase` read-only search
+  subagent, the review gate before a clean finish, the reflection turn at a loop
+  halt, turn outcome counters, memory tools that can withdraw an entry the model
+  wrote, and newest-first memory digests. The feature reference is now **148
+  capabilities across 10 areas**.
+
+### Changed
+
+- **The deck's What's new slide now covers v0.8.0 → v0.8.5.** The third column
+  leads with the 0.8.5 loop work — `explore_codebase`, the review gate, the
+  reflection turn and the turn outcome counters. Tiered testing, goal & to-do
+  and the context/memory budgets moved into the speaker notes, which now walk
+  five releases. The copy still fits the fixed 16:9 canvas (three bullets per
+  column, 58 characters each, a 130-character footnote).
+- **The 0.8.4 sharpening pass keeps its own sentence in the notes**, so the
+  slide stops pretending the goal & to-do fix shipped in the newest release.
+
 ## [0.8.4] — 2026-11-05
 
 ### Added

@@ -20,8 +20,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (rel) => readFileSync(join(root, rel), 'utf8');
 
 // The extension release the site currently documents.
-const PRODUCT_VERSION = '0.8.4';
-const PREVIOUS_VERSION = '0.8.3';
+const PRODUCT_VERSION = '0.8.5';
+const PREVIOUS_VERSION = '0.8.4';
 
 // Rows from this release onward are marketed as "new" on features.html.
 const NEW_SINCE = '0.8.0';
@@ -117,9 +117,10 @@ test('features.html documents every capability of the documented release', () =>
   const html = read('features.html');
   // The 0.7.0 capability set: mid-run steer/queue + chat density modes + AI
   // delegation suggestions (the three new settings), the chat-area declutter
-  // The 0.8.0 → 0.8.4 window: documentation projects (0.8.0), the remote
+  // The 0.8.0 → 0.8.5 window: documentation projects (0.8.0), the remote
   // oversight console (0.8.1-0.8.3), tiered testing with the wizard dependency
-  // check and mobile/monorepo scaffolds (0.8.3), and the 0.8.4 sharpening pass.
+  // check and mobile/monorepo scaffolds (0.8.3), the 0.8.4 sharpening pass, and
+  // the 0.8.5 loop work (explore_codebase, review gate, reflection, memory withdraw).
   // Each marker is copy that only ships with a row.
   const RELEASE_CAPABILITIES = [
   'doc-ba',
@@ -137,6 +138,12 @@ test('features.html documents every capability of the documented release', () =>
   'verbosity',
   "what's new",
   'export to word',
+  'explore_codebase',
+  'review gate',
+  'reflection turn',
+  'withdraw a memory',
+  'newest-first digests',
+  'turn outcome counters',
 ];
   for (const marker of RELEASE_CAPABILITIES) {
     assert.ok(
@@ -208,6 +215,10 @@ test("the deck's What's new slide covers the release-window capability set", () 
       'verbosity',
       "what's new",
       'export to word',
+      'explore_codebase',
+      'review gate',
+      'reflection turn',
+      'withdraw',
     ];
   for (const marker of markers) {
     assert.ok(
